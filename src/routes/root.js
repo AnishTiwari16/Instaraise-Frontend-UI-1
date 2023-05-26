@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 export const ThemeContext = React.createContext();
-
+// eslint-disable-next-line
 import '../style/index.scss';
 
 import AddLiquidityPage from '../components/Dex/ManageLiquidity';
+import CreateLaunchpadContainer from '../container/Launchpad/createLaunchpad';
 import Dashbaord from '../container/Dashboard';
 import FaucetLayout from '../container/Dex/faucet';
 import LiquidityLayout from '../container/Dex/liquidity';
@@ -71,6 +72,10 @@ const Root = () => {
                             exact
                             path='/launchpad/IDO/:name'
                             element={<IdoProjects flag={!flag} />}
+                        />
+                        <Route
+                            path='/launchpad/create-launchpad'
+                            element={<CreateLaunchpadContainer flag={!flag} />}
                         />
                         <Route
                             path='/launchpad/IDO'

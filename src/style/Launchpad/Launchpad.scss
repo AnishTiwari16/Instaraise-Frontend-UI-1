@@ -167,6 +167,18 @@
     background-color: var(--text-toggle);
     outline: none;
 }
+.sale-button {
+    background-color: #6042ec;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+}
+.was-validated .form-control:valid {
+    background-image: none;
+}
+.was-validated .form-control:invalid {
+    background-image: none;
+}
 @media (max-width: 982px) {
     .connector {
         top: 0;

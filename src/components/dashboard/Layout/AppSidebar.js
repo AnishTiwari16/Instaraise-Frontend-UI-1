@@ -107,6 +107,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                 id='collapseOne'
                                 className={`accordion-collapse collapse ${
                                     [
+                                        'create-launchpad',
                                         'IDO',
                                         'create-crowdsale',
                                         'staking',
@@ -129,6 +130,17 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                                 marginLeft: '27px',
                                             }}
                                         >
+                                            <NavLink
+                                                to='/launchpad/create-launchpad'
+                                                className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
+                                                aria-current='page'
+                                            >
+                                                <div className=''>
+                                                    <div className='transition-class'>
+                                                        Create launchpad
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                             <NavLink
                                                 to='/launchpad/IDO'
                                                 className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
@@ -265,6 +277,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                 id='collapseTwo'
                                 className={`accordion-collapse  bg-transparent ${
                                     [
+                                        'create-launchpad',
                                         'IDO',
                                         'create-crowdsale',
                                         'staking',
