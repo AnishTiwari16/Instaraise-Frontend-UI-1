@@ -3,12 +3,7 @@ import React from 'react';
 import { Box, Step, StepButton, Stepper } from '@mui/material';
 
 const steps = ['Token sale details', 'Product details', 'Verify and confirm'];
-const LaunchpadStepper = () => {
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [completed] = React.useState({});
-    const handleStep = (step) => () => {
-        setActiveStep(step);
-    };
+const LaunchpadStepper = ({ activeStep, completed }) => {
     return (
         <Box sx={{ width: '100%' }}>
             <Stepper nonLinear activeStep={activeStep}>
@@ -25,7 +20,7 @@ const LaunchpadStepper = () => {
                             },
                         }}
                     >
-                        <StepButton color='inherit' onClick={handleStep(index)}>
+                        <StepButton color='inherit'>
                             <span className='text-g'>{label}</span>
                         </StepButton>
                     </Step>
