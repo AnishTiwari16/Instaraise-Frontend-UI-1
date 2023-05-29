@@ -102,6 +102,8 @@ const TrendingNews = (props) => {
                                 className='cardEditImg img-fluid'
                                 src={elem.image_url}
                                 alt='descImage'
+                                width='100%'
+                                height='100%'
                             />
 
                             <h5
