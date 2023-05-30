@@ -13,7 +13,7 @@ import Portfolio from '../container/Dex/portfolio';
 import Swap from '../container/Dex/swap';
 import Trade from '../container/Dex/tokens';
 import Farms from '../container/Farms/farms';
-const LazyHomeContainer = React.lazy(() => import('../container/home'));
+import HomeContainer from '../container/home';
 import Ido from '../container/Launchpad/Ido';
 import IdoProjects from '../container/Launchpad/IdoProjects';
 import Staking from '../container/Launchpad/Staking';
@@ -55,14 +55,7 @@ const Root = () => {
             <div className={themeclass}>
                 <BrowserRouter>
                     <Routes>
-                        <Route
-                            path='/'
-                            element={
-                                <React.Suspense fallback={''}>
-                                    <LazyHomeContainer />
-                                </React.Suspense>
-                            }
-                        />
+                        <Route path='/' element={<HomeContainer />} />
                         <Route path='/terms' element={<Terms />} />
                         <Route path='/privacy' element={<Privacy />} />
                         <Route
