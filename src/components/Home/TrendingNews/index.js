@@ -28,8 +28,6 @@ const TrendingNews = (props) => {
                             className='imageEdit d-block'
                             src={props.allTrendingNews[0].image_url}
                             alt='descImage'
-                            height='100%'
-                            width='100%'
                         />
                     ) : (
                         <div className='d-flex align-items-center justify-content-center'>

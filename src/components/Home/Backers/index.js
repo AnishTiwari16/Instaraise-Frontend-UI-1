@@ -38,8 +38,7 @@ const Backers = () => {
                                     <img
                                         src={item.image_url}
                                         alt={item.id}
-                                        height='100%'
-                                        width='100%'
+                                        className='img-fluid'
                                     />
                                 </div>
                             </div>
@@ -92,8 +91,7 @@ const Backers = () => {
                                     <img
                                         src={item.image_url}
                                         alt={item.id}
-                                        height='100%'
-                                        width='100%'
+                                        className='img-fluid'
                                     />
                                 </div>
                             </div>
