@@ -411,6 +411,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                         <img
                             className={theme ? 'sidebar-filter-socials' : null}
                             height='28'
+                            width='27'
                             src={telegramLogoDashboard}
                             alt='social-img'
                         />

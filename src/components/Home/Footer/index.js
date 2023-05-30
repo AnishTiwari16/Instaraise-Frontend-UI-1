@@ -44,6 +44,7 @@ const Footer = () => {
                             >
                                 <img
                                     height='28'
+                                    width='35'
                                     className='pr-2'
                                     src={telegramLogoDashboard}
                                     alt='insta-social-img'
