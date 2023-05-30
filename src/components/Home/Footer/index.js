@@ -17,11 +17,15 @@ const Footer = () => {
                                 className='compLogo'
                                 src={instaLogo}
                                 alt='insta-logo'
+                                width='90%'
+                                height='90%'
                             />
                             <img
                                 className='ml-2'
                                 src={CompName}
                                 alt='insta-img'
+                                width='85%'
+                                height='85%'
                             />
                         </div>
                         <p className='mt-4 w-75 footer-font'>
@@ -43,7 +47,8 @@ const Footer = () => {
                                 }
                             >
                                 <img
-                                    height='28'
+                                    height='27'
+                                    width='auto'
                                     className='pr-2'
                                     src={telegramLogoDashboard}
                                     alt='insta-social-img'
@@ -65,6 +70,8 @@ const Footer = () => {
                                         className='pr-2'
                                         src={elem.footer_social_img}
                                         alt='insta-social-img'
+                                        height='100%'
+                                        width='auto'
                                     />
                                 </Link>
                             ))}

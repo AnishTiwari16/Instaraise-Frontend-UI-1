@@ -123,6 +123,8 @@ const Header = ({ except }) => {
                                           <img
                                               src={elem.ShareImg}
                                               alt='share-icon'
+                                              height='100%'
+                                              width='auto'
                                           />
                                       </Link>
                                   ))
@@ -138,6 +140,8 @@ const Header = ({ except }) => {
                                           <img
                                               src={elem.ShareImg}
                                               alt='share-icon'
+                                              height='100%'
+                                              width='auto'
                                           />
                                       </Link>
                                   ))}
