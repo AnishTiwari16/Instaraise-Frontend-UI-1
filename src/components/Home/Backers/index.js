@@ -35,7 +35,11 @@ const Backers = () => {
                                         marginLeft: '50px',
                                     }}
                                 >
-                                    <img src={item.image_url} alt={item.id} />
+                                    <img
+                                        src={item.image_url}
+                                        alt={item.id}
+                                        className='img-fluid'
+                                    />
                                 </div>
                             </div>
                         );
@@ -84,7 +88,11 @@ const Backers = () => {
                                         marginLeft: '50px',
                                     }}
                                 >
-                                    <img src={item.image_url} alt={item.id} />
+                                    <img
+                                        src={item.image_url}
+                                        alt={item.id}
+                                        className='img-fluid'
+                                    />
                                 </div>
                             </div>
                         );
