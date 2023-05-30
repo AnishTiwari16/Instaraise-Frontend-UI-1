@@ -81,12 +81,7 @@ const TrendingNews = (props) => {
                             to='/'
                         >
                             Read More
-                            <img
-                                src={Rightarrow}
-                                alt='chevron'
-                                height='100%'
-                                width='auto'
-                            />
+                            <img src={Rightarrow} alt='chevron' />
                         </Link>
                     )}
                 </div>

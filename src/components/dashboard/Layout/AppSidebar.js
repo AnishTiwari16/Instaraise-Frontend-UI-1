@@ -49,8 +49,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                         className='ml-2'
                         src={theme ? dark_comp_name : CompName}
                         alt='insta-img'
-                        width='85%'
-                        height='85%'
+                        width='100%'
+                        height='100%'
                     />
                 </NavLink>
             </div>

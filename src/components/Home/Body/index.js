@@ -40,8 +40,6 @@ const Body = () => {
                         className='ml-1'
                         src={theme ? upRight : upRight_dark}
                         alt='upright-img'
-                        height='100%'
-                        width='auto'
                     />
                 </span>
             </Link>
@@ -130,8 +128,6 @@ const Body = () => {
                                     src={telegramLogoDashboard}
                                     alt='telegram-icon'
                                     style={{ marginLeft: '-10px' }}
-                                    width='18%'
-                                    height='18%'
                                 />
                             </Link>
                             <div>
