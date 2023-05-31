@@ -18,14 +18,37 @@ const Header = ({ except }) => {
     const { theme, handleThemeChange } = React.useContext(ThemeContext);
     var show_dark_header_images = (
         <>
-            <img className='compLogo' src={darkmodelogo} alt='insta-logo-img' />
-            <img className='ml-2' src={dark_comp_name} alt='insta-img' />
+            <img
+                className='compLogo'
+                src={darkmodelogo}
+                alt='insta-logo-img'
+                height='100%'
+                width='8%'
+            />
+            <img
+                className='ml-2'
+                src={dark_comp_name}
+                alt='insta-img'
+                height='85%'
+                width='85%'
+            />
         </>
     );
     var not_show_dark_header_images = (
         <>
-            <img src={instaLogo} alt='insta-logo-img' />
-            <img className='ml-2' src={CompName} alt='insta-img' />
+            <img
+                src={instaLogo}
+                alt='insta-logo-img'
+                height='100%'
+                width='8%'
+            />
+            <img
+                className='ml-2'
+                src={CompName}
+                alt='insta-img'
+                height='85%'
+                width='85%'
+            />
         </>
     );
     return (
@@ -95,12 +118,16 @@ const Header = ({ except }) => {
                                         onClick={() => handleThemeChange()}
                                         src={dark_mode_img}
                                         alt='dark-mode-img'
+                                        height='100%'
+                                        width='33%'
                                     />
                                 ) : (
                                     <img
                                         onClick={() => handleThemeChange()}
                                         src={darkModeImg}
                                         alt='dark-mode-img'
+                                        height='100%'
+                                        width='33%'
                                     />
                                 ))}
                             {!theme && (
@@ -123,6 +150,8 @@ const Header = ({ except }) => {
                                           <img
                                               src={elem.ShareImg}
                                               alt='share-icon'
+                                              height='100%'
+                                              width='32%'
                                           />
                                       </Link>
                                   ))
@@ -138,6 +167,8 @@ const Header = ({ except }) => {
                                           <img
                                               src={elem.ShareImg}
                                               alt='share-icon'
+                                              height='100%'
+                                              width='32%'
                                           />
                                       </Link>
                                   ))}

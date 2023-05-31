@@ -40,6 +40,8 @@ const Body = () => {
                         className='ml-1'
                         src={theme ? upRight : upRight_dark}
                         alt='upright-img'
+                        height='100%'
+                        width='18%'
                     />
                 </span>
             </Link>
@@ -87,6 +89,8 @@ const Body = () => {
                         className='ml-1'
                         src={theme ? upRight : upRight_dark}
                         alt='upright-img'
+                        height='100%'
+                        width='18%'
                     />
                 </span>
             </Link>
@@ -128,6 +132,8 @@ const Body = () => {
                                     src={telegramLogoDashboard}
                                     alt='telegram-icon'
                                     style={{ marginLeft: '-10px' }}
+                                    height='100%'
+                                    width='18%'
                                 />
                             </Link>
                             <div>
@@ -146,6 +152,8 @@ const Body = () => {
                                             <img
                                                 src={elem.footer_social_img}
                                                 alt='social-img'
+                                                height='100%'
+                                                width='15%'
                                             />
                                         </Link>
                                         <br />

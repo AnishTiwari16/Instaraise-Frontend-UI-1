@@ -66,6 +66,8 @@ const Footer = () => {
                                         className='pr-2'
                                         src={elem.footer_social_img}
                                         alt='insta-social-img'
+                                        height='28'
+                                        width='32'
                                     />
                                 </Link>
                             ))}
