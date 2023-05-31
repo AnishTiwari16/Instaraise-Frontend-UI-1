@@ -17,6 +17,8 @@ const Footer = () => {
                                 className='compLogo'
                                 src={instaLogo}
                                 alt='insta-logo'
+                                height='100%'
+                                width='100%'
                             />
                             <img
                                 className='ml-2'
