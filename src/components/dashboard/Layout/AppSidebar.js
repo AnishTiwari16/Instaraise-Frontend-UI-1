@@ -42,11 +42,15 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                         className='compLogo'
                         src={theme ? darkmodelogo : instaLogo}
                         alt='insta-logo-img'
+                        height='100%'
+                        width='100%'
                     />
                     <img
                         className='ml-2'
                         src={theme ? dark_comp_name : CompName}
                         alt='insta-img'
+                        height='85%'
+                        width='85%'
                     />
                 </NavLink>
             </div>

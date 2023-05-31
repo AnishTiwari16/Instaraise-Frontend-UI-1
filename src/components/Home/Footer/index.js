@@ -22,6 +22,8 @@ const Footer = () => {
                                 className='ml-2'
                                 src={CompName}
                                 alt='insta-img'
+                                height='85%'
+                                width='85%'
                             />
                         </div>
                         <p className='mt-4 w-75 footer-font'>
