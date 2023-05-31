@@ -40,8 +40,6 @@ const Body = () => {
                         className='ml-1'
                         src={theme ? upRight : upRight_dark}
                         alt='upright-img'
-                        height='100%'
-                        width='18%'
                     />
                 </span>
             </Link>
@@ -89,8 +87,6 @@ const Body = () => {
                         className='ml-1'
                         src={theme ? upRight : upRight_dark}
                         alt='upright-img'
-                        height='100%'
-                        width='18%'
                     />
                 </span>
             </Link>
