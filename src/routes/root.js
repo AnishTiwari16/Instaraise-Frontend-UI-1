@@ -1,25 +1,31 @@
+import loadable from '@loadable/component';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
+
 export const ThemeContext = React.createContext();
 
 import '../style/index.scss';
 
-import AddLiquidityPage from '../components/Dex/ManageLiquidity';
-import Dashbaord from '../container/Dashboard';
-import FaucetLayout from '../container/Dex/faucet';
-import LiquidityLayout from '../container/Dex/liquidity';
-import Portfolio from '../container/Dex/portfolio';
-import Swap from '../container/Dex/swap';
-import Trade from '../container/Dex/tokens';
-import Farms from '../container/Farms/farms';
-const LazyHomeContainer = React.lazy(() => import('../container/home'));
-import Ido from '../container/Launchpad/Ido';
-import IdoProjects from '../container/Launchpad/IdoProjects';
-import Staking from '../container/Launchpad/Staking';
-import NotFound from '../container/NotFound/NotFound';
-import Privacy from '../container/privacy';
-import Terms from '../container/terms';
+const AddLiquidityPage = loadable(() =>
+    import('../components/Dex/ManageLiquidity')
+);
+const Dashbaord = loadable(() => import('../container/Dashboard'));
+const Farms = loadable(() => import('../container/Farms/farms'));
+const FaucetLayout = loadable(() => import('../container/Dex/faucet'));
+const HomeContainer = loadable(() => import('../container/home'));
+const Ido = loadable(() => import('../container/Launchpad/Ido'));
+const IdoProjects = loadable(() =>
+    import('../container/Launchpad/IdoProjects')
+);
+const LiquidityLayout = loadable(() => import('../container/Dex/liquidity'));
+const Portfolio = loadable(() => import('../container/Dex/portfolio'));
+const Privacy = loadable(() => import('../container/privacy'));
+const Staking = loadable(() => import('../container/Launchpad/Staking'));
+const Swap = loadable(() => import('../container/Dex/swap'));
+const Terms = loadable(() => import('../container/terms'));
+const Trade = loadable(() => import('../container/Dex/tokens'));
+const NotFound = loadable(() => import('../container/NotFound/NotFound'));
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const getLocalData = () => {
@@ -55,14 +61,7 @@ const Root = () => {
             <div className={themeclass}>
                 <BrowserRouter>
                     <Routes>
-                        <Route
-                            path='/'
-                            element={
-                                <React.Suspense fallback={null}>
-                                    <LazyHomeContainer />
-                                </React.Suspense>
-                            }
-                        />
+                        <Route path='/' element={<HomeContainer />} />
                         <Route path='/terms' element={<Terms />} />
                         <Route path='/privacy' element={<Privacy />} />
                         <Route
