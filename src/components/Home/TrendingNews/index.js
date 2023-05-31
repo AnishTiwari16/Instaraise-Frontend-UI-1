@@ -101,9 +101,11 @@ const TrendingNews = (props) => {
                             onClick={() => window.open(elem.link)}
                         >
                             <img
-                                className='cardEditImg img-fluid'
+                                className='cardEditImg'
                                 src={elem.image_url}
                                 alt='descImage'
+                                height='47%'
+                                width='100%'
                             />
 
                             <h5
