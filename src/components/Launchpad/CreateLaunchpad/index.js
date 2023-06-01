@@ -39,10 +39,7 @@ const CreateLaunchpad = () => {
             </div>
 
             {activeStep === 0 ? (
-                <KybVerification
-                    handleComplete={handleComplete}
-                    handleBack={handleBack}
-                />
+                <KybVerification handleComplete={handleComplete} />
             ) : activeStep === 1 ? (
                 <TokenDetails
                     handleComplete={handleComplete}

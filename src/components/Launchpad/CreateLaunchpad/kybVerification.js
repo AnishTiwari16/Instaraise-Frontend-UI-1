@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import React from 'react';
 import Synaps from '@synaps-io/react-verify';
-const KybVerification = ({ handleComplete, handleBack }) => {
+const KybVerification = ({ handleComplete }) => {
     const [currentPage, setCurrentPage] = React.useState('page1');
 
     const fetchCurrentPage = () => {
@@ -108,14 +108,7 @@ const KybVerification = ({ handleComplete, handleBack }) => {
                                     secondary: 'ffffff',
                                 }}
                             />
-                            <div className='d-flex justify-content-between py-2'>
-                                <button
-                                    className='sale-button btn px-5 shadow-sm button-primary'
-                                    onClick={handleBack}
-                                >
-                                    Back
-                                </button>
-
+                            <div className='d-flex justify-content-end py-2'>
                                 <button
                                     className='sale-button btn px-5 shadow-sm button-primary'
                                     onClick={handleComplete}
