@@ -1,29 +1,18 @@
 // eslint-disable-next-line
 import React from 'react';
-import { connect } from 'react-redux';
-import {
-    projectName,
-    tokenName,
-} from '../../../redux/actions/selfHostedIdo/action.selfHostedIdo';
 const ProjectDetails = ({
-    activeStep,
-    completed,
-    setCompleted,
-    setActiveStep,
-    projectNameReducer,
-    projectName,
-    tokenName,
-    tokenNameReducer,
+    setDescription,
+    setProjectName,
+    setTokenName,
+    setLogoURL,
+    setTelegram,
+    setTwitter,
+    setWebsiteLink,
+    setGithub,
+    setMedium,
+    handleComplete,
+    handleBack,
 }) => {
-    const handleComplete = () => {
-        const newCompleted = completed;
-        newCompleted[activeStep] = true;
-        setCompleted(newCompleted);
-        setActiveStep(activeStep + 1);
-    };
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
             <div className='card-body'>
@@ -42,8 +31,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                value={projectNameReducer}
-                                onChange={(e) => projectName(e.target.value)}
+                                onChange={(e) => setProjectName(e.target.value)}
                                 required
                             />
                         </div>
@@ -61,8 +49,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer02'
                                 name='description'
-                                // value={description}
-                                // onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) => setDescription(e.target.value)}
                                 required
                             />
 
@@ -81,10 +68,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                // value={adminAddress}
-                                // onChange={(e) =>
-                                //     setAdminAddress(e.target.value)
-                                // }
+                                onChange={(e) => setTelegram(e.target.value)}
                                 required
                             />
                         </div>
@@ -101,10 +85,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                // value={adminAddress}
-                                // onChange={(e) =>
-                                //     setAdminAddress(e.target.value)
-                                // }
+                                onChange={(e) => setTwitter(e.target.value)}
                                 required
                             />
                         </div>
@@ -123,8 +104,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                value={tokenNameReducer}
-                                onChange={(e) => tokenName(e.target.value)}
+                                onChange={(e) => setTokenName(e.target.value)}
                                 required
                             />
                         </div>
@@ -141,10 +121,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                // value={adminAddress}
-                                // onChange={(e) =>
-                                //     setAdminAddress(e.target.value)
-                                // }
+                                onChange={(e) => setLogoURL(e.target.value)}
                                 required
                             />
                         </div>
@@ -161,10 +138,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                // value={adminAddress}
-                                // onChange={(e) =>
-                                //     setAdminAddress(e.target.value)
-                                // }
+                                onChange={(e) => setWebsiteLink(e.target.value)}
                                 required
                             />
                         </div>
@@ -182,10 +156,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                // value={adminAddress}
-                                // onChange={(e) =>
-                                //     setAdminAddress(e.target.value)
-                                // }
+                                onChange={(e) => setMedium(e.target.value)}
                                 required
                             />
                         </div>
@@ -202,10 +173,7 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                // value={adminAddress}
-                                // onChange={(e) =>
-                                //     setAdminAddress(e.target.value)
-                                // }
+                                onChange={(e) => setGithub(e.target.value)}
                                 required
                             />
                         </div>
@@ -233,12 +201,5 @@ const ProjectDetails = ({
         </div>
     );
 };
-const mapDispatchToProps = (dispatch) => ({
-    projectName: (payload) => dispatch(projectName(payload)),
-    tokenName: (payload) => dispatch(tokenName(payload)),
-});
-const mapStateToProps = (state) => ({
-    projectNameReducer: state.projectNameReducer,
-    tokenNameReducer: state.tokenNameReducer,
-});
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails);
+
+export default ProjectDetails;

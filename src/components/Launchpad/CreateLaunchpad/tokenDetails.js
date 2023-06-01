@@ -6,12 +6,7 @@ import 'react-datetime/css/react-datetime.css';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { connect } from 'react-redux';
 
-const TokenDetails = ({
-    activeStep,
-    completed,
-    setCompleted,
-    setActiveStep,
-}) => {
+const TokenDetails = ({ handleComplete, handleBack }) => {
     const [tokensToSell, setTokensToSell] = React.useState('');
     const [stakingContract, setStakingContract] = React.useState('');
     const [privateSalePrice, setPrivateSalePrice] = React.useState('');
@@ -56,12 +51,6 @@ const TokenDetails = ({
         });
     })();
 
-    const handleComplete = () => {
-        const newCompleted = completed;
-        newCompleted[activeStep] = true;
-        setCompleted(newCompleted);
-        setActiveStep(activeStep + 1);
-    };
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
             <div className='card-body'>
@@ -377,7 +366,7 @@ const TokenDetails = ({
                         </div>
                     </div>
                     <div className='card'>
-                        <div className='card-header bg-white' id='headingTwo'>
+                        <div className='card-header bg-white ' id='headingTwo'>
                             <h5 className='mb-0'>
                                 <button
                                     className='btn btn-link collapsed'
@@ -599,7 +588,15 @@ const TokenDetails = ({
                     </div>
                 </div>
 
-                <div className='d-flex justify-content-end'>
+                <div className='d-flex justify-content-between py-2'>
+                    <button
+                        // disabled={!tokenAddress}
+                        className='sale-button btn px-5 shadow-sm button-primary'
+                        onClick={handleBack}
+                    >
+                        Back
+                    </button>
+
                     <button
                         // disabled={!tokenAddress}
                         className='sale-button btn px-5 shadow-sm button-primary'

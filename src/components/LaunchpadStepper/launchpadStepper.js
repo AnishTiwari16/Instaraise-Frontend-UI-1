@@ -2,7 +2,12 @@
 import React from 'react';
 import { Box, Step, StepButton, Stepper } from '@mui/material';
 
-const steps = ['Token sale details', 'Product details', 'Verify and confirm'];
+const steps = [
+    'Complete KYB',
+    'Token sale details',
+    'Product details',
+    'Verify and confirm',
+];
 const LaunchpadStepper = ({ activeStep, completed }) => {
     return (
         <Box sx={{ width: '100%' }}>
