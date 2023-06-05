@@ -41,3 +41,6 @@ export const GET_HARVEST_VALUE = 'GET_HARVEST_VALUE';
 export const UNSTAKE_INSTA = 'UNSTAKE_INSTA';
 export const TOKENS_MINTED = 'TOKENS_MINTED';
 export const CREATE_SALE = 'CREATE_SALE';
+//self hosted IDO details
+export const TOKEN_ADDRESS = 'TOKEN_ADDRESS';
+export const NEW_PROJECT = 'NEW_PROJECT';

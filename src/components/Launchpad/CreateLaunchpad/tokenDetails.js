@@ -6,31 +6,14 @@ import 'react-datetime/css/react-datetime.css';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { connect } from 'react-redux';
 
-const TokenDetails = ({ handleComplete, handleBack }) => {
-    const [tokensToSell, setTokensToSell] = React.useState('');
-    const [stakingContract, setStakingContract] = React.useState('');
-    const [privateSalePrice, setPrivateSalePrice] = React.useState('');
-    const [publicSalePrice, setPublicSalePrice] = React.useState('');
-    const [publicMaxParticipation, setPublicMaxParticipation] =
-        React.useState(0);
-    const [decimals, setDecimals] = React.useState(0);
-    const [tokenID, setTokenId] = React.useState(0);
-    const [timeBlock, setTimeBlock] = React.useState(0);
-    const [maxTokensToLp, setMaxTokensToLp] = React.useState('');
-    const [presaleStartTime, setPresaleStartTime] = React.useState(new Date());
-    const [presaleEndTime, setPresaleEndTime] = React.useState(new Date());
-    const [publicStartTime, setPublicStartTime] = React.useState(new Date());
-    const [publicEndTime, setPublicEndTime] = React.useState(new Date());
-    const [tokenUnlockTime, setTokenUnlockTime] = React.useState(new Date());
-    const [lpLockupTime, setLpLockupTime] = React.useState(new Date());
-    const [tokenAddress, setTokenAddress] = React.useState('');
-    const [tokenDexPrice, setTokenDexPrice] = React.useState('');
-    const [isPublicSaleWhitelisted, setIsPublicSaleWhitelisted] =
-        React.useState('');
-    const [percentageRevenueToLP, setPercentageRevenueToLP] = React.useState(0);
-    const [privateSaleAllocation, setPrivateSaleAllocation] =
-        React.useState('');
+import { createNewProject } from '../../../redux/actions/selfHostedIDO/action.self';
 
+const TokenDetails = ({
+    handleComplete,
+    handleBack,
+    createNewProject,
+    project,
+}) => {
     (function () {
         var forms = document.querySelectorAll('.needs-validation');
 
@@ -50,7 +33,6 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
             );
         });
     })();
-
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
             <div className='card-body'>
@@ -97,9 +79,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                         id='validationServer02'
                                         name='description'
-                                        value={tokenAddress}
+                                        value={project.tokenAddress}
                                         onChange={(e) =>
-                                            setTokenAddress(e.target.value)
+                                            createNewProject({
+                                                ...project,
+                                                tokenAddress: e.target.value,
+                                            })
                                         }
                                         required
                                     />
@@ -116,9 +101,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='text'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='banner'
-                                            value={decimals}
+                                            value={project.decimals}
                                             onChange={(e) =>
-                                                setDecimals(e.target.value)
+                                                createNewProject({
+                                                    ...project,
+                                                    decimals: e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -139,9 +127,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='tokenID'
-                                            value={tokenID}
+                                            value={project.tokenId}
                                             onChange={(e) =>
-                                                setTokenId(e.target.value)
+                                                createNewProject({
+                                                    ...project,
+                                                    tokenId: e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -188,9 +179,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         Private Start Time
                                     </label>
                                     <Datetime
-                                        value={presaleStartTime}
+                                        value={project.presaleStartTime}
                                         onChange={(e) =>
-                                            setPresaleStartTime(e.toDate())
+                                            createNewProject({
+                                                ...project,
+                                                presaleStartTime: e._d,
+                                            })
                                         }
                                     />
                                     <label
@@ -201,9 +195,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         private End Time
                                     </label>
                                     <Datetime
-                                        value={presaleEndTime}
+                                        value={project.presaleEndTime}
                                         onChange={(e) =>
-                                            setPresaleEndTime(e.toDate())
+                                            createNewProject({
+                                                ...project,
+                                                presaleEndTime: e._d,
+                                            })
                                         }
                                     />
                                     <label
@@ -218,11 +215,15 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='privateSaleAllocation'
-                                            value={privateSaleAllocation}
+                                            value={
+                                                project.privateSaleAllocation
+                                            }
                                             onChange={(e) =>
-                                                setPrivateSaleAllocation(
-                                                    e.target.value
-                                                )
+                                                createNewProject({
+                                                    ...project,
+                                                    privateSaleAllocation:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -243,11 +244,13 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='privateSalePrice'
-                                            value={privateSalePrice}
+                                            value={project.privateSalePrice}
                                             onChange={(e) =>
-                                                setPrivateSalePrice(
-                                                    e.target.value
-                                                )
+                                                createNewProject({
+                                                    ...project,
+                                                    privateSalePrice:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -293,9 +296,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         public Start Time
                                     </label>
                                     <Datetime
-                                        value={publicStartTime}
+                                        value={project.publicStartTime}
                                         onChange={(e) =>
-                                            setPublicStartTime(e.toDate())
+                                            createNewProject({
+                                                ...project,
+                                                publicStartTime: e._d,
+                                            })
                                         }
                                     />
                                     <label
@@ -306,9 +312,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         public End Time
                                     </label>
                                     <Datetime
-                                        value={publicEndTime}
+                                        value={project.publicEndTime}
                                         onChange={(e) =>
-                                            setPublicEndTime(e.toDate())
+                                            createNewProject({
+                                                ...project,
+                                                publicEndTime: e._d,
+                                            })
                                         }
                                     />
                                     <label
@@ -323,11 +332,15 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='publicMaxParticipation'
-                                            value={publicMaxParticipation}
+                                            value={
+                                                project.publicMaxParticipation
+                                            }
                                             onChange={(e) =>
-                                                setPublicMaxParticipation(
-                                                    e.target.value
-                                                )
+                                                createNewProject({
+                                                    ...project,
+                                                    publicMaxParticipation:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -348,11 +361,13 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='publicSalePrice'
-                                            value={publicSalePrice}
+                                            value={project.publicSalePrice}
                                             onChange={(e) =>
-                                                setPublicSalePrice(
-                                                    e.target.value
-                                                )
+                                                createNewProject({
+                                                    ...project,
+                                                    publicSalePrice:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -399,9 +414,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                         id='validationServer02'
                                         name='description'
-                                        value={tokensToSell}
+                                        value={project.amountToSell}
                                         onChange={(e) =>
-                                            setTokensToSell(e.target.value)
+                                            createNewProject({
+                                                ...project,
+                                                amountToSell: e.target.value,
+                                            })
                                         }
                                         required
                                     />
@@ -418,9 +436,13 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='banner'
-                                            value={maxTokensToLp}
+                                            value={project.maxTokenToLp}
                                             onChange={(e) =>
-                                                setMaxTokensToLp(e.target.value)
+                                                createNewProject({
+                                                    ...project,
+                                                    maxTokensToLp:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -437,11 +459,14 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         token Unlock Time
                                     </label>
                                     <Datetime
-                                        value={tokenUnlockTime}
+                                        value={project.tokenUnlockTime}
                                         onChange={(e) =>
-                                            setTokenUnlockTime(e.toDate())
+                                            createNewProject({
+                                                ...project,
+                                                tokenUnlockTime: e._d,
+                                            })
                                         }
-                                    />{' '}
+                                    />
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -454,11 +479,15 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='maxSupply'
-                                            value={percentageRevenueToLP}
+                                            value={
+                                                project.percentageRevenueToLP
+                                            }
                                             onChange={(e) =>
-                                                setPercentageRevenueToLP(
-                                                    e.target.value
-                                                )
+                                                createNewProject({
+                                                    ...project,
+                                                    percentageRevenueToLP:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -466,7 +495,7 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             required
                                         />
                                         <div className='invalid-feedback'></div>
-                                    </div>{' '}
+                                    </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -475,9 +504,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                         lp Lockup Time
                                     </label>
                                     <Datetime
-                                        value={lpLockupTime}
+                                        value={project.lpLockupTime}
                                         onChange={(e) =>
-                                            setLpLockupTime(e.toDate())
+                                            createNewProject({
+                                                ...project,
+                                                lpLockupTime: e._d,
+                                            })
                                         }
                                     />
                                     <label
@@ -492,9 +524,13 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='homepage'
-                                            value={tokenDexPrice}
+                                            value={project.tokenDexPrice}
                                             onChange={(e) =>
-                                                setTokenDexPrice(e.target.value)
+                                                createNewProject({
+                                                    ...project,
+                                                    tokenDexPrice:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -515,11 +551,13 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='text'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='stakingContract'
-                                            value={stakingContract}
+                                            value={project.stakingContract}
                                             onChange={(e) =>
-                                                setStakingContract(
-                                                    e.target.value
-                                                )
+                                                createNewProject({
+                                                    ...project,
+                                                    stakingContract:
+                                                        e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -540,9 +578,12 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='timeBlock'
-                                            value={timeBlock}
+                                            value={project.timeBlock}
                                             onChange={(e) =>
-                                                setTimeBlock(e.target.value)
+                                                createNewProject({
+                                                    ...project,
+                                                    timeBlock: e.target.value,
+                                                })
                                             }
                                             placeholder='some placeholder'
                                             id='validationServerUsername'
@@ -565,18 +606,22 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
                                             <Select
                                                 labelId='demo-select-small-label'
                                                 id='demo-select-small'
-                                                value={isPublicSaleWhitelisted}
+                                                value={
+                                                    project.isPublicSaleWhitelisted
+                                                }
                                                 label='Age'
                                                 onChange={(e) =>
-                                                    setIsPublicSaleWhitelisted(
-                                                        e.target.value
-                                                    )
+                                                    createNewProject({
+                                                        ...project,
+                                                        isPublicSaleWhitelisted:
+                                                            e.target.value,
+                                                    })
                                                 }
                                             >
-                                                <MenuItem value={10}>
+                                                <MenuItem value={true}>
                                                     True
                                                 </MenuItem>
-                                                <MenuItem value={20}>
+                                                <MenuItem value={false}>
                                                     False
                                                 </MenuItem>
                                             </Select>
@@ -609,7 +654,10 @@ const TokenDetails = ({ handleComplete, handleBack }) => {
         </div>
     );
 };
-const mapStateToProps = (state) => ({
-    wallet: state.wallet,
+const mapDispatchToProps = (dispatch) => ({
+    createNewProject: (payload) => dispatch(createNewProject(payload)),
 });
-export default connect(mapStateToProps)(TokenDetails);
+const mapStateToProps = (state) => ({
+    project: state.project,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(TokenDetails);

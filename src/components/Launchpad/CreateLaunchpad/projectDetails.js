@@ -1,17 +1,13 @@
 // eslint-disable-next-line
 import React from 'react';
+import { connect } from 'react-redux';
+import { createNewProject } from '../../../redux/actions/selfHostedIDO/action.self';
+
 const ProjectDetails = ({
-    setDescription,
-    setProjectName,
-    setTokenName,
-    setLogoURL,
-    setTelegram,
-    setTwitter,
-    setWebsiteLink,
-    setGithub,
-    setMedium,
     handleComplete,
     handleBack,
+    project,
+    createNewProject,
 }) => {
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
@@ -31,7 +27,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setProjectName(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        projectName: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -49,7 +50,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer02'
                                 name='description'
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        description: e.target.value,
+                                    })
+                                }
                                 required
                             />
 
@@ -68,7 +74,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setTelegram(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        telegram: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -85,7 +96,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setTwitter(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        twitter: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -104,7 +120,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setTokenName(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        tokenName: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -121,7 +142,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setLogoURL(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        logoURL: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -138,7 +164,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setWebsiteLink(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        website: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -156,7 +187,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setMedium(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        medium: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -173,7 +209,12 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                onChange={(e) => setGithub(e.target.value)}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        github: e.target.value,
+                                    })
+                                }
                                 required
                             />
                         </div>
@@ -189,7 +230,6 @@ const ProjectDetails = ({
                         </button>
 
                         <button
-                            // disabled={!tokenAddress}
                             className='sale-button btn px-5 shadow-sm button-primary'
                             onClick={handleComplete}
                         >
@@ -201,5 +241,10 @@ const ProjectDetails = ({
         </div>
     );
 };
-
-export default ProjectDetails;
+const mapDispatchToProps = (dispatch) => ({
+    createNewProject: (payload) => dispatch(createNewProject(payload)),
+});
+const mapStateToProps = (state) => ({
+    project: state.project,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails);

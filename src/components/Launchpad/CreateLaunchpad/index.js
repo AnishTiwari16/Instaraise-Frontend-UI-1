@@ -9,15 +9,7 @@ import KybVerification from './kybVerification';
 const CreateLaunchpad = () => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState({});
-    const [projectName, setProjectName] = React.useState('');
-    const [tokenName, setTokenName] = React.useState('');
-    const [description, setDescription] = React.useState('');
-    const [logoURL, setLogoURL] = React.useState('');
-    const [telegram, setTelegram] = React.useState('');
-    const [twitter, setTwitter] = React.useState('');
-    const [websiteLink, setWebsiteLink] = React.useState('');
-    const [github, setGithub] = React.useState('');
-    const [medium, setMedium] = React.useState('');
+
     const handleComplete = () => {
         const newCompleted = completed;
         newCompleted[activeStep] = true;
@@ -47,31 +39,11 @@ const CreateLaunchpad = () => {
                 />
             ) : activeStep === 2 ? (
                 <ProjectDetails
-                    setDescription={setDescription}
-                    setProjectName={setProjectName}
-                    setTokenName={setTokenName}
-                    setLogoURL={setLogoURL}
-                    setTelegram={setTelegram}
-                    setTwitter={setTwitter}
-                    setWebsiteLink={setWebsiteLink}
-                    setGithub={setGithub}
-                    setMedium={setMedium}
                     handleComplete={handleComplete}
                     handleBack={handleBack}
                 />
             ) : (
-                <VerfiyDetails
-                    projectName={projectName}
-                    tokenName={tokenName}
-                    handleBack={handleBack}
-                    description={description}
-                    logoURL={logoURL}
-                    telegram={telegram}
-                    twitter={twitter}
-                    websiteLink={websiteLink}
-                    github={github}
-                    medium={medium}
-                />
+                <VerfiyDetails handleBack={handleBack} />
             )}
         </div>
     );
