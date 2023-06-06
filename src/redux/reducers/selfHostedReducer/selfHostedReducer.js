@@ -1,4 +1,11 @@
-import { NEW_PROJECT, TOKEN_ADDRESS } from '../../actions/index.action';
+import {
+    ADD_WHITELISTED_LOADER,
+    CREATE_PROJECT_LOADER,
+    CREATE_SALE,
+    FETCH_PROJECT_DATA,
+    NEW_PROJECT,
+    TOKEN_ADDRESS,
+} from '../../actions/index.action';
 
 export const tokenAddress = (initialState = '', action) => {
     switch (action.type) {
@@ -42,6 +49,38 @@ const initialProject = {
 export const project = (initialState = initialProject, action) => {
     switch (action.type) {
         case NEW_PROJECT:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const createSale = (initialState = '', action) => {
+    switch (action.type) {
+        case CREATE_SALE:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const createSaleLoader = (initialState = false, action) => {
+    switch (action.type) {
+        case CREATE_PROJECT_LOADER:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const AdminProjectData = (initialState = {}, action) => {
+    switch (action.type) {
+        case FETCH_PROJECT_DATA:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const whitelistUsersLoader = (initialState = false, action) => {
+    switch (action.type) {
+        case ADD_WHITELISTED_LOADER:
             return action.payload;
         default:
             return initialState;

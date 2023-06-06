@@ -33,6 +33,7 @@ const TokenDetails = ({
             );
         });
     })();
+
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
             <div className='card-body'>
@@ -565,7 +566,7 @@ const TokenDetails = ({
                                             required
                                         />
                                         <div className='invalid-feedback'></div>
-                                    </div>{' '}
+                                    </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -600,7 +601,7 @@ const TokenDetails = ({
                                             size='small'
                                         >
                                             <InputLabel id='demo-select-small-label'>
-                                                isPublicSaleWhitelisted
+                                                Whitelist for public sale
                                             </InputLabel>
 
                                             <Select
@@ -609,7 +610,7 @@ const TokenDetails = ({
                                                 value={
                                                     project.isPublicSaleWhitelisted
                                                 }
-                                                label='Age'
+                                                label='Whitelist for public sale'
                                                 onChange={(e) =>
                                                     createNewProject({
                                                         ...project,

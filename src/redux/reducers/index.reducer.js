@@ -49,7 +49,13 @@ import { priceGraph, selectedNoDays } from './graph.reducer';
 import { fetchAllTrendingNews } from './news.reducer';
 import { tokenInfo } from './stats.reducer';
 import { walletAddress } from './wallet/wallet.reducer';
-import { project } from './selfHostedReducer/selfHostedReducer';
+import {
+    AdminProjectData,
+    createSale,
+    createSaleLoader,
+    project,
+    whitelistUsersLoader,
+} from './selfHostedReducer/selfHostedReducer';
 const rootReducer = combineReducers({
     allTrendingNews: fetchAllTrendingNews,
     tokenInfo: tokenInfo,
@@ -95,6 +101,10 @@ const rootReducer = combineReducers({
     claimInstaRewards: claimInstaRewards,
     //self hosted ido details
     project: project,
+    createSaleLoader: createSaleLoader,
+    createSale: createSale,
+    whitelistUsersLoader: whitelistUsersLoader,
+    AdminProjectData: AdminProjectData,
 });
 
 export default rootReducer;

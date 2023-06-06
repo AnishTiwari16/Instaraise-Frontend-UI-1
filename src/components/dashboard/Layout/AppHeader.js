@@ -87,7 +87,7 @@ const AppHeader = (props) => {
                                 ? connectWallet({
                                       NETWORK: isTestnet
                                           ? 'testnet'
-                                          : 'mainnet',
+                                          : 'testnet',
                                   })
                                 : setOpenAccountModal(!openAccountModal);
                         }}

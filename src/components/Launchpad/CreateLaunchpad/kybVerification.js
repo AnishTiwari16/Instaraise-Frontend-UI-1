@@ -83,7 +83,7 @@ const KybVerification = ({ handleComplete }) => {
                                             )
                                         }
                                     >
-                                        Create
+                                        Next
                                     </button>
                                 </div>
                             </form>

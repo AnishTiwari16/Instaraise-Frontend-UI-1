@@ -1,9 +1,12 @@
+// eslint-disable-next-line
 import React, { useState } from 'react';
 import { FaPlaneDeparture } from 'react-icons/fa';
 
+import AdminDetails from './AdminDetails';
 import Claim from './Claim';
 import { DATA } from './TierData';
 import MainModal from '../../Modals';
+import OwnerInfo from './OwnerInfo';
 
 const PoolDetails = (props) => {
     const {
@@ -89,7 +92,7 @@ const PoolDetails = (props) => {
                 handleOperationId={handleOperationId}
                 contractAddress={projectContractAddress}
             />
-            <div className='d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-between align-items-between'>
                 <div className='d-flex align-items-start'>
                     <div className='d-flex justify-content-start text-14 py-1 '>
                         <div className='p-1 cursor-pointer'>
@@ -123,7 +126,39 @@ const PoolDetails = (props) => {
                         </div>
                     </div>
                 </div>
+                <div className='d-flex'>
+                    <div className='p-1 cursor-pointer'>
+                        <span
+                            className={
+                                tab === 'Info'
+                                    ? 'text-toggle-selected'
+                                    : 'text-toggle'
+                            }
+                            onClick={() => {
+                                setTab('Info');
+                            }}
+                        >
+                            Info
+                        </span>
+                    </div>
+                    <div className='text-border'></div>
+                    <div className='p-1 cursor-pointer'>
+                        <span
+                            className={
+                                tab === 'ownerZone'
+                                    ? 'text-toggle-selected'
+                                    : 'text-toggle'
+                            }
+                            onClick={() => {
+                                setTab('ownerZone');
+                            }}
+                        >
+                            Owner Zone
+                        </span>
+                    </div>
+                </div>
             </div>
+
             {tab === 'invest' ? (
                 <>
                     <div className='tiers'>
@@ -313,12 +348,16 @@ const PoolDetails = (props) => {
                         )}
                     </>
                 </>
-            ) : (
+            ) : tab === 'claim' ? (
                 <Claim
                     SaleData={SaleData}
                     projectData={projectData}
                     ClaimNow={ClaimNow}
                 />
+            ) : tab === 'ownerZone' ? (
+                <OwnerInfo />
+            ) : (
+                <AdminDetails />
             )}
         </div>
     );
