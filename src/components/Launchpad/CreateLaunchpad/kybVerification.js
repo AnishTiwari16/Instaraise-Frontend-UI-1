@@ -8,24 +8,12 @@ const KybVerification = ({
     userVerification,
     userVerifyData,
 }) => {
-    const [currentPage, setCurrentPage] = React.useState('page1');
     const [email, setEmail] = React.useState('');
     const [xtzAddress, setXtzAddress] = React.useState('');
 
-    const fetchCurrentPage = () => {
-        const data = localStorage.getItem('currentPage');
-
-        setCurrentPage(data);
-    };
     const handleNext = async () => {
-        const resp = await userVerification({ email, xtzAddress });
-        if (resp.payload.success) {
-            localStorage.setItem('currentPage', 'page2');
-        }
+        await userVerification({ email, xtzAddress });
     };
-    React.useEffect(() => {
-        fetchCurrentPage();
-    }, [fetchCurrentPage]);
 
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
@@ -48,15 +36,7 @@ const KybVerification = ({
                         ></li>
                     </ol>
                     <div className='carousel-inner'>
-                        <div
-                            className={`carousel-item ${
-                                currentPage === 'page1'
-                                    ? 'active'
-                                    : currentPage === 'page2'
-                                    ? null
-                                    : 'active'
-                            }`}
-                        >
+                        <div className='carousel-item active'>
                             <form>
                                 <div className='form-group'>
                                     <label htmlFor='validationDefaultUsername'>
@@ -105,11 +85,7 @@ const KybVerification = ({
                                 </div>
                             </form>
                         </div>
-                        <div
-                            className={`carousel-item ${
-                                currentPage === 'page2' && 'active'
-                            }`}
-                        >
+                        <div className='carousel-item '>
                             <Synaps
                                 sessionId={userVerifyData.data}
                                 service={'corporate'}

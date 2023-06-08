@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
-import { NAME, RPC_NODES } from '../../../config/config';
+import { KYB_VERIFY_API_URL, NAME, RPC_NODES } from '../../../config/config';
 import axios from 'axios';
 
 export const createSaleAPI = async ({
@@ -131,16 +131,13 @@ export const addWhitelistedUsersAPI = async (args) => {
 };
 export const verifyAPI = async ({ email, xtzAddress }) => {
     try {
-        const req = await fetch(
-            'https://ssuv8jnind.execute-api.us-east-2.amazonaws.com/v1/synaps',
-            {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: email,
-                    address: xtzAddress,
-                }),
-            }
-        );
+        const req = await fetch(KYB_VERIFY_API_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                address: xtzAddress,
+            }),
+        });
         const res = await req.json();
         return {
             success: true,
