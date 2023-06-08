@@ -1,12 +1,27 @@
 // eslint-disable-next-line
 import React from 'react';
 import Synaps from '@synaps-io/react-verify';
-const KybVerification = ({ handleComplete }) => {
+import { connect } from 'react-redux';
+import { userVerification } from '../../../redux/actions/selfHostedIDO/action.self';
+const KybVerification = ({
+    handleComplete,
+    userVerification,
+    userVerifyData,
+}) => {
     const [currentPage, setCurrentPage] = React.useState('page1');
+    const [email, setEmail] = React.useState('');
+    const [xtzAddress, setXtzAddress] = React.useState('');
 
     const fetchCurrentPage = () => {
         const data = localStorage.getItem('currentPage');
+
         setCurrentPage(data);
+    };
+    const handleNext = async () => {
+        const resp = await userVerification({ email, xtzAddress });
+        if (resp.payload.success) {
+            localStorage.setItem('currentPage', 'page2');
+        }
     };
     React.useEffect(() => {
         fetchCurrentPage();
@@ -44,15 +59,19 @@ const KybVerification = ({ handleComplete }) => {
                         >
                             <form>
                                 <div className='form-group'>
-                                    <label htmlFor='exampleInputEmail1'>
+                                    <label htmlFor='validationDefaultUsername'>
                                         Email
                                     </label>
                                     <input
                                         type='email'
                                         className='form-control'
-                                        id='exampleInputEmail1'
-                                        aria-describedby='emailHelp'
+                                        id='validationDefaultUsername'
+                                        aria-describedby='inputGroupPrepend2'
                                         placeholder='you@example.com'
+                                        onChange={(e) =>
+                                            setEmail(e.target.value)
+                                        }
+                                        required
                                     />
                                     {/* <small id='emailHelp' className='form-text text-muted'>
                             Well never share your email with anyone else.
@@ -67,6 +86,9 @@ const KybVerification = ({ handleComplete }) => {
                                         className='form-control'
                                         id='exampleInputPassword1'
                                         placeholder='XTZ wallet'
+                                        onChange={(e) =>
+                                            setXtzAddress(e.target.value)
+                                        }
                                     />
                                 </div>
                                 <div className='d-flex justify-content-end'>
@@ -76,12 +98,7 @@ const KybVerification = ({ handleComplete }) => {
                                         role='button'
                                         data-slide='next'
                                         href='#carouselExampleIndicators'
-                                        onClick={() =>
-                                            localStorage.setItem(
-                                                'currentPage',
-                                                'page2'
-                                            )
-                                        }
+                                        onClick={handleNext}
                                     >
                                         Next
                                     </button>
@@ -94,9 +111,7 @@ const KybVerification = ({ handleComplete }) => {
                             }`}
                         >
                             <Synaps
-                                sessionId={
-                                    '1e002897-6107f5f2-fa3ad079-23dbd2a1'
-                                }
+                                sessionId={userVerifyData.data}
                                 service={'corporate'}
                                 lang={'en'}
                                 onReady={() => console.log('component ready')}
@@ -123,5 +138,10 @@ const KybVerification = ({ handleComplete }) => {
         </div>
     );
 };
-
-export default KybVerification;
+const mapDispatchToProps = (dispatch) => ({
+    userVerification: (payload) => dispatch(userVerification(payload)),
+});
+const mapStateToProps = (state) => ({
+    userVerifyData: state.userVerifyData,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(KybVerification);

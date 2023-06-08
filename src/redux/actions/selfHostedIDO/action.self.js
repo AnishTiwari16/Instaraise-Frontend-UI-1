@@ -6,11 +6,13 @@ import {
     CREATE_SALE,
     FETCH_PROJECT_DATA,
     NEW_PROJECT,
+    VERIFY_API,
 } from '../index.action';
 import {
     FetchProjectDataAPI,
     addWhitelistedUsersAPI,
     createSaleAPI,
+    verifyAPI,
 } from './api.selfIDO';
 
 export const createSaleAction = (args) => {
@@ -88,6 +90,22 @@ export const addWhitelistedUsers = (args) => {
             });
             dispatch({
                 type: ADD_WHITELISTED_USERS,
+                payload: API_RESPONSE,
+            });
+        }
+    };
+};
+export const userVerification = (args) => {
+    return async (dispatch) => {
+        const API_RESPONSE = await verifyAPI(args);
+        if (API_RESPONSE.success) {
+            return dispatch({
+                type: VERIFY_API,
+                payload: API_RESPONSE,
+            });
+        } else {
+            return dispatch({
+                type: VERIFY_API,
                 payload: API_RESPONSE,
             });
         }

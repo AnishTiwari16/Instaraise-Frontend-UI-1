@@ -5,6 +5,7 @@ import {
     FETCH_PROJECT_DATA,
     NEW_PROJECT,
     TOKEN_ADDRESS,
+    VERIFY_API,
 } from '../../actions/index.action';
 
 export const tokenAddress = (initialState = '', action) => {
@@ -81,6 +82,14 @@ export const AdminProjectData = (initialState = {}, action) => {
 export const whitelistUsersLoader = (initialState = false, action) => {
     switch (action.type) {
         case ADD_WHITELISTED_LOADER:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const userVerifyData = (initialState = '', action) => {
+    switch (action.type) {
+        case VERIFY_API:
             return action.payload;
         default:
             return initialState;

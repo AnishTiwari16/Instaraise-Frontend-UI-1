@@ -129,3 +129,27 @@ export const addWhitelistedUsersAPI = async (args) => {
         };
     }
 };
+export const verifyAPI = async ({ email, xtzAddress }) => {
+    try {
+        const req = await fetch(
+            'https://ssuv8jnind.execute-api.us-east-2.amazonaws.com/v1/synaps',
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email,
+                    address: xtzAddress,
+                }),
+            }
+        );
+        const res = await req.json();
+        return {
+            success: true,
+            data: res.data.session_id,
+        };
+    } catch (err) {
+        return {
+            success: false,
+            error: err,
+        };
+    }
+};

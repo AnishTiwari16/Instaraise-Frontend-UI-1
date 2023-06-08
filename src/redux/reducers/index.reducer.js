@@ -54,6 +54,7 @@ import {
     createSale,
     createSaleLoader,
     project,
+    userVerifyData,
     whitelistUsersLoader,
 } from './selfHostedReducer/selfHostedReducer';
 const rootReducer = combineReducers({
@@ -105,6 +106,7 @@ const rootReducer = combineReducers({
     createSale: createSale,
     whitelistUsersLoader: whitelistUsersLoader,
     AdminProjectData: AdminProjectData,
+    userVerifyData: userVerifyData,
 });
 
 export default rootReducer;
