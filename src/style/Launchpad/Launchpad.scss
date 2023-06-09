@@ -179,6 +179,9 @@
 .was-validated .form-control:invalid {
     background-image: none;
 }
+.carousel-indicators li {
+    background-color: #4e5d78;
+}
 @media (max-width: 982px) {
     .connector {
         top: 0;

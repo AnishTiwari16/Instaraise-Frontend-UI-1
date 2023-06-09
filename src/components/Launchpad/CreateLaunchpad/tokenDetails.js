@@ -41,7 +41,7 @@ const TokenDetails = ({
                     Enter the details below
                 </p>
 
-                <div id='accordion' className='pb-4'>
+                <div id='accordion' className='pb-4 bg-white'>
                     <div className='card'>
                         <div
                             className='card-header card-header-border-bottom bg-white'
@@ -49,13 +49,15 @@ const TokenDetails = ({
                         >
                             <h5 className='mb-0'>
                                 <button
-                                    className='btn btn-link'
+                                    className='accordion-button btn-link px-0 bg-white'
                                     data-toggle='collapse'
                                     data-target='#collapseOne1'
                                     aria-expanded='true'
                                     aria-controls='collapseOne1'
                                 >
-                                    Token details
+                                    <span className='text-dark-to-light'>
+                                        Token details
+                                    </span>
                                 </button>
                             </h5>
                         </div>
@@ -154,13 +156,15 @@ const TokenDetails = ({
                         >
                             <h5 className='mb-0'>
                                 <button
-                                    className='btn btn-link collapsed'
+                                    className='accordion-button btn-link px-0 bg-white'
                                     data-toggle='collapse'
                                     data-target='#collapseThree3'
                                     aria-expanded='false'
                                     aria-controls='collapseThree3'
                                 >
-                                    Private sale details
+                                    <span className='text-dark-to-light'>
+                                        Private sale details
+                                    </span>
                                 </button>
                             </h5>
                         </div>
@@ -271,13 +275,15 @@ const TokenDetails = ({
                         >
                             <h5 className='mb-0'>
                                 <button
-                                    className='btn btn-link collapsed'
+                                    className='accordion-button btn-link px-0 bg-white'
                                     data-toggle='collapse'
                                     data-target='#collapseFour4'
                                     aria-expanded='false'
                                     aria-controls='collapseFour4'
                                 >
-                                    Public sale details
+                                    <span className='text-dark-to-light'>
+                                        Public sale details
+                                    </span>
                                 </button>
                             </h5>
                         </div>
@@ -385,13 +391,15 @@ const TokenDetails = ({
                         <div className='card-header bg-white ' id='headingTwo'>
                             <h5 className='mb-0'>
                                 <button
-                                    className='btn btn-link collapsed'
+                                    className='accordion-button btn-link px-0 bg-white '
                                     data-toggle='collapse'
                                     data-target='#collapseTwo2'
                                     aria-expanded='false'
                                     aria-controls='collapseTwo2'
                                 >
-                                    Additional info
+                                    <span className='text-dark-to-light'>
+                                        Additional info
+                                    </span>
                                 </button>
                             </h5>
                         </div>

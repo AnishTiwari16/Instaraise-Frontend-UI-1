@@ -7,16 +7,24 @@ const KybVerification = ({
     handleComplete,
     userVerification,
     userVerifyData,
+    wallet,
 }) => {
     const [email, setEmail] = React.useState('');
-    const [xtzAddress, setXtzAddress] = React.useState('');
-
+    const [emailValidationFlag, setEmailValidationFlag] = React.useState(false);
     const handleNext = async () => {
-        await userVerification({ email, xtzAddress });
+        await userVerification({ email, wallet });
     };
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    React.useEffect(() => {
+        if (emailRegex.test(email)) {
+            setEmailValidationFlag(true);
+        } else {
+            setEmailValidationFlag(false);
+        }
+    }, [email]);
     return (
-        <div className='card pool shadow-sm h-100 border-10 mt-5'>
+        <div className='card pool shadow-sm border-10 mt-10 w-50 mx-auto pt-3'>
             <div className='card-body'>
                 <div
                     id='carouselExampleIndicators'
@@ -27,24 +35,24 @@ const KybVerification = ({
                     <ol className='carousel-indicators'>
                         <li
                             data-target='#carouselExampleIndicators'
-                            data-slide-to='0'
+                            // data-slide-to='0'
                             className='active'
                         ></li>
                         <li
                             data-target='#carouselExampleIndicators'
-                            data-slide-to='1'
+                            // data-slide-to='1'
                         ></li>
                     </ol>
                     <div className='carousel-inner'>
                         <div className='carousel-item active'>
-                            <form>
+                            <form className='needs-validation' noValidate>
                                 <div className='form-group'>
                                     <label htmlFor='validationDefaultUsername'>
                                         Email
                                     </label>
                                     <input
                                         type='email'
-                                        className='form-control'
+                                        className='form-control bg-white text-dark-to-light'
                                         id='validationDefaultUsername'
                                         aria-describedby='inputGroupPrepend2'
                                         placeholder='you@example.com'
@@ -53,9 +61,16 @@ const KybVerification = ({
                                         }
                                         required
                                     />
-                                    {/* <small id='emailHelp' className='form-text text-muted'>
-                            Well never share your email with anyone else.
-                        </small> */}
+                                    {!emailValidationFlag && email && (
+                                        <small
+                                            id='emailHelp'
+                                            className='form-text text-muted '
+                                        >
+                                            <span className='invalid-color'>
+                                                Invalid email
+                                            </span>
+                                        </small>
+                                    )}
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='exampleInputPassword1'>
@@ -63,15 +78,15 @@ const KybVerification = ({
                                     </label>
                                     <input
                                         type='text'
-                                        className='form-control'
+                                        className='form-control bg-white text-dark-to-light'
                                         id='exampleInputPassword1'
                                         placeholder='XTZ wallet'
-                                        onChange={(e) =>
-                                            setXtzAddress(e.target.value)
-                                        }
+                                        defaultValue={wallet}
+                                        disabled='disabled'
                                     />
                                 </div>
-                                <div className='d-flex justify-content-end'>
+
+                                <div className='d-flex justify-content-end pb-5 pt-2'>
                                     <button
                                         type='submit'
                                         className='sale-button btn px-5 shadow-sm button-primary'
@@ -79,6 +94,11 @@ const KybVerification = ({
                                         data-slide='next'
                                         href='#carouselExampleIndicators'
                                         onClick={handleNext}
+                                        disabled={
+                                            !wallet ||
+                                            !email ||
+                                            !emailValidationFlag
+                                        }
                                     >
                                         Next
                                     </button>
@@ -99,7 +119,7 @@ const KybVerification = ({
                                     secondary: 'ffffff',
                                 }}
                             />
-                            <div className='d-flex justify-content-end py-2'>
+                            <div className='d-flex justify-content-end pb-5 pt-2'>
                                 <button
                                     className='sale-button btn px-5 shadow-sm button-primary'
                                     onClick={handleComplete}
@@ -119,5 +139,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 const mapStateToProps = (state) => ({
     userVerifyData: state.userVerifyData,
+    wallet: state.wallet,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(KybVerification);
