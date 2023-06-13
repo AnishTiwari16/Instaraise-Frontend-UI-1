@@ -51,9 +51,9 @@ import { tokenInfo } from './stats.reducer';
 import { walletAddress } from './wallet/wallet.reducer';
 import {
     AdminProjectData,
-    createSale,
     createSaleLoader,
     project,
+    selfIdoProjects,
     userVerifyData,
     whitelistUsersLoader,
 } from './selfHostedReducer/selfHostedReducer';
@@ -103,10 +103,10 @@ const rootReducer = combineReducers({
     //self hosted ido details
     project: project,
     createSaleLoader: createSaleLoader,
-    createSale: createSale,
     whitelistUsersLoader: whitelistUsersLoader,
     AdminProjectData: AdminProjectData,
     userVerifyData: userVerifyData,
+    selfIdoProjects: selfIdoProjects,
 });
 
 export default rootReducer;

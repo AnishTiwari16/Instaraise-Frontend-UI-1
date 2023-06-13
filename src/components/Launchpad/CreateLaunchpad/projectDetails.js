@@ -23,10 +23,10 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
-                                placeholder='some placeholder'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
+                                value={project.projectName}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
@@ -46,10 +46,10 @@ const ProjectDetails = ({
                             <textarea
                                 type='text'
                                 style={{ height: '15vh' }}
-                                placeholder='Some placeholder'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer02'
                                 name='description'
+                                value={project.description}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
@@ -64,45 +64,43 @@ const ProjectDetails = ({
                         <div className='form-group-2 text-start'>
                             <label
                                 htmlFor='validationServer01'
-                                className='form-label text-start text-dark-to-light'
+                                className='text-start text-dark-to-light'
                             >
                                 Telegram
                             </label>
                             <input
                                 type='text'
-                                placeholder='tzkt'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
-                                name='name'
+                                name='Telegram'
+                                value={project.telegram}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
                                         telegram: e.target.value,
                                     })
                                 }
-                                required
                             />
                         </div>
                         <div className='form-group-2 text-start'>
                             <label
                                 htmlFor='validationServer01'
-                                className='form-label text-start text-dark-to-light'
+                                className='text-start text-dark-to-light'
                             >
                                 Twitter
                             </label>
                             <input
                                 type='text'
-                                placeholder='tzkt'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
-                                name='name'
+                                name='Twitter'
+                                value={project.twitter}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
                                         twitter: e.target.value,
                                     })
                                 }
-                                required
                             />
                         </div>
                     </div>
@@ -112,36 +110,15 @@ const ProjectDetails = ({
                                 htmlFor='validationServer01'
                                 className='form-label text-start text-dark-to-light'
                             >
-                                Token name
-                            </label>
-                            <input
-                                type='text'
-                                placeholder='some placeholder'
-                                className='text-dark-to-light token-information text-14 input-bar form-control rounded'
-                                id='validationServer01'
-                                name='name'
-                                onChange={(e) =>
-                                    createNewProject({
-                                        ...project,
-                                        tokenName: e.target.value,
-                                    })
-                                }
-                                required
-                            />
-                        </div>
-                        <div className='form-group-2 text-start'>
-                            <label
-                                htmlFor='validationServer01'
-                                className='form-label text-start text-dark-to-light'
-                            >
                                 Logo URL
                             </label>
                             <input
                                 type='text'
-                                placeholder='some placeholder'
+                                placeholder='https://ipfs'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
-                                name='name'
+                                name='Logo'
+                                value={project.logoURL}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
@@ -160,10 +137,10 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
-                                placeholder='tzkt'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
+                                value={project.website}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
@@ -177,52 +154,49 @@ const ProjectDetails = ({
                         <div className='form-group-2 text-start'>
                             <label
                                 htmlFor='validationServer01'
-                                className='form-label text-start text-dark-to-light'
+                                className='text-start text-dark-to-light'
                             >
                                 Medium
                             </label>
                             <input
                                 type='text'
-                                placeholder='tzkt'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
-                                name='name'
+                                name='Medium'
+                                value={project.medium}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
                                         medium: e.target.value,
                                     })
                                 }
-                                required
                             />
                         </div>
                         <div className='form-group-2 text-start'>
                             <label
                                 htmlFor='validationServer01'
-                                className='form-label text-start text-dark-to-light'
+                                className='text-start text-dark-to-light'
                             >
                                 Github
                             </label>
                             <input
                                 type='text'
-                                placeholder='tzkt'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
-                                name='name'
+                                name='Github'
+                                value={project.github}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
                                         github: e.target.value,
                                     })
                                 }
-                                required
                             />
                         </div>
                     </div>
 
                     <div className='d-flex justify-content-between py-2'>
                         <button
-                            // disabled={!tokenAddress}
                             className='sale-button btn px-5 shadow-sm button-primary'
                             onClick={handleBack}
                         >
@@ -232,6 +206,12 @@ const ProjectDetails = ({
                         <button
                             className='sale-button btn px-5 shadow-sm button-primary'
                             onClick={handleComplete}
+                            disabled={
+                                !project.projectName ||
+                                !project.logoURL ||
+                                !project.description ||
+                                !project.website
+                            }
                         >
                             Next
                         </button>

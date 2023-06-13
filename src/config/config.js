@@ -12,6 +12,7 @@ export const COINGECKO_API_URL = `${BASE_URL}/v1/market_chart`;
 export const TOKEN_DATA_API_URL = `${BASE_URL}/v1/tokens`;
 export const TOKEN_STATS_API_URL = `${BASE_URL}/v1/homestats`;
 export const KYB_VERIFY_API_URL = `${BASE_URL}/v1/synaps`;
+export const PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad`;
 export const DEX_FEE = 1;
 export const DEX_DATA_REFRESH_TIME = 60000;
 export const NETWORK = 'mainnet';

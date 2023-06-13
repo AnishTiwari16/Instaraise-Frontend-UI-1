@@ -1,9 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import IdoCard from './IdoCard';
+import TempCards from './TempCards';
 import Stepper from '../../Stepper/Stepper';
 import { IDO_CONFIG } from '../../../config/Launchpad/Ido/IdoConfig';
-export const IdoSale = (props) => {
+import { IdoProjectDetails } from '../../../redux/actions/selfHostedIDO/action.self';
+
+const IdoSale = (props) => {
+    const { selfIdoProjects } = props;
+    const fetchData = async () => {
+        await props.IdoProjectDetails();
+    };
+    React.useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <div>
             <div className='row row-cols-1 text-dark-to-light mt-3  project-layout g-4  mx-0 mx-lg-3 mx-md-3 '>
@@ -57,6 +68,17 @@ export const IdoSale = (props) => {
                     row-cols-md-1 row-cols-sm-1
                     mx-0 mx-lg-3 mx-md-3'
                 >
+                    {selfIdoProjects.success
+                        ? selfIdoProjects.data
+                              .sort(function (a, b) {
+                                  const aDate = new Date(a.time.public.end);
+                                  const bDate = new Date(b.time.public.end);
+                                  return bDate - aDate;
+                              })
+                              .map((elem, index) => {
+                                  return <TempCards {...elem} key={index} />;
+                              })
+                        : null}
                     {IDO_CONFIG.map((item, index) => {
                         if (item.TYPE !== 'Upcoming') {
                             return (
@@ -73,3 +95,10 @@ export const IdoSale = (props) => {
         </div>
     );
 };
+const mapDispatchToProps = (dispatch) => ({
+    IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
+});
+const mapStateToProps = (state) => ({
+    selfIdoProjects: state.selfIdoProjects,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(IdoSale);

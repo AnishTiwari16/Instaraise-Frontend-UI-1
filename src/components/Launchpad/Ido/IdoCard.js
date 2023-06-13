@@ -80,7 +80,7 @@ const IdoCard = (props) => {
                             {PROJECT_NAME}
                         </h2>
 
-                        <p className='card__body font-insta-regular'>
+                        <div className='card__body font-insta-regular'>
                             <div className='text-dark-to-light'>
                                 {countDownDate ? (
                                     <Countdown date={countDownDate} />
@@ -139,7 +139,7 @@ const IdoCard = (props) => {
                                     </>
                                 )}
                             </div>
-                        </p>
+                        </div>
                     </div>
                     <div className='d-flex w-100 justify-content-end py-4 px-4'>
                         <Link

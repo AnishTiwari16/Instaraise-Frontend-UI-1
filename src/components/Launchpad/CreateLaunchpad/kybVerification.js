@@ -80,7 +80,7 @@ const KybVerification = ({
                                         type='text'
                                         className='form-control bg-white text-dark-to-light'
                                         id='exampleInputPassword1'
-                                        placeholder='XTZ wallet'
+                                        placeholder='Connect your wallet'
                                         defaultValue={wallet}
                                         disabled='disabled'
                                     />

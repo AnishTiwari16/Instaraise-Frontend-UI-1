@@ -14,26 +14,6 @@ const TokenDetails = ({
     createNewProject,
     project,
 }) => {
-    (function () {
-        var forms = document.querySelectorAll('.needs-validation');
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener(
-                'submit',
-                function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-
-                    form.classList.add('was-validated');
-                },
-                false
-            );
-        });
-    })();
-
     return (
         <div className='card pool shadow-sm h-100 border-10 mt-5'>
             <div className='card-body'>
@@ -78,7 +58,7 @@ const TokenDetails = ({
                                     </label>
                                     <input
                                         type='text'
-                                        placeholder='tzkt'
+                                        placeholder='KT1'
                                         className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                         id='validationServer02'
                                         name='description'
@@ -101,7 +81,7 @@ const TokenDetails = ({
                                     </label>
                                     <div className='input-group has-validation'>
                                         <input
-                                            type='text'
+                                            type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='banner'
                                             value={project.decimals}
@@ -445,7 +425,7 @@ const TokenDetails = ({
                                             type='number'
                                             className='text-dark-to-light text-14 token-information input-bar form-control rounded'
                                             name='banner'
-                                            value={project.maxTokenToLp}
+                                            value={project.maxTokensToLp}
                                             onChange={(e) =>
                                                 createNewProject({
                                                     ...project,
@@ -644,7 +624,6 @@ const TokenDetails = ({
 
                 <div className='d-flex justify-content-between py-2'>
                     <button
-                        // disabled={!tokenAddress}
                         className='sale-button btn px-5 shadow-sm button-primary'
                         onClick={handleBack}
                     >
@@ -652,7 +631,19 @@ const TokenDetails = ({
                     </button>
 
                     <button
-                        // disabled={!tokenAddress}
+                        disabled={
+                            !project.tokenAddress ||
+                            !project.privateSaleAllocation ||
+                            !project.privateSalePrice ||
+                            !project.publicMaxParticipation ||
+                            !project.publicSalePrice ||
+                            !project.amountToSell ||
+                            !project.maxTokensToLp ||
+                            !project.percentageRevenueToLP ||
+                            !project.tokenDexPrice ||
+                            !project.stakingContract ||
+                            !project.timeBlock
+                        }
                         className='sale-button btn px-5 shadow-sm button-primary'
                         onClick={handleComplete}
                     >

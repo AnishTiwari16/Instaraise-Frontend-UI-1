@@ -9,17 +9,19 @@ const OwnerInfo = ({ addWhitelistedUsers, whitelistUsersLoader }) => {
     return (
         <div className='col-md-12 col-lg mw-100 h-100 py-4 py-md-0 mt-md-4 p-0'>
             <div className='card project-detail  shadow-sm h-100 border-10'>
-                <div className='card-body  d-flex align-items-center '>
-                    <div className='card-title text-16 m-auto'>
-                        <button
-                            type='button'
-                            className='sale-button btn px-4 shadow-sm button-primary'
-                            data-toggle='modal'
-                            data-target='#exampleModalCenter'
-                        >
-                            Add users to whitelist
-                        </button>
-                    </div>
+                <div className='card-body d-flex justify-content-between py-3'>
+                    User whitelisted
+                    <div className=''>[]</div>
+                </div>
+                <div className='d-flex justify-content-center align-items-center'>
+                    <button
+                        type='button'
+                        className='sale-button btn px-4 mb-3 shadow-sm button-primary'
+                        data-toggle='modal'
+                        data-target='#exampleModalCenter'
+                    >
+                        Add users to whitelist
+                    </button>
                 </div>
             </div>
             <div

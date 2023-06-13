@@ -34,10 +34,6 @@ const AdminDetails = (props) => {
                         Presale End Time
                         <div>{props.AdminProjectData.presaleEndTime}</div>
                     </div>
-                    <div className='d-flex justify-content-between py-3'>
-                        User whitelist
-                        <div>[]</div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ export const createSaleAPI = async ({
     publicMaxParticipation,
     publicSalePrice,
     publicStartTime,
+    stakingContract,
     timeBlock,
     tokenDexPrice,
     tokenId,
@@ -34,9 +35,8 @@ export const createSaleAPI = async ({
         const Tezos = new TezosToolkit(RPC_NODES[connectedNetwork]);
         Tezos.setRpcProvider(RPC_NODES[connectedNetwork]);
         Tezos.setWalletProvider(wallet);
-        const contract = await Tezos.wallet.at(
-            'KT1RqRtKXLqW6Urc5CCtV6J8HmSWD88s3bD2'
-        );
+        const factory_contract = 'KT1RqRtKXLqW6Urc5CCtV6J8HmSWD88s3bD2';
+        const contract = await Tezos.wallet.at(factory_contract);
         const operation = await contract.methods
             .originatePoolLockupPair(
                 'tz1SfRoaCkrBkXqTzhz67QYVPJAU9Y2g48kq',
@@ -55,7 +55,7 @@ export const createSaleAPI = async ({
                 publicMaxParticipation,
                 publicSalePrice,
                 publicStartTime,
-                'KT1RqRtKXLqW6Urc5CCtV6J8HmSWD88s3bD2',
+                stakingContract,
                 timeBlock,
                 tokenAddress,
                 tokenDexPrice,
@@ -66,6 +66,7 @@ export const createSaleAPI = async ({
         const operationHash = await operation
             .confirmation()
             .then(() => operation.opHash);
+
         return {
             success: true,
             hash: operationHash,
@@ -79,10 +80,9 @@ export const createSaleAPI = async ({
 };
 export const FetchProjectDataAPI = async () => {
     try {
-        const URL = `https://api.ghostnet.tzkt.io/v1/contracts/KT1Wk19CzTHskj9zpErA95VotxAyD51xSFgA/storage`;
+        const URL = `https://api.tzkt.io/v1/contracts/KT1JLUXnNWjj92KA7KgPXMEzgPCgfSUnL9DX/storage`;
         const FETCH_STORAGE_RESP = await axios.get(URL);
         const { data } = FETCH_STORAGE_RESP;
-        console.log(data);
         return {
             success: true,
             tokenAddress: data.token.address,
@@ -147,6 +147,31 @@ export const verifyAPI = async ({ email, xtzAddress }) => {
         return {
             success: false,
             error: err,
+        };
+    }
+};
+export const fetchIdoDetails = async () => {
+    try {
+        const url = 'https://api.ghostnet.tzkt.io/v1/bigmaps/305889/keys';
+        const response = await axios.get(url);
+        const { data } = response;
+        const TOKEN_ADDRESS = data.map((res) => {
+            return res.value.TokenPoolAddress;
+        });
+        const RESP = TOKEN_ADDRESS.map(async (addr) => {
+            const url = `https://api.ghostnet.tzkt.io/v1/contracts/${addr}/storage`;
+            const resp = await axios.get(url);
+            return resp.data;
+        });
+        const SALE_FETCH = await Promise.all(RESP);
+        return {
+            success: true,
+            data: SALE_FETCH,
+        };
+    } catch (err) {
+        return {
+            success: false,
+            data: err,
         };
     }
 };

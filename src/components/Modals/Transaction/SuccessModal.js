@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { BsBoxArrowInUpRight } from 'react-icons/bs';
 import { MdClose } from 'react-icons/md';
+import { useLocation } from 'react-router-dom';
 import truncateMiddle from 'truncate-middle';
 
 import SuccessAnimation_Dark from '../../../assets/animations/dark/new_dark_success.gif';
@@ -16,6 +17,11 @@ export default function SuccessModal(props) {
     const matches = useMediaQuery('(min-width:600px)');
     const { theme } = React.useContext(ThemeContext);
     const { setModalType, operationId } = props;
+
+    const location = useLocation();
+    const isLaunchpadPage = location.pathname.includes(
+        '/launchpad/create-launchpad'
+    );
     const styleContainer = {
         display: 'flex',
         justifyContent: 'center',
@@ -121,7 +127,9 @@ export default function SuccessModal(props) {
                             }}
                         >
                             {' '}
-                            Your transaction was added to the pool successfully.
+                            {isLaunchpadPage
+                                ? 'Contract successfully added'
+                                : 'Your transaction was added to the pool successfully.'}
                         </p>
                     </Box>
                 </Slide>

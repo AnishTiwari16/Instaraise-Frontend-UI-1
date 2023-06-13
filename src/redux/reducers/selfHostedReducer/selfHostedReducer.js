@@ -1,8 +1,8 @@
 import {
     ADD_WHITELISTED_LOADER,
     CREATE_PROJECT_LOADER,
-    CREATE_SALE,
     FETCH_PROJECT_DATA,
+    IDO_DETAILS,
     NEW_PROJECT,
     TOKEN_ADDRESS,
     VERIFY_API,
@@ -41,7 +41,6 @@ const initialProject = {
     description: '',
     telegram: '',
     twitter: '',
-    tokenName: '',
     logoURL: '',
     website: '',
     medium: '',
@@ -50,14 +49,6 @@ const initialProject = {
 export const project = (initialState = initialProject, action) => {
     switch (action.type) {
         case NEW_PROJECT:
-            return action.payload;
-        default:
-            return initialState;
-    }
-};
-export const createSale = (initialState = '', action) => {
-    switch (action.type) {
-        case CREATE_SALE:
             return action.payload;
         default:
             return initialState;
@@ -90,6 +81,14 @@ export const whitelistUsersLoader = (initialState = false, action) => {
 export const userVerifyData = (initialState = '', action) => {
     switch (action.type) {
         case VERIFY_API:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const selfIdoProjects = (initialState = [], action) => {
+    switch (action.type) {
+        case IDO_DETAILS:
             return action.payload;
         default:
             return initialState;

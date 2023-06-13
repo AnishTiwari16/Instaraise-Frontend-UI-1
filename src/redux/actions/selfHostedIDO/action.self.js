@@ -5,6 +5,7 @@ import {
     CREATE_PROJECT_LOADER,
     CREATE_SALE,
     FETCH_PROJECT_DATA,
+    IDO_DETAILS,
     NEW_PROJECT,
     VERIFY_API,
 } from '../index.action';
@@ -12,6 +13,7 @@ import {
     FetchProjectDataAPI,
     addWhitelistedUsersAPI,
     createSaleAPI,
+    fetchIdoDetails,
     verifyAPI,
 } from './api.selfIDO';
 
@@ -27,7 +29,7 @@ export const createSaleAction = (args) => {
                 type: CREATE_PROJECT_LOADER,
                 payload: false,
             });
-            dispatch({
+            return dispatch({
                 type: CREATE_SALE,
                 payload: API_RESPONSE,
             });
@@ -36,7 +38,7 @@ export const createSaleAction = (args) => {
                 type: CREATE_PROJECT_LOADER,
                 payload: false,
             });
-            dispatch({
+            return dispatch({
                 type: CREATE_SALE,
                 payload: API_RESPONSE,
             });
@@ -48,6 +50,15 @@ export const createNewProject = (args) => {
         return dispatch({
             type: NEW_PROJECT,
             payload: args,
+        });
+    };
+};
+export const IdoProjectDetails = () => {
+    return async (dispatch) => {
+        const API_RESPONSE = await fetchIdoDetails();
+        return dispatch({
+            type: IDO_DETAILS,
+            payload: API_RESPONSE,
         });
     };
 };
