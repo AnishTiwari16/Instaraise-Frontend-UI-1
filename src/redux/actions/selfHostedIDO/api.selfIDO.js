@@ -1,10 +1,19 @@
 // eslint-disable-next-line
 import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
-import { KYB_VERIFY_API_URL, NAME, RPC_NODES } from '../../../config/config';
+import {
+    ALL_PROJECT_DETAILS_API_URL,
+    FACTORY_CONTRACT_ADDRESS,
+    FACTORY_CONTRACT_STRORAGE_KEY,
+    INSTA_ADMIN_ADDRESS,
+    KYB_VERIFY_API_URL,
+    NAME,
+    RPC_NODES,
+} from '../../../config/config';
 import axios from 'axios';
 
 export const createSaleAPI = async ({
+    admin,
     tokensToSell,
     decimals,
     isPublicSaleWhitelisted,
@@ -35,14 +44,13 @@ export const createSaleAPI = async ({
         const Tezos = new TezosToolkit(RPC_NODES[connectedNetwork]);
         Tezos.setRpcProvider(RPC_NODES[connectedNetwork]);
         Tezos.setWalletProvider(wallet);
-        const factory_contract = 'KT1RqRtKXLqW6Urc5CCtV6J8HmSWD88s3bD2';
-        const contract = await Tezos.wallet.at(factory_contract);
+        const contract = await Tezos.wallet.at(FACTORY_CONTRACT_ADDRESS);
         const operation = await contract.methods
             .originatePoolLockupPair(
-                'tz1SfRoaCkrBkXqTzhz67QYVPJAU9Y2g48kq',
+                admin,
                 tokensToSell,
                 decimals,
-                'tz1VRTputDyDYy4GjthJqdabKDVxkD3xCYGc',
+                INSTA_ADMIN_ADDRESS,
                 isPublicSaleWhitelisted,
                 lpLockupTime,
                 maxTokensToLp,
@@ -66,7 +74,6 @@ export const createSaleAPI = async ({
         const operationHash = await operation
             .confirmation()
             .then(() => operation.opHash);
-
         return {
             success: true,
             hash: operationHash,
@@ -111,7 +118,6 @@ export const addWhitelistedUsersAPI = async (args) => {
         const contract = await Tezos.wallet.at(
             'KT1Wk19CzTHskj9zpErA95VotxAyD51xSFgA'
         );
-        console.log(contract.methods);
         const operation = await contract.methods
             .whitelistForPublicSale([args])
             .send();
@@ -152,21 +158,31 @@ export const verifyAPI = async ({ email, xtzAddress }) => {
 };
 export const fetchIdoDetails = async () => {
     try {
-        const url = 'https://api.ghostnet.tzkt.io/v1/bigmaps/305889/keys';
+        const url = `https://api.ghostnet.tzkt.io/v1/bigmaps/${FACTORY_CONTRACT_STRORAGE_KEY}/keys`;
         const response = await axios.get(url);
         const { data } = response;
-        const TOKEN_ADDRESS = data.map((res) => {
+        const TOKEN_POOL_ADDRESS = data.map((res) => {
             return res.value.TokenPoolAddress;
         });
-        const RESP = TOKEN_ADDRESS.map(async (addr) => {
+        const RESP = TOKEN_POOL_ADDRESS.map(async (addr) => {
             const url = `https://api.ghostnet.tzkt.io/v1/contracts/${addr}/storage`;
             const resp = await axios.get(url);
             return resp.data;
         });
         const SALE_FETCH = await Promise.all(RESP);
+        const project_details = await axios.get(ALL_PROJECT_DETAILS_API_URL);
+        const combinedData = SALE_FETCH.map((api1Item) => {
+            const matchingItem = project_details.data.data.find(
+                (api2Item) => api2Item.tokenAddress === api1Item.token.address
+            );
+            if (matchingItem) {
+                return { ...api1Item, ...matchingItem };
+            }
+            return api1Item;
+        });
         return {
             success: true,
-            data: SALE_FETCH,
+            data: combinedData,
         };
     } catch (err) {
         return {

@@ -2,11 +2,7 @@
 import { combineReducers } from 'redux';
 
 import {
-    convert_pay_values,
-    convert_tokens,
-    getPriceImpact,
     getTokenData,
-    handle_pay_values,
     selectNetwork,
     selectedTokenDex,
 } from './dex/dex.reducer';
@@ -25,15 +21,7 @@ import {
     fetchSaleData,
     participateInSaleData,
 } from './projects/projects.reducer';
-//farms
-import {
-    fetchFarmDetails,
-    fetchFarmStakedData,
-    fetchInstaRewards,
-    fetchUserBalance,
-    stakeInstaFarms,
-    unstakeInstaFarms,
-} from './farms/farms.reducer';
+
 //staking
 import {
     claimInstaRewards,
@@ -72,21 +60,10 @@ const rootReducer = combineReducers({
     kycProcess: KYC_PROCESS,
     stakedPair: setStakedToken,
     selectedToken: selectedTokenDex,
-    handle_pay_values_market: handle_pay_values,
     tokenBalance: tokenBalance,
-    convert_pay_values_market: convert_pay_values,
-    convertTokens: convert_tokens,
-    priceimpact: getPriceImpact,
     userLiquidityPositions: getUserLiquidityPositions,
     network_token_limit: getNetworkTokenLimit,
     liquidityPositions: liquidityPositions,
-    //farms
-    farmData: fetchFarmDetails,
-    FarmStakedData: fetchFarmStakedData,
-    fetchInstaRewards: fetchInstaRewards,
-    fetchUserBalance: fetchUserBalance,
-    stakeInstaFarms: stakeInstaFarms,
-    unstakeInstaFarms: unstakeInstaFarms,
     //Stepper
     getSteps: stepperData,
     // project API

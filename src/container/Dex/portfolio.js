@@ -1,13 +1,14 @@
 import React from 'react';
 
 import AppLayout from '../../components/dashboard/Layout/index';
-import LiquidityPositionTable from '../../components/Dex/ManageLiquidity/LiquidityPositionTable';
+// import LiquidityPositionTable from '../../components/Dex/ManageLiquidity/LiquidityPositionTable';
+import PortfolioComponent from '../../components/Portfolio/portfolioComponent';
 const Portfolio = () => {
     return (
         <div>
             <AppLayout>
                 <div>
-                    <LiquidityPositionTable />
+                    <PortfolioComponent />
                 </div>
             </AppLayout>
         </div>

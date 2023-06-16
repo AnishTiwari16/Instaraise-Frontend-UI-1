@@ -1,20 +1,49 @@
+// eslint-disable-next-line
 import React from 'react';
 import { connect } from 'react-redux';
 
-import IdoCard from './IdoCard';
-import TempCards from './TempCards';
-import Stepper from '../../Stepper/Stepper';
 import { IDO_CONFIG } from '../../../config/Launchpad/Ido/IdoConfig';
 import { IdoProjectDetails } from '../../../redux/actions/selfHostedIDO/action.self';
+import Pagination from '../../../hooks/pagination';
+import Stepper from '../../Stepper/Stepper';
+import TempCards from './TempCards';
 
 const IdoSale = (props) => {
     const { selfIdoProjects } = props;
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const itemsPerPage = 7;
+
     const fetchData = async () => {
         await props.IdoProjectDetails();
     };
+
     React.useEffect(() => {
         fetchData();
     }, []);
+    let SALES = [];
+    if (selfIdoProjects.success) {
+        SALES = selfIdoProjects.data.sort(function (a, b) {
+            const aDate = new Date(a.time.public.start);
+            const bDate = new Date(b.time.public.start);
+            if (
+                new Date() < aDate &&
+                new Date() < new Date(a.time.public.end) &&
+                new Date() < bDate &&
+                new Date() < new Date(b.time.public.end)
+            ) {
+                return aDate - bDate;
+            } else {
+                return bDate - aDate;
+            }
+        });
+    }
+    const combineData = [...SALES, ...IDO_CONFIG];
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentPageItems = combineData.slice(startIndex, endIndex);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
     return (
         <div>
             <div className='row row-cols-1 text-dark-to-light mt-3  project-layout g-4  mx-0 mx-lg-3 mx-md-3 '>
@@ -32,66 +61,52 @@ const IdoSale = (props) => {
                     </div>
                 </div>
             </div>
-            <>
+            {currentPage === 1 && (
                 <div
                     className='my-2 my-lg-5 my-md-5 
                     my-sm-5 mb-lg-0 text-dark-to-light
                     mb-md-0 row 
                     mx-0 mx-lg-3 mx-md-3'
                 >
-                    {IDO_CONFIG.map((item, index) => {
-                        if (item.TYPE === 'Upcoming') {
+                    {currentPageItems.map((item, index) => {
+                        if (index === 0) {
                             return (
                                 <div
                                     key={index}
                                     className='row mx-0 px-0 d-flex justify-content-center align-items-center'
                                 >
                                     <div className='col-sm-12 col-lg-4'>
-                                        <IdoCard
-                                            {...props}
-                                            projectdata={item}
-                                        />
+                                        <TempCards {...item} />
                                     </div>
-                                    <div className='col-12  my-3 my-lg-0 col-lg-8 m-auto'>
+                                    <div className='col-12 my-3 my-lg-0 col-lg-8 m-auto'>
                                         <Stepper projectdata={item} />
                                     </div>
                                 </div>
                             );
                         }
-                        return null;
                     })}
                 </div>
-                <div
-                    className='my-2 my-lg-5 my-md-5 my-sm-5 
+            )}
+
+            <div
+                className='my-2 my-lg-5 my-md-5 my-sm-5 
                     px-0 mb-lg-0 text-dark-to-light mb-md-0 
                     row row-cols-1 row-cols-xxl-3 row-cols-lg-2 
                     row-cols-md-1 row-cols-sm-1
                     mx-0 mx-lg-3 mx-md-3'
-                >
-                    {selfIdoProjects.success
-                        ? selfIdoProjects.data
-                              .sort(function (a, b) {
-                                  const aDate = new Date(a.time.public.end);
-                                  const bDate = new Date(b.time.public.end);
-                                  return bDate - aDate;
-                              })
-                              .map((elem, index) => {
-                                  return <TempCards {...elem} key={index} />;
-                              })
-                        : null}
-                    {IDO_CONFIG.map((item, index) => {
-                        if (item.TYPE !== 'Upcoming') {
-                            return (
-                                <IdoCard
-                                    key={index}
-                                    {...props}
-                                    projectdata={item}
-                                />
-                            );
-                        }
-                    })}
-                </div>
-            </>
+            >
+                {currentPageItems.map((elem, index) => {
+                    if ((currentPage === 1 && index !== 0) || currentPage > 1) {
+                        return <TempCards {...elem} key={index} />;
+                    }
+                })}
+            </div>
+            <Pagination
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                totalItems={combineData.length}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };

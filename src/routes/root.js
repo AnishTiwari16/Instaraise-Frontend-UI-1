@@ -8,12 +8,8 @@ import '../style/index.scss';
 import AddLiquidityPage from '../components/Dex/ManageLiquidity';
 import CreateLaunchpadContainer from '../container/Launchpad/createLaunchpad';
 import Dashbaord from '../container/Dashboard';
-import FaucetLayout from '../container/Dex/faucet';
 import LiquidityLayout from '../container/Dex/liquidity';
 import Portfolio from '../container/Dex/portfolio';
-import Swap from '../container/Dex/swap';
-import Trade from '../container/Dex/tokens';
-import Farms from '../container/Farms/farms';
 import HomeContainer from '../container/home';
 import Ido from '../container/Launchpad/Ido';
 import IdoProjects from '../container/Launchpad/IdoProjects';
@@ -22,15 +18,8 @@ import NotFound from '../container/NotFound/NotFound';
 import Privacy from '../container/privacy';
 import Terms from '../container/terms';
 import useLocalStorage from '../hooks/useLocalStorage';
+import MyIdoProjects from '../container/Launchpad/myIdoProjects';
 
-const getLocalData = () => {
-    let selected = localStorage.getItem('selectedAnalytics');
-    if (selected) {
-        return JSON.parse(localStorage.getItem('selectedAnalytics'));
-    } else {
-        return '';
-    }
-};
 const Root = () => {
     const [theme, setTheme] = useLocalStorage();
     const themeclass = theme ? 'light' : 'dark';
@@ -38,13 +27,6 @@ const Root = () => {
     const handleThemeChange = () => {
         setTheme();
     };
-    const [showAnalytics, setShowAnalytics] = React.useState(getLocalData());
-    React.useEffect(() => {
-        localStorage.setItem(
-            'selectedAnalytics',
-            JSON.stringify(showAnalytics)
-        );
-    }, [showAnalytics]);
     console.log(
         '%cInstaraise',
         'color: #7111e2; font-family: sans-serif; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;'
@@ -78,42 +60,24 @@ const Root = () => {
                             element={<CreateLaunchpadContainer flag={!flag} />}
                         />
                         <Route
-                            path='/launchpad/IDO'
+                            path='/launchpad/all-launchpads'
                             element={<Ido flag={!flag} />}
+                        />
+                        <Route
+                            path='/launchpad/my-launchpad'
+                            element={<MyIdoProjects flag={!flag} />}
                         />
 
                         <Route
                             path='/launchpad/staking'
                             element={<Staking flag={!flag} />}
                         ></Route>
-                        <Route path='/farms' element={<Farms flag={!flag} />} />
-                        <Route path='/dex/trade' element={<Trade />} />
-                        <Route
-                            path='/dex'
-                            element={
-                                <Swap
-                                    showAnalytics={showAnalytics}
-                                    setShowAnalytics={setShowAnalytics}
-                                />
-                            }
-                        />
-                        <Route
-                            path='/dex/swap'
-                            element={
-                                <Swap
-                                    showAnalytics={showAnalytics}
-                                    setShowAnalytics={setShowAnalytics}
-                                />
-                            }
-                        />
+
                         <Route
                             path='/dex/liquidity'
                             element={<LiquidityLayout />}
                         />
-                        <Route
-                            path='/dex/faucet'
-                            element={<FaucetLayout flag={!flag} />}
-                        />
+
                         <Route path='/portfolio' element={<Portfolio />} />
                         <Route
                             path='/dex/liquidity/configure-liquidity/'

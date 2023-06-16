@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 import MainModal from '../../Modals';
 import INSTA_LOGO from '../../../assets/images/INSTA.png';
-import { ChevDown, ChevUp } from '../../../components/Farm/FarmCard';
 import {
     GetHarvestValue,
     claimInstaRewards,
@@ -546,3 +545,61 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActiveStaking);
+const ChevUp = () => {
+    return (
+        <svg
+            width='10'
+            height='6'
+            viewBox='0 0 10 6'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                d='M8.49961 5.80019L4.99961 2.3002L1.49961 5.80019L0.0996094 5.10019L4.99961 0.200195L9.89961 5.10019L8.49961 5.80019Z'
+                fill='url(#paint0_linear_202:738)'
+            />
+            <defs>
+                <linearGradient
+                    id='paint0_linear_202:738'
+                    x1='4.99961'
+                    y1='0.200195'
+                    x2='4.99961'
+                    y2='5.80019'
+                    gradientUnits='userSpaceOnUse'
+                >
+                    <stop stopColor='#6513E2' />
+                    <stop offset='1' stopColor='#8B2BE2' />
+                </linearGradient>
+            </defs>
+        </svg>
+    );
+};
+const ChevDown = () => {
+    return (
+        <svg
+            width='10'
+            height='6'
+            viewBox='0 0 10 6'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                d='M8.49961 0.199805L4.99961 3.6998L1.49961 0.199805L0.0996094 0.899805L4.99961 5.7998L9.89961 0.899805L8.49961 0.199805Z'
+                fill='url(#paint0_linear_202:1066)'
+            />
+            <defs>
+                <linearGradient
+                    id='paint0_linear_202:1066'
+                    x1='4.99961'
+                    y1='5.7998'
+                    x2='4.99961'
+                    y2='0.199805'
+                    gradientUnits='userSpaceOnUse'
+                >
+                    <stop stopColor='#6513E2' />
+                    <stop offset='1' stopColor='#8B2BE2' />
+                </linearGradient>
+            </defs>
+        </svg>
+    );
+};

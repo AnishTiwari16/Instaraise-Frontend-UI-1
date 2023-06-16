@@ -1,8 +1,8 @@
 // eslint-disable-next-line
 import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 import React from 'react';
 
-import 'react-datetime/css/react-datetime.css';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { connect } from 'react-redux';
 
@@ -172,6 +172,7 @@ const TokenDetails = ({
                                             })
                                         }
                                     />
+
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -582,12 +583,7 @@ const TokenDetails = ({
                                         <div className='invalid-feedback'></div>
                                     </div>
                                     <div className='py-4 '>
-                                        <FormControl
-                                            sx={{
-                                                minWidth: '100%',
-                                            }}
-                                            size='small'
-                                        >
+                                        <FormControl fullWidth size='small'>
                                             <InputLabel id='demo-select-small-label'>
                                                 Whitelist for public sale
                                             </InputLabel>

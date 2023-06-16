@@ -1,8 +1,7 @@
 import { BeaconWallet } from '@taquito/beacon-wallet';
 import axios from 'axios';
 
-import { NAME, WHITELISTING_API_URL } from '../../../config/config';
-import { IDO_CONFIG } from '../../../config/Launchpad/Ido/IdoConfig';
+import { NAME, PROJECT_DETAILS_API_URL } from '../../../config/config';
 export const kycProcessAPI = async (args) => {
     try {
         const { projectName } = args;
@@ -13,7 +12,7 @@ export const kycProcessAPI = async (args) => {
         let account = await wallet.client.getActiveAccount();
 
         const response = await axios.get(
-            `${WHITELISTING_API_URL}?userAddress=${account.address}&projectName=${projectName}`
+            `${PROJECT_DETAILS_API_URL}?userAddress=${account.address}&projectName=${projectName}`
         );
 
         if (response.data.success) {
@@ -22,16 +21,15 @@ export const kycProcessAPI = async (args) => {
             let isErolled = response.data.INSTA_ENROLL.enrolled;
 
             let currentStep = 1;
-            if (IDO_CONFIG[0].TIER_SYSTEM) {
-                if (isWhitelisted && !hasStaked && !isErolled) {
-                    currentStep = 2;
-                }
-                if (isWhitelisted && hasStaked) {
-                    currentStep = 3;
-                }
-                if (isWhitelisted && hasStaked && isErolled) {
-                    currentStep = 4;
-                }
+
+            if (isWhitelisted && !hasStaked && !isErolled) {
+                currentStep = 2;
+            }
+            if (isWhitelisted && hasStaked) {
+                currentStep = 3;
+            }
+            if (isWhitelisted && hasStaked && isErolled) {
+                currentStep = 4;
             }
 
             return {

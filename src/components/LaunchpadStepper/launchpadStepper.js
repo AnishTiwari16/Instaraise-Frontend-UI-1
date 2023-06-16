@@ -1,6 +1,13 @@
 // eslint-disable-next-line
 import React from 'react';
-import { Box, Step, StepButton, Stepper } from '@mui/material';
+import {
+    Box,
+    Step,
+    StepButton,
+    Stepper,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 const steps = [
     'Complete KYB',
     'Token details',
@@ -8,17 +15,14 @@ const steps = [
     'Verify and confirm',
 ];
 const LaunchpadStepper = ({ activeStep, completed }) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     return (
         <Box sx={{ width: '100%' }}>
             <Stepper
                 nonLinear
                 activeStep={activeStep}
-                sx={{
-                    '& .css-1ovhasr-MuiStep-root': {
-                        paddingLeft: '0px',
-                        paddingRight: '0px',
-                    },
-                }}
+                orientation={isMobile ? 'vertical' : 'horizontal'}
             >
                 {steps.map((label, index) => (
                     <Step

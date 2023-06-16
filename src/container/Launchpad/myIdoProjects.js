@@ -1,17 +1,15 @@
 import React from 'react';
 
 import AppLayout from '../../components/dashboard/Layout/index';
-import Faucet from '../../components/Dex/Faucet/faucet';
-const FaucetLayout = (props) => {
+import MyIdoSale from '../../components/Launchpad/Ido/MyIdoSale';
+const MyIdoProjects = (props) => {
     return (
         <div>
             <AppLayout flag={props.flag}>
-                <div>
-                    <Faucet />
-                </div>
+                <MyIdoSale />
             </AppLayout>
         </div>
     );
 };
 
-export default FaucetLayout;
+export default MyIdoProjects;

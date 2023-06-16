@@ -6,20 +6,15 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { MdClose } from 'react-icons/md';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 
 import ErrorAnimation_Dark from '../../../assets/animations/dark/new_dark_transfer.gif';
 import ErrorAnimation_Light from '../../../assets/animations/light/new_light_transfer.gif';
 import { ThemeContext } from '../../../routes/root';
 
 function TransferModal(props) {
-    const symbol = props.selectedToken.from.TOKEN_SYMBOL;
     const matches = useMediaQuery('(min-width:600px)');
     const { theme } = React.useContext(ThemeContext);
     const { setModalType } = props;
-
-    const location = useLocation();
-    const isSwapPage = location.pathname.includes('swap');
 
     const styleContainer = {
         display: 'flex',
@@ -98,24 +93,6 @@ function TransferModal(props) {
                                 marginBottom: '20px',
                             }}
                         >
-                            {isSwapPage && (
-                                <div
-                                    style={{
-                                        backgroundColor: theme
-                                            ? '#F9FAFA'
-                                            : '#080421',
-                                        width: '100%',
-                                        marginBottom: '12px',
-                                        border: '0.2px solid #9e9e9e3d',
-                                        cursor: 'default',
-                                    }}
-                                    className='btn shadow-none border-10 text-dark-to-light text-14'
-                                >
-                                    Swap {props.handle_pay_values_market}{' '}
-                                    {symbol}
-                                </div>
-                            )}
-
                             <p className='text-center'>
                                 {' '}
                                 Confirm the transaction in your wallet{' '}
@@ -130,7 +107,6 @@ function TransferModal(props) {
 
 const mapStateToProps = (state) => ({
     selectedToken: state.selectedToken,
-    handle_pay_values_market: state.handle_pay_values_market,
 });
 
 export default connect(mapStateToProps, null)(TransferModal);

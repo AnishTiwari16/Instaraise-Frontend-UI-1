@@ -48,8 +48,12 @@ export const IDO_CONFIG = [
         TWITTER: 'https://twitter.com/Lyzi_app',
         ICON: LYZI_LOGO,
         MEDIUM: 'https://discord.com/invite/lyzi-app',
-        START_TIME: '2023-05-05T09:00:00Z',
-        END_TIME: '2023-05-09T09:00:00Z',
+        time: {
+            public: {
+                start: '2023-05-05T09:00:00Z',
+                end: '2023-05-09T09:00:00Z',
+            },
+        },
         SALE_TYPE: 'Public Sale',
         SOCIAL_HANDLES: {
             WEBSITE: 'https://lyzi.fr/',
@@ -65,7 +69,9 @@ export const IDO_CONFIG = [
         FCFS_MAX_ALLOCATION: '30000 xtz',
         FCFS_OPEN_TIME: '2023-05-05T09:00:00Z',
         FCFS_SWAP_RATE: '',
-        TOKEN_PRICE: 0.133,
+        tokenPrice: {
+            DEX: 0.133,
+        },
         DISCOUNTED_PRICE: 0.133,
         MIN_ALLOCATION: 'TBA',
         MAX_ALLOCATION: 'TBA',
@@ -83,7 +89,6 @@ export const IDO_CONFIG = [
         XTZ_PRICE: 21560,
         TOKEN_UNLOCK_TIME: '2023-05-09T10:00:00Z',
         LISTING_PRICE: '0.133',
-        TIER_SYSTEM: false,
     },
     {
         DISABLED: false,
@@ -104,8 +109,13 @@ export const IDO_CONFIG = [
         TWITTER: 'https://twitter.com/shuttle_one',
         ICON: SHUTTLE_ONE_ICON,
         MEDIUM: 'https://shuttleone.medium.com/',
-        START_TIME: '2021-12-12T12:00:00Z',
-        END_TIME: '2021-12-13T12:00:00Z',
+        time: {
+            public: {
+                start: '2021-12-12T12:00:00Z',
+                end: '2021-12-13T12:00:00Z',
+            },
+        },
+
         SALE_TYPE: 'Public Sale',
         SOCIAL_HANDLES: {
             WEBSITE: 'https://shuttleone.network/2021/#/home',
@@ -121,7 +131,9 @@ export const IDO_CONFIG = [
         FCFS_MAX_ALLOCATION: '500 xtz',
         FCFS_OPEN_TIME: '2021-12-13T00:00:00Z',
         FCFS_SWAP_RATE: '',
-        TOKEN_PRICE: 0.05,
+        tokenPrice: {
+            DEX: 0.05,
+        },
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
         MAX_ALLOCATION: 'TBA',
@@ -159,8 +171,12 @@ export const IDO_CONFIG = [
         TWITTER: 'https://twitter.com/aqarchain_io',
         ICON: AQARCHAIN_ICON,
         MEDIUM: 'https://smartchain.medium.com/',
-        START_TIME: '2021-10-20T12:00:00Z',
-        END_TIME: '2021-10-21T12:00:00Z',
+        time: {
+            public: {
+                start: '2021-10-20T12:00:00Z',
+                end: '2021-10-21T12:00:00Z',
+            },
+        },
         SALE_TYPE: 'Public Sale',
         SOCIAL_HANDLES: {
             WEBSITE: 'https://aqarchain.io/',
@@ -174,7 +190,9 @@ export const IDO_CONFIG = [
         FCFS_MIN_ALLOCATION: '10 xtz',
         FCFS_MAX_ALLOCATION: '500 xtz',
         FCFS_OPEN_TIME: '2021-10-21T00:00:00Z',
-        TOKEN_PRICE: 0.05,
+        tokenPrice: {
+            DEX: 0.05,
+        },
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
         MAX_ALLOCATION: 'TBA',
@@ -217,11 +235,18 @@ export const IDO_CONFIG = [
             TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
         },
         MEDIUM: 'https://instaraise.medium.com',
-        START_TIME: '2021-09-09T14:00:00Z',
-        END_TIME: '2021-09-11T14:00:00Z',
+        time: {
+            public: {
+                start: '2021-09-09T14:00:00Z',
+                end: '2021-09-11T14:00:00Z',
+            },
+        },
+
         SALE_TYPE: 'Public Sale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
-        TOKEN_PRICE: 0.022,
+        tokenPrice: {
+            DEX: 0.022,
+        },
         DISCOUNTED_PRICE: 0.022,
         MIN_ALLOCATION: 50,
         MAX_ALLOCATION: 2000,
@@ -256,8 +281,12 @@ export const IDO_CONFIG = [
         TWITTER: 'https://twitter.com/instaraise',
         ICON: INSTA_LOGO,
         MEDIUM: 'https://instaraise.medium.com',
-        START_TIME: '2021-08-20T14:00:00Z',
-        END_TIME: '2021-08-22T14:00:00Z',
+        time: {
+            public: {
+                start: '2021-08-20T14:00:00Z',
+                end: '2021-08-22T14:00:00Z',
+            },
+        },
         SALE_TYPE: 'Presale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         SOCIAL_HANDLES: {
@@ -267,7 +296,9 @@ export const IDO_CONFIG = [
             MEDIUM: 'https://instaraise.medium.com',
             TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
         },
-        TOKEN_PRICE: 0.02043,
+        tokenPrice: {
+            DEX: 0.02043,
+        },
         DISCOUNTED_PRICE: 0.0184,
         MIN_ALLOCATION: 50,
         MAX_ALLOCATION: 5000,

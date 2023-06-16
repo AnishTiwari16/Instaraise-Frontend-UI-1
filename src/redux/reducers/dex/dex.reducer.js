@@ -1,9 +1,6 @@
 import {
-    HANDLE_TOKEN_VALUE_DEX,
-    PRICE_IMPACT,
     SELECT_NETWORK,
     SELECT_TOKENS_DEX,
-    SWAP_TOKENS,
     TOKEN_STATS_DATA,
 } from '../../actions/index.action';
 import uUSD_Img from '../../../assets/dex/uUSD.png';
@@ -62,51 +59,6 @@ export const DEX_INITIAL_STATE = {
 export const selectedTokenDex = (initialState = DEX_INITIAL_STATE, action) => {
     switch (action.type) {
         case SELECT_TOKENS_DEX:
-            return action.payload;
-        default:
-            return initialState;
-    }
-};
-export const handle_pay_values = (initialState = null, action) => {
-    switch (action.type) {
-        case HANDLE_TOKEN_VALUE_DEX:
-            return action.payload;
-        default:
-            return initialState;
-    }
-};
-export const DEX_INITIAL_DATA = {
-    token1_price: 0,
-    token2_price: 0,
-    convertedValue: 0,
-    rate: 0,
-    tokenBalance: 0,
-};
-export const convert_pay_values = (
-    initialState = {
-        success: false,
-        data: DEX_INITIAL_DATA,
-    },
-    action
-) => {
-    switch (action.type) {
-        case 'CONVERT_TOKEN_VALUE_DEX':
-            return action.payload;
-        default:
-            return initialState;
-    }
-};
-export const convert_tokens = (initialState = '', action) => {
-    switch (action.type) {
-        case SWAP_TOKENS:
-            return action.payload;
-        default:
-            return initialState;
-    }
-};
-export const getPriceImpact = (initialState = 0, action) => {
-    switch (action.type) {
-        case PRICE_IMPACT:
             return action.payload;
         default:
             return initialState;

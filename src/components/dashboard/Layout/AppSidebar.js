@@ -5,10 +5,6 @@ import dark_comp_name from '../../../assets/images/dark_comp_name.svg';
 import darkmodelogo from '../../../assets/images/darkmodelogo.png';
 import dashboard from '../../../assets/images/dashboard.svg';
 import dashboard_dark from '../../../assets/images/dashboard_dark.svg';
-import dex from '../../../assets/images/dex.svg';
-import dex_dark from '../../../assets/images/dex_dark.svg';
-import farm from '../../../assets/images/farm.svg';
-import farm_dark from '../../../assets/images/farm_dark.svg';
 import instaLogo from '../../../assets/images/InstaLogo.svg';
 import CompName from '../../../assets/images/Instaraise.svg';
 import launchpad from '../../../assets/images/launchpad.svg';
@@ -108,6 +104,8 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                 className={`accordion-collapse collapse ${
                                     [
                                         'create-launchpad',
+                                        'all-launchpads',
+                                        'my-launchpad',
                                         'IDO',
                                         'create-crowdsale',
                                         'staking',
@@ -142,13 +140,35 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                                 </div>
                                             </NavLink>
                                             <NavLink
-                                                to='/launchpad/IDO'
+                                                to='/launchpad/all-launchpads'
                                                 className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
                                                 aria-current='page'
                                             >
                                                 <div className=''>
                                                     <div className='transition-class'>
-                                                        IDO
+                                                        All launchpads
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink
+                                                to='/launchpad/my-launchpad'
+                                                className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
+                                                aria-current='page'
+                                            >
+                                                <div className=''>
+                                                    <div className='transition-class'>
+                                                        My launchpad
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink
+                                                to='/launchpad/staking'
+                                                className=' ms-2  mt-1  text-sm-2 nav-link sidebar-links d-flex '
+                                                aria-current='page'
+                                            >
+                                                <div className=''>
+                                                    <div className='transition-class'>
+                                                        Staking
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -182,208 +202,11 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                                     </div>
                                                 </div>
                                             </Link>
-                                            <NavLink
-                                                to='/launchpad/staking'
-                                                className=' ms-2  mt-1  text-sm-2 nav-link sidebar-links d-flex '
-                                                aria-current='page'
-                                            >
-                                                <div className=''>
-                                                    <div className='transition-class'>
-                                                        Staking
-                                                    </div>
-                                                </div>
-                                            </NavLink>
                                         </li>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <li className='nav-item justify-content-center pt-2'>
-                            <NavLink
-                                to='/farms'
-                                className=' text-sm nav-link sidebar-links d-flex '
-                                aria-current='page'
-                            >
-                                <div className='dashboard-color'>
-                                    <img
-                                        className='me-2'
-                                        src={theme ? farm : farm_dark}
-                                        alt='farm-img'
-                                        style={{
-                                            width: '1.3em',
-                                            height: '1.3em',
-                                        }}
-                                    />
-
-                                    <span className=''>Farms</span>
-                                </div>
-                            </NavLink>
-                        </li>
-
-                        <div className='accordion-item border-0 bg-transparent nav-item justify-content-center pt-2'>
-                            <div
-                                className='px-0 accordion-header bg-transparent'
-                                id='dex_id'
-                            >
-                                <NavLink
-                                    to='/dex'
-                                    className='accordion-button collapsed dashboard-color text-sm-2-2 nav-link sidebar-links d-flex sidebar-links-active'
-                                    data-bs-toggle='collapse'
-                                    data-bs-target='#collapseTwo'
-                                    aria-expanded='false'
-                                    activeclassname='sidebar-links-active'
-                                    aria-controls='collapseTwo'
-                                >
-                                    <img
-                                        className='me-2'
-                                        src={theme ? dex : dex_dark}
-                                        alt='dex-img'
-                                        style={{
-                                            width: '1.3em',
-                                            height: '1.3em',
-                                        }}
-                                    />
-
-                                    <div className='d-flex align-items-center justify-center'>
-                                        <div
-                                            className='dashboard-color'
-                                            style={{
-                                                fontSize: '15px',
-                                                color: '#4e5d78',
-                                            }}
-                                        >
-                                            <span>Trade</span>
-                                        </div>
-
-                                        <div
-                                            style={{
-                                                fontSize: 12,
-                                                marginLeft: 5,
-                                                border: '2px solid #d4d9db',
-                                                borderRadius: '20px',
-                                                paddingLeft: 10,
-                                                paddingRight: 10,
-                                                paddingTop: 4,
-                                                paddingBottom: 4,
-                                            }}
-                                        >
-                                            Testnet
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </div>
-                            <div
-                                id='collapseTwo'
-                                className={`accordion-collapse  bg-transparent ${
-                                    [
-                                        'create-launchpad',
-                                        'IDO',
-                                        'create-crowdsale',
-                                        'staking',
-                                        undefined,
-                                    ].includes(
-                                        window.location.pathname.split('/')[2]
-                                    )
-                                        ? 'collapse'
-                                        : 'show'
-                                }`}
-                                aria-labelledby='dex_id'
-                                data-bs-parent='#accordionExample'
-                            >
-                                <div className='accordion-body'>
-                                    <div className='d-flex justify-content-end '>
-                                        <li
-                                            className='nav-item  justify-content-center  w-100'
-                                            style={{
-                                                borderLeft: '2px solid #8a94a6',
-                                                marginLeft: '27px',
-                                            }}
-                                        >
-                                            <NavLink
-                                                to='/dex/swap'
-                                                className='ms-2  text-sm-2 nav-link sidebar-links d-flex '
-                                                aria-current='page'
-                                            >
-                                                <div className=''>
-                                                    <div className='transition-class'>
-                                                        Swap
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            <NavLink
-                                                to='/dex/trade'
-                                                className=' ms-2  mt-1  text-sm-2 nav-link sidebar-links d-flex '
-                                                activeclassname='sidebar-links-active'
-                                                aria-current='page'
-                                            >
-                                                <div className=''>
-                                                    <div className='transition-class'>
-                                                        Tokens
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            <NavLink
-                                                to='/dex/liquidity'
-                                                className='ms-2 mt-1  text-sm-2 nav-link sidebar-links d-flex '
-                                                activeclassname='sidebar-links-active'
-                                                aria-current='page'
-                                            >
-                                                <div className=''>
-                                                    <div className='transition-class'>
-                                                        Liquidity
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            <NavLink
-                                                to='/dex/faucet'
-                                                className='ms-2 mt-1  text-sm-2 nav-link sidebar-links d-flex '
-                                                activeclassname='sidebar-links-active'
-                                                aria-current='page'
-                                            >
-                                                <div className=''>
-                                                    <div className='transition-class'>
-                                                        Faucet
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            <Link
-                                                to='#'
-                                                onClick={() =>
-                                                    window.open(
-                                                        'https://docs.instaraise.io/'
-                                                    )
-                                                }
-                                                className='ms-2 mt-1  text-sm-2 nav-link sidebar-links d-flex '
-                                                activeclassname='sidebar-links-active'
-                                                aria-current='page'
-                                                data-parent='#sidebar2'
-                                            >
-                                                <div className=''>
-                                                    <div className='transition-class'>
-                                                        Docs
-                                                        <svg
-                                                            className='ml-1'
-                                                            stroke='currentColor'
-                                                            fill='currentColor'
-                                                            strokeWidth='0'
-                                                            viewBox='0 0 24 24'
-                                                            height='1em'
-                                                            width='1em'
-                                                            xmlns='http://www.w3.org/2000/svg'
-                                                        >
-                                                            <path d='m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z'></path>
-                                                            <path d='M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z'></path>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <li className='nav-item justify-content-center pt-2'>
                             <NavLink
                                 to='/portfolio'

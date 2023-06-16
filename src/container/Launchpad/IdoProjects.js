@@ -18,6 +18,7 @@ import {
     claimNow,
 } from '../../redux/actions/ido/action.ido';
 import NotFound from '../NotFound/NotFound';
+import { IdoProjectDetails } from '../../redux/actions/selfHostedIDO/action.self';
 
 const LaunchIdoProjects = (props) => {
     const {
@@ -297,10 +298,26 @@ const LaunchIdoProjects = (props) => {
 };
 const IdoProjects = (props) => {
     const params = useParams();
+    const fetchData = async () => {
+        await props.IdoProjectDetails();
+    };
+    React.useEffect(() => {
+        fetchData();
+    }, []);
     const data = IDO_CONFIG.filter((item) => {
         return item.ALIAS === params.name;
     })[0];
-    return typeof data === 'undefined' ? (
+    var SELF_IDO_DATA;
+    if (props.selfIdoProjects.success) {
+        SELF_IDO_DATA = props.selfIdoProjects.data.filter((item) => {
+            const ALIAS = item.PROJECT_NAME
+                ? item.PROJECT_NAME.split(' ').join('').toLowerCase()
+                : undefined;
+            return ALIAS === params.name;
+        })[0];
+    }
+    return typeof data === 'undefined' &&
+        typeof SELF_IDO_DATA === 'undefined' ? (
         <NotFound />
     ) : (
         <LaunchIdoProjects {...props} />
@@ -311,12 +328,14 @@ const mapDispatchToProps = (dispatch) => ({
     fetchSaleData: (payload) => dispatch(FetchSaleData(payload)),
     claimTokens: (payload) => dispatch(claimNow(payload)),
     fetchKYCDetails: (payload) => dispatch(kycProcess(payload)),
+    IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
 });
 
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
     SaleData: state.fetchSaleData,
     kycStatus: state.kycProcess,
+    selfIdoProjects: state.selfIdoProjects,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IdoProjects);

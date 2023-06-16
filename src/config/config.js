@@ -3,16 +3,19 @@ export const WALLET_NETWORK = 'mainnet';
 export const NAME = 'Instaraise';
 export const DEX_NETWORK = testnetNetwork;
 
+export const FACTORY_CONTRACT_ADDRESS = 'KT1RqRtKXLqW6Urc5CCtV6J8HmSWD88s3bD2';
+export const FACTORY_CONTRACT_STRORAGE_KEY = 305889;
+export const INSTA_ADMIN_ADDRESS = 'tz1VRTputDyDYy4GjthJqdabKDVxkD3xCYGc';
 export const BASE_URL =
     'https://ssuv8jnind.execute-api.us-east-2.amazonaws.com';
 export const LIQUIDITY_DATA_API_URL = `${BASE_URL}/v1/liquidity`;
 export const ENROLL_USER_API_URL = `${BASE_URL}/v1/enroll`;
-export const WHITELISTING_API_URL = `${BASE_URL}/v1/launchpad`;
 export const COINGECKO_API_URL = `${BASE_URL}/v1/market_chart`;
 export const TOKEN_DATA_API_URL = `${BASE_URL}/v1/tokens`;
 export const TOKEN_STATS_API_URL = `${BASE_URL}/v1/homestats`;
 export const KYB_VERIFY_API_URL = `${BASE_URL}/v1/synaps`;
 export const PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad`;
+export const ALL_PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad/all`;
 export const DEX_FEE = 1;
 export const DEX_DATA_REFRESH_TIME = 60000;
 export const NETWORK = 'mainnet';
