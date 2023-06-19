@@ -124,6 +124,32 @@ const TokenDetails = ({
                                         />
                                         <div className='invalid-feedback'></div>
                                     </div>
+                                    <label
+                                        htmlFor='validationServerUsername'
+                                        className='form-label text-dark-to-light'
+                                        style={{ zIndex: '5' }}
+                                    >
+                                        Total raise
+                                    </label>
+                                    <div className='input-group has-validation'>
+                                        <input
+                                            type='number'
+                                            className='text-dark-to-light text-14 token-information input-bar form-control rounded'
+                                            name='tokenID'
+                                            placeholder='USD'
+                                            value={project.totalRaise}
+                                            onChange={(e) =>
+                                                createNewProject({
+                                                    ...project,
+                                                    totalRaise: e.target.value,
+                                                })
+                                            }
+                                            id='validationServerUsername'
+                                            aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
+                                            required
+                                        />
+                                        <div className='invalid-feedback'></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -582,7 +608,7 @@ const TokenDetails = ({
                                         />
                                         <div className='invalid-feedback'></div>
                                     </div>
-                                    <div className='py-4 '>
+                                    <div className='pt-4'>
                                         <FormControl fullWidth size='small'>
                                             <InputLabel id='demo-select-small-label'>
                                                 Whitelist for public sale
@@ -608,6 +634,34 @@ const TokenDetails = ({
                                                 </MenuItem>
                                                 <MenuItem value={false}>
                                                     False
+                                                </MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </div>
+                                    <div className='pt-4'>
+                                        <FormControl fullWidth size='small'>
+                                            <InputLabel id='demo-select-small-label'>
+                                                Sale type
+                                            </InputLabel>
+
+                                            <Select
+                                                labelId='demo-select-small-label'
+                                                id='demo-select-small'
+                                                value={project.saleType}
+                                                label='Sale type'
+                                                onChange={(e) =>
+                                                    createNewProject({
+                                                        ...project,
+                                                        saleType:
+                                                            e.target.value,
+                                                    })
+                                                }
+                                            >
+                                                <MenuItem value={true}>
+                                                    Private
+                                                </MenuItem>
+                                                <MenuItem value={false}>
+                                                    Public
                                                 </MenuItem>
                                             </Select>
                                         </FormControl>
@@ -638,7 +692,8 @@ const TokenDetails = ({
                             !project.percentageRevenueToLP ||
                             !project.tokenDexPrice ||
                             !project.stakingContract ||
-                            !project.timeBlock
+                            !project.timeBlock ||
+                            !project.totalRaise
                         }
                         className='sale-button btn px-5 shadow-sm button-primary'
                         onClick={handleComplete}

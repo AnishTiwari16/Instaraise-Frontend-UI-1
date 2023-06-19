@@ -112,6 +112,28 @@ const ProjectDetails = ({
                         <div className='form-group-2 text-start'>
                             <label
                                 htmlFor='validationServer01'
+                                className='form-label text-start text-dark-to-light'
+                            >
+                                Token Name
+                            </label>
+                            <input
+                                type='text'
+                                className='text-dark-to-light token-information text-14 input-bar form-control rounded'
+                                id='validationServer01'
+                                name='name'
+                                value={project.tokenName}
+                                onChange={(e) =>
+                                    createNewProject({
+                                        ...project,
+                                        tokenName: e.target.value,
+                                    })
+                                }
+                                required
+                            />
+                        </div>
+                        <div className='form-group-2 text-start'>
+                            <label
+                                htmlFor='validationServer01'
                                 className='text-start text-dark-to-light'
                             >
                                 Telegram
@@ -211,7 +233,8 @@ const ProjectDetails = ({
                                 !project.projectName ||
                                 !project.logoURL ||
                                 !project.description ||
-                                !project.website
+                                !project.website ||
+                                !project.tokenName
                             }
                         >
                             Next

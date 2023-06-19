@@ -56,7 +56,10 @@ const VerfiyDetails = ({
                 await fetch(PROJECT_DETAILS_API_URL, {
                     method: 'POST',
                     body: JSON.stringify({
+                        email: project.email,
+                        userAdminAddress: project.userAdminAddress,
                         PROJECT_NAME: project.projectName,
+                        TOKEN_NAME: project.tokenName,
                         description: project.description,
                         ICON: project.logoURL,
                         website: project.website,
@@ -65,6 +68,9 @@ const VerfiyDetails = ({
                         twitter: project.twitter,
                         github: project.github,
                         tokenAddress: project.tokenAddress,
+                        saleType:
+                            project.saleType === false ? 'Public' : 'Private',
+                        totalRaise: project.totalRaise,
                     }),
                 });
                 setTimeout(() => {

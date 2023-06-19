@@ -36,11 +36,13 @@ export const IDO_CONFIG = [
         TOKEN_NAME: 'LYZI',
         TELEGRAM: 'https://t.me/Lyzi_us',
         TYPE: 'Upcoming',
-        DESCRIPTION: `🇨🇵 Pay limitless with +25 crypto in +1500 shops 💸 Get cashback up to 1% to 5% with $LYZI`,
+        description: `🇨🇵 Pay limitless with +25 crypto in +1500 shops 💸 Get cashback up to 1% to 5% with $LYZI`,
         TOKEN_ADDRESS: 'KT1UMx7aZQWNKY9nC4LRYNsueEiGMfpcQhhD',
-        POOL_ADDRESS: 'KT1M8PQn1vydBu4BYGypjeNzjfjzqdtHdDU4',
-        ENROLLMENT_KEY: '441853',
-        SALE_MAP_KEY: '441852',
+        tokenAddress: 'KT1M8PQn1vydBu4BYGypjeNzjfjzqdtHdDU4',
+        enrolledParticipants: '441853',
+        details: {
+            sale: '441852',
+        },
         ADMIN: 'tz1VRTputDyDYy4GjthJqdabKDVxkD3xCYGc',
         WEBSITE: 'https://lyzi.fr/',
         WHITEPAPER:
@@ -54,7 +56,7 @@ export const IDO_CONFIG = [
                 end: '2023-05-09T09:00:00Z',
             },
         },
-        SALE_TYPE: 'Public Sale',
+        saleType: 'Public Sale',
         SOCIAL_HANDLES: {
             WEBSITE: 'https://lyzi.fr/',
             WHITEPAPER:
@@ -75,8 +77,10 @@ export const IDO_CONFIG = [
         DISCOUNTED_PRICE: 0.133,
         MIN_ALLOCATION: 'TBA',
         MAX_ALLOCATION: 'TBA',
-        AMOUNT_TO_RAISE: 33250,
-        DECIMALS: 6,
+        totalRaise: 33250,
+        token: {
+            decimals: 6,
+        },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
             'It should be noted that 100% of LYZI will be unlocked at TGE',
@@ -97,11 +101,13 @@ export const IDO_CONFIG = [
         TOKEN_NAME: 'SZO',
         TELEGRAM: 'https://t.me/shuttleone',
         TYPE: 'Finished',
-        DESCRIPTION: `ShuttleOne connects interoperable digital infrastructure by building tools that aggregate crypto to the real world.`,
+        description: `ShuttleOne connects interoperable digital infrastructure by building tools that aggregate crypto to the real world.`,
         TOKEN_ADDRESS: 'KT1WzRVUnrJ4mNu59m9hPQZDY8Nq9JWtUbRf',
-        POOL_ADDRESS: 'KT1JLUXnNWjj92KA7KgPXMEzgPCgfSUnL9DX',
-        ENROLLMENT_KEY: '53625',
-        SALE_MAP_KEY: '53624',
+        tokenAddress: 'KT1JLUXnNWjj92KA7KgPXMEzgPCgfSUnL9DX',
+        enrolledParticipants: '53625',
+        details: {
+            sale: '53624',
+        },
         ADMIN: 'tz1fa9yiKr11zUkggL6rNh71JYCb9Et95Bg3',
         WEBSITE: 'https://shuttleone.network/2021/#/home',
         WHITEPAPER:
@@ -116,7 +122,7 @@ export const IDO_CONFIG = [
             },
         },
 
-        SALE_TYPE: 'Public Sale',
+        saleType: 'Public Sale',
         SOCIAL_HANDLES: {
             WEBSITE: 'https://shuttleone.network/2021/#/home',
             WHITEPAPER:
@@ -137,8 +143,10 @@ export const IDO_CONFIG = [
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
         MAX_ALLOCATION: 'TBA',
-        AMOUNT_TO_RAISE: 120000,
-        DECIMALS: 6,
+        totalRaise: 120000,
+        token: {
+            decimals: 6,
+        },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
             'It should be noted that 100% of SZO will be unlocked at TGE',
@@ -160,11 +168,13 @@ export const IDO_CONFIG = [
         TOKEN_NAME: 'AQRTz',
         TELEGRAM: 'https://t.me/aqrxtoken',
         TYPE: 'Finished',
-        DESCRIPTION: `World's first decentralised marketplace for real estate NFT’s, digitising the real estate industry with an end to end platform that enables seamless online experience for the users.`,
+        description: `World's first decentralised marketplace for real estate NFT’s, digitising the real estate industry with an end to end platform that enables seamless online experience for the users.`,
         TOKEN_ADDRESS: 'KT19wuExNXayErfuCkcy6Z56cd1FWzF96xXk',
-        POOL_ADDRESS: 'KT1KeKqrvtMujUGdrkwxhtuyVSqNBHPZnoyt',
-        ENROLLMENT_KEY: '20874',
-        SALE_MAP_KEY: '20873',
+        tokenAddress: 'KT1KeKqrvtMujUGdrkwxhtuyVSqNBHPZnoyt',
+        enrolledParticipants: '20874',
+        details: {
+            sale: '20873',
+        },
         ADMIN: 'tz1fa9yiKr11zUkggL6rNh71JYCb9Et95Bg3',
         WEBSITE: 'https://aqarchain.io/',
         WHITEPAPER: 'https://smartchain.medium.com/',
@@ -177,7 +187,7 @@ export const IDO_CONFIG = [
                 end: '2021-10-21T12:00:00Z',
             },
         },
-        SALE_TYPE: 'Public Sale',
+        saleType: 'Public Sale',
         SOCIAL_HANDLES: {
             WEBSITE: 'https://aqarchain.io/',
             WHITEPAPER: 'https://smartchain.medium.com/',
@@ -196,8 +206,10 @@ export const IDO_CONFIG = [
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
         MAX_ALLOCATION: 'TBA',
-        AMOUNT_TO_RAISE: 50000,
-        DECIMALS: 14,
+        totalRaise: 50000,
+        token: {
+            decimals: 14,
+        },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
             'It should be noted that 50% of AQRTz tokens will be unlocked after the sale and rest 50% at a monthly drip of 6 months',
@@ -219,9 +231,9 @@ export const IDO_CONFIG = [
         TOKEN_NAME: 'INSTA',
         TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
         TYPE: 'Finished',
-        DESCRIPTION: `Tezos first ever completely decentralised Fundraising and Incubation platform. We aim to empower projects with fundraising ability while developing loyal users, at the same time, allowing retailer investors and potential users to access early investment deals.`,
+        description: `Tezos first ever completely decentralised Fundraising and Incubation platform. We aim to empower projects with fundraising ability while developing loyal users, at the same time, allowing retailer investors and potential users to access early investment deals.`,
         TOKEN_ADDRESS: 'KT19y6R8x53uDKiM46ahgguS6Tjqhdj2rSzZ',
-        POOL_ADDRESS: 'KT1MrvrYQg3PASJNae5w349dxqn6DtKov1J8',
+        tokenAddress: 'KT1MrvrYQg3PASJNae5w349dxqn6DtKov1J8',
         ADMIN: 'tz1fa9yiKr11zUkggL6rNh71JYCb9Et95Bg3',
         WEBSITE: 'https://www.instaraise.io/',
         WHITEPAPER: 'https://docs.instaraise.io',
@@ -242,7 +254,7 @@ export const IDO_CONFIG = [
             },
         },
 
-        SALE_TYPE: 'Public Sale',
+        saleType: 'Public Sale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         tokenPrice: {
             DEX: 0.022,
@@ -250,8 +262,10 @@ export const IDO_CONFIG = [
         DISCOUNTED_PRICE: 0.022,
         MIN_ALLOCATION: 50,
         MAX_ALLOCATION: 2000,
-        AMOUNT_TO_RAISE: 21560,
-        DECIMALS: 1,
+        totalRaise: 21560,
+        token: {
+            decimals: 1,
+        },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
             'It should be noted that 100% of $INSTA tokens purchased in public sale will be released on Listing.',
@@ -272,9 +286,9 @@ export const IDO_CONFIG = [
         TOKEN_NAME: 'INSTA',
         TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
         TYPE: 'Finished',
-        DESCRIPTION: `Tezos first ever completely decentralised Fundraising and Incubation platform. We aim to empower projects with fundraising ability while developing loyal users, at the same time, allowing retailer investors and potential users to access early investment deals.`,
+        description: `Tezos first ever completely decentralised Fundraising and Incubation platform. We aim to empower projects with fundraising ability while developing loyal users, at the same time, allowing retailer investors and potential users to access early investment deals.`,
         TOKEN_ADDRESS: 'KT19y6R8x53uDKiM46ahgguS6Tjqhdj2rSzZ',
-        POOL_ADDRESS: 'KT1JzMRLtEvrjxZEEftr8US24sQojb2PVpk6',
+        tokenAddress: 'KT1JzMRLtEvrjxZEEftr8US24sQojb2PVpk6',
         ADMIN: 'tz1VRTputDyDYy4GjthJqdabKDVxkD3xCYGc',
         WEBSITE: 'https://www.instaraise.io/',
         WHITEPAPER: 'https://docs.instaraise.io',
@@ -287,7 +301,7 @@ export const IDO_CONFIG = [
                 end: '2021-08-22T14:00:00Z',
             },
         },
-        SALE_TYPE: 'Presale',
+        saleType: 'Presale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         SOCIAL_HANDLES: {
             WEBSITE: 'https://www.instaraise.io/',
@@ -302,8 +316,10 @@ export const IDO_CONFIG = [
         DISCOUNTED_PRICE: 0.0184,
         MIN_ALLOCATION: 50,
         MAX_ALLOCATION: 5000,
-        AMOUNT_TO_RAISE: 20000,
-        DECIMALS: 1,
+        totalRaise: 20000,
+        token: {
+            decimals: 1,
+        },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
             'It should be noted that 50% of $INSTA tokens purchased will be released once the IDO is complete and inital liquidity has been added and locked in Quipuswap. The remaining 50% will be released 45 days later.',

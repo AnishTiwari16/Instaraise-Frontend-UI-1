@@ -2,14 +2,19 @@
 import React from 'react';
 import Synaps from '@synaps-io/react-verify';
 import { connect } from 'react-redux';
-import { userVerification } from '../../../redux/actions/selfHostedIDO/action.self';
+import {
+    createNewProject,
+    userVerification,
+} from '../../../redux/actions/selfHostedIDO/action.self';
 const KybVerification = ({
     handleComplete,
     userVerification,
     userVerifyData,
     wallet,
+    project,
+    createNewProject,
 }) => {
-    const [email, setEmail] = React.useState('');
+    const { email } = project;
     const [emailValidationFlag, setEmailValidationFlag] = React.useState(false);
     const handleNext = async () => {
         await userVerification({ email, wallet });
@@ -57,7 +62,10 @@ const KybVerification = ({
                                         aria-describedby='inputGroupPrepend2'
                                         placeholder='you@example.com'
                                         onChange={(e) =>
-                                            setEmail(e.target.value)
+                                            createNewProject({
+                                                ...project,
+                                                email: e.target.value,
+                                            })
                                         }
                                         required
                                     />
@@ -93,7 +101,13 @@ const KybVerification = ({
                                         role='button'
                                         data-slide='next'
                                         href='#carouselExampleIndicators'
-                                        onClick={handleNext}
+                                        onClick={() => {
+                                            createNewProject({
+                                                ...project,
+                                                userAdminAddress: wallet,
+                                            });
+                                            handleNext();
+                                        }}
                                         disabled={
                                             !wallet ||
                                             !email ||
@@ -136,9 +150,11 @@ const KybVerification = ({
 };
 const mapDispatchToProps = (dispatch) => ({
     userVerification: (payload) => dispatch(userVerification(payload)),
+    createNewProject: (payload) => dispatch(createNewProject(payload)),
 });
 const mapStateToProps = (state) => ({
     userVerifyData: state.userVerifyData,
     wallet: state.wallet,
+    project: state.project,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(KybVerification);

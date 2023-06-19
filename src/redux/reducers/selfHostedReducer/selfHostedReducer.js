@@ -17,9 +17,12 @@ export const tokenAddress = (initialState = '', action) => {
     }
 };
 const initialProject = {
+    email: '',
+    userAdminAddress: '',
     tokenAddress: '',
     decimals: 0,
     tokenId: 0,
+    totalRaise: '',
     presaleStartTime: new Date(),
     presaleEndTime: new Date(),
     privateSaleAllocation: '',
@@ -37,7 +40,9 @@ const initialProject = {
     stakingContract: '',
     timeBlock: 0,
     isPublicSaleWhitelisted: false,
+    saleType: 'Public',
     projectName: '',
+    tokenName: '',
     description: '',
     telegram: '',
     twitter: '',

@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { IdoProjectDetails } from '../../../redux/actions/selfHostedIDO/action.self';
 import Pagination from '../../../hooks/pagination';
 import TempCards from './TempCards';
+import { connectWallet } from '../../../redux/actions/wallet/action.wallet';
+import { FaWallet } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MyIdoSale = (props) => {
     const { selfIdoProjects, wallet } = props;
@@ -47,28 +50,53 @@ const MyIdoSale = (props) => {
                     </div>
                 </div>
             </div>
-            <div
-                className='my-2 my-lg-5 my-md-5 my-sm-5 
+            {!wallet ? (
+                <div className='mt-10 form-header text-dark-to-light'>
+                    <div className='text-center mb-2'>
+                        <FaWallet size={65} />
+                    </div>
+                    <h6 className='text-center'>
+                        Please connect your wallet to proceed&nbsp;
+                        <Link
+                            to='#'
+                            className='router-l router-l-u'
+                            onClick={() =>
+                                props.connectWallet({
+                                    NETWORK: 'mainnet',
+                                })
+                            }
+                        >
+                            Connect now{' '}
+                        </Link>
+                    </h6>
+                </div>
+            ) : (
+                <>
+                    <div
+                        className='my-2 my-lg-5 my-md-5 my-sm-5 
                     px-0 mb-lg-0 text-dark-to-light mb-md-0 
                     row row-cols-1 row-cols-xxl-3 row-cols-lg-2 
                     row-cols-md-1 row-cols-sm-1
                     mx-0 mx-lg-3 mx-md-3'
-            >
-                {MY_PROJECT.map((elem, index) => {
-                    return <TempCards {...elem} key={index} />;
-                })}
-            </div>
-            <Pagination
-                currentPage={currentPage}
-                itemsPerPage={itemsPerPage}
-                totalItems={MY_PROJECT.length}
-                onPageChange={handlePageChange}
-            />
+                    >
+                        {MY_PROJECT.map((elem, index) => {
+                            return <TempCards {...elem} key={index} />;
+                        })}
+                    </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        itemsPerPage={itemsPerPage}
+                        totalItems={MY_PROJECT.length}
+                        onPageChange={handlePageChange}
+                    />
+                </>
+            )}
         </div>
     );
 };
 const mapDispatchToProps = (dispatch) => ({
     IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
+    connectWallet: (payload) => dispatch(connectWallet(payload)),
 });
 const mapStateToProps = (state) => ({
     wallet: state.wallet,

@@ -20,6 +20,10 @@ const VerifyTokensConfig = ({ project }) => {
             value: project.tokenId,
         },
         {
+            name: 'Total raise',
+            value: project.totalRaise,
+        },
+        {
             name: 'Private Start Time',
             value: project.presaleStartTime.toString(),
         },
@@ -85,8 +89,16 @@ const VerifyTokensConfig = ({ project }) => {
             value: project.isPublicSaleWhitelisted ? 'true' : 'false',
         },
         {
+            name: 'Sale type',
+            value: project.saleType === true ? 'Private' : 'Public',
+        },
+        {
             name: 'Project name',
             value: project.projectName,
+        },
+        {
+            name: 'Token name',
+            value: project.tokenName,
         },
         {
             name: 'Description',

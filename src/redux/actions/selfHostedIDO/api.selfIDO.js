@@ -164,8 +164,8 @@ export const fetchIdoDetails = async () => {
         const TOKEN_POOL_ADDRESS = data.map((res) => {
             return res.value.TokenPoolAddress;
         });
-        const RESP = TOKEN_POOL_ADDRESS.map(async (addr) => {
-            const url = `https://api.ghostnet.tzkt.io/v1/contracts/${addr}/storage`;
+        const RESP = TOKEN_POOL_ADDRESS.map(async (tokenPoolAddress) => {
+            const url = `https://api.ghostnet.tzkt.io/v1/contracts/${tokenPoolAddress}/storage`;
             const resp = await axios.get(url);
             return resp.data;
         });

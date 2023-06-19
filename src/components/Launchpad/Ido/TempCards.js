@@ -45,8 +45,7 @@ const TempCards = (props) => {
     }
     const ALIAS = props.PROJECT_NAME
         ? props.PROJECT_NAME.split(' ').join('').toLowerCase()
-        : props.ALIAS;
-
+        : '';
     const PROJECT_LINK = DISABLE_SALE ? '#' : `/launchpad/IDO/${ALIAS}`;
     return (
         <span className='launchpad-card py-3'>
@@ -56,6 +55,7 @@ const TempCards = (props) => {
                         <img
                             src={props.ICON}
                             width={45}
+                            height={45}
                             style={{
                                 marginTop: '-12px',
                                 marginBottom: '15px',
@@ -79,15 +79,18 @@ const TempCards = (props) => {
                                     <div className='text-14 '>Total raise</div>
                                     <div className='d-flex'>
                                         <NumericLabel params={option}>
-                                            {props.AMOUNT_TO_RAISE}
+                                            {props.totalRaise}
                                         </NumericLabel>
                                         &nbsp;
-                                        {props.CURRENCY}
+                                        {props.ALIAS === 'instaraise-public' ||
+                                        props.ALIAS === 'instaraise-private'
+                                            ? props.CURRENCY
+                                            : 'USD'}
                                     </div>
                                 </div>
                                 <div className='navbar navbar-light bg-transparent sale-def p-0'>
                                     <div className=''>Sale type</div>
-                                    <div className=''>{props.SALE_TYPE}</div>
+                                    <div className=''>{props.saleType}</div>
                                 </div>
 
                                 {!props.MULTI_SWAP_RATE ? (
@@ -97,7 +100,7 @@ const TempCards = (props) => {
                                         <div>
                                             1 ꜩ ={' '}
                                             {(1 / XTZRate).PrecisionMaker(2)}
-                                            &nbsp; {props.TOKEN_NAME}
+                                            &nbsp;{props.TOKEN_NAME}
                                         </div>
                                     </div>
                                 ) : (

@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React, { useState } from 'react';
+import React from 'react';
 import { BiLinkExternal } from 'react-icons/bi';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -9,7 +9,6 @@ import AppLayout from '../../components/dashboard/Layout/index';
 import PoolDetails from '../../components/Launchpad/ProjectTiers/PoolDetails';
 import { NETWORK, TZKT_NODES } from '../../config/config';
 import { IDO_CONFIG } from '../../config/Launchpad/Ido/IdoConfig';
-import { POOL_ADDRESS } from '../../config/Launchpad/Ido/IdoConfig';
 import Socials from '../../config/Launchpad/Ido/IdoProjectSocials';
 import { kycProcess } from '../../redux/actions/common/action.token';
 import {
@@ -28,10 +27,9 @@ const LaunchIdoProjects = (props) => {
         participateInSale,
         wallet,
         claimTokens,
+        projectData,
     } = props;
     const params = useParams();
-    const [projectData, setProjectData] = useState([]);
-
     const tiers = {
         EC: 'Economy Class',
         FC: 'First Class',
@@ -49,31 +47,30 @@ const LaunchIdoProjects = (props) => {
         statement = 'You are not whitelisted';
     }
     const PROJECT_NAME = params.name;
-    const projectContractAddress = POOL_ADDRESS[PROJECT_NAME].POOL_ADDRESS;
+    const projectContractAddress = projectData.tokenAddress;
+
     const fetchProjectDetails = async () => {
-        // Fetching Project Data from PROJECTINFO
-        const data = IDO_CONFIG.filter((item) => {
-            return item.ALIAS === PROJECT_NAME;
-        })[0];
         // fetch sale data
-        setProjectData(data);
-        if (PROJECT_NAME && POOL_ADDRESS[PROJECT_NAME]) {
+
+        if (PROJECT_NAME) {
             await fetchSaleData({
-                contractAddress: POOL_ADDRESS[PROJECT_NAME].POOL_ADDRESS,
-                ENROLLMENT_KEY: data.ENROLLMENT_KEY,
-                pricePerToken: data.TOKEN_PRICE,
-                DECIMALS: data.DECIMALS,
-                SALE_MAP_KEY: data.SALE_MAP_KEY,
+                contractAddress: projectContractAddress,
+                ENROLLMENT_KEY: projectData.enrolledParticipants,
+                pricePerToken: projectData.tokenPrice.DEX,
+                DECIMALS: projectData.token.decimals,
+                SALE_MAP_KEY: projectData.details.sale,
             });
             let info = {
                 wallet: wallet,
-                projectName: data.ALIAS,
+                projectName: projectData.PROJECT_NAME.split(' ')
+                    .join('')
+                    .toLowerCase(),
             };
             await props.fetchKYCDetails(info);
         }
     };
 
-    const DECIMALS = projectData.DECIMALS;
+    const DECIMALS = projectData.token.decimals;
     let progressPercentage = (
         (SaleData.data.totalTokensSold /
             (SaleData.data.totalTokensToSell / Math.pow(10, DECIMALS))) *
@@ -116,17 +113,33 @@ const LaunchIdoProjects = (props) => {
                                     {projectData.PROJECT_NAME}
                                 </h5>
                                 <p className='m-auto card-text mx-4 my-3 text-sm text-second font-insta-regular'>
-                                    {projectData.DESCRIPTION}
+                                    {projectData.description}
                                 </p>
                                 <div className='d-flex justify-content-center mt-4 me-3'>
                                     <Socials
                                         width={27}
                                         margin='ms-3'
                                         height={27}
-                                        medium={links ? links.MEDIUM : ''}
-                                        website={links ? links.WEBSITE : ''}
-                                        twitter={links ? links.TWITTER : ''}
-                                        telegram={links ? links.TELEGRAM : ''}
+                                        medium={
+                                            links
+                                                ? links.MEDIUM
+                                                : projectData.medium
+                                        }
+                                        website={
+                                            links
+                                                ? links.WEBSITE
+                                                : projectData.website
+                                        }
+                                        twitter={
+                                            links
+                                                ? links.TWITTER
+                                                : projectData.twitter
+                                        }
+                                        telegram={
+                                            links
+                                                ? links.TELEGRAM
+                                                : projectData.telegram
+                                        }
                                     />
                                 </div>
                                 <hr />
@@ -154,7 +167,7 @@ const LaunchIdoProjects = (props) => {
                                                     `${TZKT_NODES[
                                                         NETWORK
                                                     ].replace('api.', '')}/${
-                                                        projectData.TOKEN_ADDRESS
+                                                        projectData.tokenAddress
                                                     }`
                                                 );
                                             }}
@@ -188,7 +201,7 @@ const LaunchIdoProjects = (props) => {
                                             Decimal
                                         </div>
                                         <div className='text-dark-to-light'>
-                                            {projectData.DECIMALS}
+                                            {projectData.token.decimals}
                                         </div>
                                     </div>
                                     <div className='mt-3 px-0 text-center text-lg-start text-md-center text-sm-center col-6 col-md-6 col-lg'>
@@ -196,8 +209,10 @@ const LaunchIdoProjects = (props) => {
                                             Launch Price
                                         </div>
                                         <div className='text-dark-to-light'>
-                                            {projectData.LISTING_PRICE}&nbsp;
-                                            {projectData.TEZ}
+                                            {projectData.ALIAS === 'shuttleone'
+                                                ? projectData.LISTING_PRICE
+                                                : projectData.tokenPrice.DEX}
+                                            &nbsp;xtz
                                         </div>
                                     </div>
                                 </div>
@@ -320,7 +335,10 @@ const IdoProjects = (props) => {
         typeof SELF_IDO_DATA === 'undefined' ? (
         <NotFound />
     ) : (
-        <LaunchIdoProjects {...props} />
+        <LaunchIdoProjects
+            {...props}
+            projectData={data ? data : SELF_IDO_DATA}
+        />
     );
 };
 const mapDispatchToProps = (dispatch) => ({

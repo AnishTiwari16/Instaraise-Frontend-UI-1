@@ -35,7 +35,7 @@ const PoolDetails = (props) => {
         }
         setModalType('transfer');
         const API_RESPONSE = await claimTokens({
-            contractAddress: projectData.POOL_ADDRESS,
+            contractAddress: projectData.tokenAddress,
         });
         if (API_RESPONSE.payload.success) {
             fetchSaleData();
@@ -48,8 +48,8 @@ const PoolDetails = (props) => {
 
     let participatingStatus = false;
     if (
-        new Date() >= new Date(projectData.START_TIME) &&
-        new Date() <= new Date(projectData.END_TIME)
+        new Date() >= new Date(projectData.time.public.start) &&
+        new Date() <= new Date(projectData.time.public.end)
     ) {
         participatingStatus = true;
     }
@@ -57,7 +57,7 @@ const PoolDetails = (props) => {
     let participateInFCFS = false;
     if (
         new Date() >= new Date(projectData.FCFS_OPEN_TIME) &&
-        new Date() <= new Date(projectData.END_TIME)
+        new Date() <= new Date(projectData.time.public.end)
     ) {
         participateInFCFS = true;
     }
@@ -67,11 +67,11 @@ const PoolDetails = (props) => {
     };
 
     const FCFS_OPEN_TIME = new Date(projectData.FCFS_OPEN_TIME).toString();
-    const START_TIME = new Date(projectData.START_TIME).toString();
+    const START_TIME = new Date(projectData.time.public.start).toString();
 
     const TOKEN_PRICE = projectData.IsDiscountedUser
         ? projectData.DISCOUNTED_PRICE
-        : projectData.TOKEN_PRICE;
+        : projectData.tokenPrice.DEX;
     const XTZRate = TOKEN_PRICE;
 
     const SWAP_RATE = `1 XTZ = ${(1 / XTZRate).PrecisionMaker(2)} ${
