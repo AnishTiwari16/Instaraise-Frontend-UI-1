@@ -16,7 +16,6 @@ import {
     ParticipateInSale,
     claimNow,
 } from '../../redux/actions/ido/action.ido';
-import NotFound from '../NotFound/NotFound';
 import { IdoProjectDetails } from '../../redux/actions/selfHostedIDO/action.self';
 
 const LaunchIdoProjects = (props) => {
@@ -317,9 +316,7 @@ const IdoProjects = (props) => {
         })[0];
     }
     return typeof data === 'undefined' &&
-        typeof SELF_IDO_DATA === 'undefined' ? (
-        <NotFound />
-    ) : (
+        typeof SELF_IDO_DATA === 'undefined' ? null : (
         <LaunchIdoProjects
             {...props}
             projectData={data ? data : SELF_IDO_DATA}
