@@ -68,7 +68,10 @@ export default function JoinPoolModal(props) {
         if (Number(stakeAmount) > Number(MAX_AMOUNT)) {
             setError({ status: true, message: 'Amount exceeded the limit' });
         }
-        if (Number(stakeAmount) < balance) {
+        if (
+            Number(stakeAmount) < Number(balance) ||
+            Number(balance) < MIN_AMOUNT
+        ) {
             setError({ status: true, message: 'Insufficient balance' });
         }
     }, [stakeAmount, balance]);
@@ -113,10 +116,9 @@ export default function JoinPoolModal(props) {
             ? 0
             : (
                   (stakeAmount * 1) /
-                  props.projectData.TOKEN_PRICE
+                  props.projectData.tokenPrice.DEX
               ).PrecisionMaker(3);
     }
-
     return (
         <Modal
             aria-labelledby='transition-modal-title'
@@ -216,7 +218,7 @@ export default function JoinPoolModal(props) {
                         <span className='text-end fw-600  text-12'>
                             You will receive {AMT_YOU_RECIEVE}
                             &nbsp;
-                            {props.projectData.TOKEN_NAME} tokens
+                            {props.projectData.tokenName} tokens
                         </span>
                     </div>
                     <div className='d-flex justify-content-between mt-2'>

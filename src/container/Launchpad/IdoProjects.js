@@ -47,8 +47,7 @@ const LaunchIdoProjects = (props) => {
         statement = 'You are not whitelisted';
     }
     const PROJECT_NAME = params.name;
-    const projectContractAddress = projectData.tokenAddress;
-
+    const projectContractAddress = projectData.tokenPoolAddress;
     const fetchProjectDetails = async () => {
         // fetch sale data
 
@@ -62,7 +61,8 @@ const LaunchIdoProjects = (props) => {
             });
             let info = {
                 wallet: wallet,
-                projectName: projectData.PROJECT_NAME.split(' ')
+                projectName: projectData.projectName
+                    .split(' ')
                     .join('')
                     .toLowerCase(),
             };
@@ -95,7 +95,6 @@ const LaunchIdoProjects = (props) => {
         fetchProjectDetails();
         // eslint-disable-next-line
     }, [wallet]);
-    const links = projectData.SOCIAL_HANDLES;
     return (
         <div>
             <AppLayout flag={props.flag}>
@@ -104,13 +103,14 @@ const LaunchIdoProjects = (props) => {
                         <div className='card project-detail  shadow-sm h-100 border-10'>
                             <div className='card-body form-header'>
                                 <img
-                                    src={projectData.ICON}
+                                    src={projectData.icon}
+                                    height={45}
                                     width={45}
                                     className='my-3 d-inline-block align-top me-2 rounded-circle'
                                     alt=''
                                 />
                                 <h5 className='card-title form-header'>
-                                    {projectData.PROJECT_NAME}
+                                    {projectData.projectName}
                                 </h5>
                                 <p className='m-auto card-text mx-4 my-3 text-sm text-second font-insta-regular'>
                                     {projectData.description}
@@ -120,26 +120,10 @@ const LaunchIdoProjects = (props) => {
                                         width={27}
                                         margin='ms-3'
                                         height={27}
-                                        medium={
-                                            links
-                                                ? links.MEDIUM
-                                                : projectData.medium
-                                        }
-                                        website={
-                                            links
-                                                ? links.WEBSITE
-                                                : projectData.website
-                                        }
-                                        twitter={
-                                            links
-                                                ? links.TWITTER
-                                                : projectData.twitter
-                                        }
-                                        telegram={
-                                            links
-                                                ? links.TELEGRAM
-                                                : projectData.telegram
-                                        }
+                                        medium={projectData.medium}
+                                        website={projectData.website}
+                                        twitter={projectData.twitter}
+                                        telegram={projectData.telegram}
                                     />
                                 </div>
                                 <hr />
@@ -167,7 +151,8 @@ const LaunchIdoProjects = (props) => {
                                                     `${TZKT_NODES[
                                                         NETWORK
                                                     ].replace('api.', '')}/${
-                                                        projectData.tokenAddress
+                                                        projectData.token
+                                                            .address
                                                     }`
                                                 );
                                             }}
@@ -185,7 +170,7 @@ const LaunchIdoProjects = (props) => {
                                             Name
                                         </div>
                                         <div className='text-dark-to-light'>
-                                            {projectData.PROJECT_NAME}
+                                            {projectData.projectName}
                                         </div>
                                     </div>
                                     <div className='mt-3 text-center text-lg-start text-md-center text-sm-center px-0   col-6 col-md-6 col-lg'>
@@ -193,7 +178,7 @@ const LaunchIdoProjects = (props) => {
                                             Token
                                         </div>
                                         <div className='text-dark-to-light'>
-                                            {projectData.TOKEN_NAME}
+                                            {projectData.tokenName}
                                         </div>
                                     </div>
                                     <div className='mt-3 px-0 text-center text-lg-start text-md-center text-sm-center   col-6 col-md-6 col-lg'>
@@ -325,8 +310,8 @@ const IdoProjects = (props) => {
     var SELF_IDO_DATA;
     if (props.selfIdoProjects.success) {
         SELF_IDO_DATA = props.selfIdoProjects.data.filter((item) => {
-            const ALIAS = item.PROJECT_NAME
-                ? item.PROJECT_NAME.split(' ').join('').toLowerCase()
+            const ALIAS = item.projectName
+                ? item.projectName.split(' ').join('').toLowerCase()
                 : undefined;
             return ALIAS === params.name;
         })[0];

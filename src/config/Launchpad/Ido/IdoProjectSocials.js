@@ -19,23 +19,21 @@ const Socials = ({
     const params = useParams();
     return (
         <div className='d-flex'>
-            <div>
-                <a
-                    className={margin}
-                    href={website}
-                    target='_blank'
-                    rel='noreferrer'
-                >
-                    <img
-                        className='cursor-pointer social-links'
-                        src={Website}
-                        alt='website'
-                        width={width}
-                        height={height}
-                    />
-                </a>
-            </div>
-            <div>
+            <a
+                className={margin}
+                href={website}
+                target='_blank'
+                rel='noreferrer'
+            >
+                <img
+                    className='cursor-pointer social-links'
+                    src={Website}
+                    alt='website'
+                    width={width}
+                    height={height}
+                />
+            </a>
+            {medium && (
                 <a
                     className={margin}
                     href={medium}
@@ -58,8 +56,9 @@ const Socials = ({
                         />
                     )}
                 </a>
-            </div>
-            <div>
+            )}
+
+            {telegram && (
                 <a
                     className={margin}
                     href={telegram}
@@ -74,8 +73,9 @@ const Socials = ({
                         height={height}
                     />
                 </a>
-            </div>
-            <div>
+            )}
+
+            {twitter && (
                 <a
                     className={margin}
                     href={twitter}
@@ -90,7 +90,7 @@ const Socials = ({
                         height={height}
                     />
                 </a>
-            </div>
+            )}
         </div>
     );
 };
@@ -98,9 +98,6 @@ const Socials = ({
 Socials.propTypes = {
     margin: PropTypes.string.isRequired,
     website: PropTypes.string.isRequired,
-    twitter: PropTypes.string.isRequired,
-    telegram: PropTypes.string.isRequired,
-    medium: PropTypes.string.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
 };

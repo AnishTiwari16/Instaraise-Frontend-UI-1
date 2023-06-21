@@ -1,6 +1,6 @@
-import AQARCHAIN_ICON from '../../../assets/Ido/Aquachain_Img.jpeg';
+import AQARCHAIN_icon from '../../../assets/Ido/Aquachain_Img.jpeg';
 import LYZI_LOGO from '../../../assets/Ido/Lyzi_Img.png';
-import SHUTTLE_ONE_ICON from '../../../assets/Ido/ShuttleOne_Img.jpeg';
+import SHUTTLE_ONE_icon from '../../../assets/Ido/ShuttleOne_Img.jpeg';
 import INSTA_LOGO from '../../../assets/images/INSTA.png';
 export const POOL_ADDRESS = {
     goeureka: {
@@ -32,13 +32,13 @@ export const IDO_CONFIG = [
     {
         DISABLED: true,
         ALIAS: 'lyzi',
-        PROJECT_NAME: 'Lyzi',
-        TOKEN_NAME: 'LYZI',
+        projectName: 'Lyzi',
+        tokenName: 'LYZI',
         TELEGRAM: 'https://t.me/Lyzi_us',
         TYPE: 'Upcoming',
         description: `🇨🇵 Pay limitless with +25 crypto in +1500 shops 💸 Get cashback up to 1% to 5% with $LYZI`,
         TOKEN_ADDRESS: 'KT1UMx7aZQWNKY9nC4LRYNsueEiGMfpcQhhD',
-        tokenAddress: 'KT1M8PQn1vydBu4BYGypjeNzjfjzqdtHdDU4',
+        tokenPoolAddress: 'KT1M8PQn1vydBu4BYGypjeNzjfjzqdtHdDU4',
         enrolledParticipants: '441853',
         details: {
             sale: '441852',
@@ -48,7 +48,7 @@ export const IDO_CONFIG = [
         WHITEPAPER:
             'https://lyzi.fr/wp-content/uploads/2023/01/Lyzi-Whitepaper-EN.pdf',
         TWITTER: 'https://twitter.com/Lyzi_app',
-        ICON: LYZI_LOGO,
+        icon: LYZI_LOGO,
         MEDIUM: 'https://discord.com/invite/lyzi-app',
         time: {
             public: {
@@ -57,14 +57,14 @@ export const IDO_CONFIG = [
             },
         },
         saleType: 'Public Sale',
-        SOCIAL_HANDLES: {
-            WEBSITE: 'https://lyzi.fr/',
-            WHITEPAPER:
-                'https://lyzi.fr/wp-content/uploads/2023/01/Lyzi-Whitepaper-EN.pdf',
-            TWITTER: 'https://twitter.com/Lyzi_app',
-            MEDIUM: 'https://discord.com/invite/lyzi-app',
-            TELEGRAM: 'https://t.me/Lyzi_us',
-        },
+
+        website: 'https://lyzi.fr/',
+        whitepaper:
+            'https://lyzi.fr/wp-content/uploads/2023/01/Lyzi-Whitepaper-EN.pdf',
+        twitter: 'https://twitter.com/Lyzi_app',
+        medium: 'https://discord.com/invite/lyzi-app',
+        telegram: 'https://t.me/Lyzi_us',
+
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         FCFS_TOTAL_RAISE: '33250',
         FCFS_MIN_ALLOCATION: '100 xtz',
@@ -79,6 +79,7 @@ export const IDO_CONFIG = [
         MAX_ALLOCATION: 'TBA',
         totalRaise: 33250,
         token: {
+            address: 'KT1UMx7aZQWNKY9nC4LRYNsueEiGMfpcQhhD',
             decimals: 6,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
@@ -97,13 +98,13 @@ export const IDO_CONFIG = [
     {
         DISABLED: false,
         ALIAS: 'shuttleone',
-        PROJECT_NAME: 'ShuttleOne',
-        TOKEN_NAME: 'SZO',
+        projectName: 'ShuttleOne',
+        tokenName: 'SZO',
         TELEGRAM: 'https://t.me/shuttleone',
         TYPE: 'Finished',
         description: `ShuttleOne connects interoperable digital infrastructure by building tools that aggregate crypto to the real world.`,
         TOKEN_ADDRESS: 'KT1WzRVUnrJ4mNu59m9hPQZDY8Nq9JWtUbRf',
-        tokenAddress: 'KT1JLUXnNWjj92KA7KgPXMEzgPCgfSUnL9DX',
+        tokenPoolAddress: 'KT1JLUXnNWjj92KA7KgPXMEzgPCgfSUnL9DX',
         enrolledParticipants: '53625',
         details: {
             sale: '53624',
@@ -113,7 +114,7 @@ export const IDO_CONFIG = [
         WHITEPAPER:
             'https://github.com/shuttle-one/flyshuttleone/blob/aa142fd38305a15fbcc405dda638ebba25b0a173/ShuttleOne%20Litepaper%20August%202020.pdf',
         TWITTER: 'https://twitter.com/shuttle_one',
-        ICON: SHUTTLE_ONE_ICON,
+        icon: SHUTTLE_ONE_icon,
         MEDIUM: 'https://shuttleone.medium.com/',
         time: {
             public: {
@@ -123,14 +124,14 @@ export const IDO_CONFIG = [
         },
 
         saleType: 'Public Sale',
-        SOCIAL_HANDLES: {
-            WEBSITE: 'https://shuttleone.network/2021/#/home',
-            WHITEPAPER:
-                'https://github.com/shuttle-one/flyshuttleone/blob/aa142fd38305a15fbcc405dda638ebba25b0a173/ShuttleOne%20Litepaper%20August%202020.pdf',
-            TWITTER: 'https://twitter.com/shuttle_one',
-            MEDIUM: 'https://shuttleone.medium.com/',
-            TELEGRAM: 'https://t.me/shuttleone',
-        },
+
+        website: 'https://shuttleone.network/2021/#/home',
+        whitepaper:
+            'https://github.com/shuttle-one/flyshuttleone/blob/aa142fd38305a15fbcc405dda638ebba25b0a173/ShuttleOne%20Litepaper%20August%202020.pdf',
+        twitter: 'https://twitter.com/shuttle_one',
+        medium: 'https://shuttleone.medium.com/',
+        telegram: 'https://t.me/shuttleone',
+
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         FCFS_TOTAL_RAISE: '17381',
         FCFS_MIN_ALLOCATION: '50 xtz',
@@ -145,6 +146,7 @@ export const IDO_CONFIG = [
         MAX_ALLOCATION: 'TBA',
         totalRaise: 120000,
         token: {
+            address: 'KT1WzRVUnrJ4mNu59m9hPQZDY8Nq9JWtUbRf',
             decimals: 6,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
@@ -164,13 +166,13 @@ export const IDO_CONFIG = [
     {
         DISABLED: false,
         ALIAS: 'aqarchain',
-        PROJECT_NAME: 'Aqarchain',
-        TOKEN_NAME: 'AQRTz',
+        projectName: 'Aqarchain',
+        tokenName: 'AQRTz',
         TELEGRAM: 'https://t.me/aqrxtoken',
         TYPE: 'Finished',
         description: `World's first decentralised marketplace for real estate NFT’s, digitising the real estate industry with an end to end platform that enables seamless online experience for the users.`,
         TOKEN_ADDRESS: 'KT19wuExNXayErfuCkcy6Z56cd1FWzF96xXk',
-        tokenAddress: 'KT1KeKqrvtMujUGdrkwxhtuyVSqNBHPZnoyt',
+        tokenPoolAddress: 'KT1KeKqrvtMujUGdrkwxhtuyVSqNBHPZnoyt',
         enrolledParticipants: '20874',
         details: {
             sale: '20873',
@@ -179,7 +181,7 @@ export const IDO_CONFIG = [
         WEBSITE: 'https://aqarchain.io/',
         WHITEPAPER: 'https://smartchain.medium.com/',
         TWITTER: 'https://twitter.com/aqarchain_io',
-        ICON: AQARCHAIN_ICON,
+        icon: AQARCHAIN_icon,
         MEDIUM: 'https://smartchain.medium.com/',
         time: {
             public: {
@@ -188,13 +190,13 @@ export const IDO_CONFIG = [
             },
         },
         saleType: 'Public Sale',
-        SOCIAL_HANDLES: {
-            WEBSITE: 'https://aqarchain.io/',
-            WHITEPAPER: 'https://smartchain.medium.com/',
-            TWITTER: 'https://twitter.com/aqarchain_io',
-            MEDIUM: 'https://smartchain.medium.com/',
-            TELEGRAM: 'https://t.me/aqrxtoken',
-        },
+
+        website: 'https://aqarchain.io/',
+        whitepaper: 'https://smartchain.medium.com/',
+        twitter: 'https://twitter.com/aqarchain_io',
+        medium: 'https://smartchain.medium.com/',
+        telegram: 'https://t.me/aqrxtoken',
+
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         FCFS_TOTAL_RAISE: 'TBA',
         FCFS_MIN_ALLOCATION: '10 xtz',
@@ -208,6 +210,7 @@ export const IDO_CONFIG = [
         MAX_ALLOCATION: 'TBA',
         totalRaise: 50000,
         token: {
+            address: 'KT19wuExNXayErfuCkcy6Z56cd1FWzF96xXk',
             decimals: 14,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
@@ -227,25 +230,25 @@ export const IDO_CONFIG = [
     {
         DISABLED: true,
         ALIAS: 'instaraise-public',
-        PROJECT_NAME: 'Instaraise',
-        TOKEN_NAME: 'INSTA',
+        projectName: 'Instaraise',
+        tokenName: 'INSTA',
         TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
         TYPE: 'Finished',
         description: `Tezos first ever completely decentralised Fundraising and Incubation platform. We aim to empower projects with fundraising ability while developing loyal users, at the same time, allowing retailer investors and potential users to access early investment deals.`,
         TOKEN_ADDRESS: 'KT19y6R8x53uDKiM46ahgguS6Tjqhdj2rSzZ',
-        tokenAddress: 'KT1MrvrYQg3PASJNae5w349dxqn6DtKov1J8',
+        tokenPoolAddress: 'KT1MrvrYQg3PASJNae5w349dxqn6DtKov1J8',
         ADMIN: 'tz1fa9yiKr11zUkggL6rNh71JYCb9Et95Bg3',
         WEBSITE: 'https://www.instaraise.io/',
         WHITEPAPER: 'https://docs.instaraise.io',
         TWITTER: 'https://twitter.com/instaraise',
-        ICON: INSTA_LOGO,
-        SOCIAL_HANDLES: {
-            WEBSITE: 'https://www.instaraise.io/',
-            WHITEPAPER: 'https://docs.instaraise.io',
-            TWITTER: 'https://twitter.com/instaraise',
-            MEDIUM: 'https://instaraise.medium.com',
-            TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
-        },
+        icon: INSTA_LOGO,
+
+        website: 'https://www.instaraise.io/',
+        whitepaper: 'https://docs.instaraise.io',
+        twitter: 'https://twitter.com/instaraise',
+        medium: 'https://instaraise.medium.com',
+        telegram: 'https://t.co/ktI6vO3gOM?amp=1',
+
         MEDIUM: 'https://instaraise.medium.com',
         time: {
             public: {
@@ -264,6 +267,7 @@ export const IDO_CONFIG = [
         MAX_ALLOCATION: 2000,
         totalRaise: 21560,
         token: {
+            address: 'KT19y6R8x53uDKiM46ahgguS6Tjqhdj2rSzZ',
             decimals: 1,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
@@ -282,18 +286,18 @@ export const IDO_CONFIG = [
     {
         DISABLED: true,
         ALIAS: 'instaraise-private',
-        PROJECT_NAME: 'Instaraise',
-        TOKEN_NAME: 'INSTA',
+        projectName: 'Instaraise',
+        tokenName: 'INSTA',
         TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
         TYPE: 'Finished',
         description: `Tezos first ever completely decentralised Fundraising and Incubation platform. We aim to empower projects with fundraising ability while developing loyal users, at the same time, allowing retailer investors and potential users to access early investment deals.`,
         TOKEN_ADDRESS: 'KT19y6R8x53uDKiM46ahgguS6Tjqhdj2rSzZ',
-        tokenAddress: 'KT1JzMRLtEvrjxZEEftr8US24sQojb2PVpk6',
+        tokenPoolAddress: 'KT1JzMRLtEvrjxZEEftr8US24sQojb2PVpk6',
         ADMIN: 'tz1VRTputDyDYy4GjthJqdabKDVxkD3xCYGc',
         WEBSITE: 'https://www.instaraise.io/',
         WHITEPAPER: 'https://docs.instaraise.io',
         TWITTER: 'https://twitter.com/instaraise',
-        ICON: INSTA_LOGO,
+        icon: INSTA_LOGO,
         MEDIUM: 'https://instaraise.medium.com',
         time: {
             public: {
@@ -303,13 +307,13 @@ export const IDO_CONFIG = [
         },
         saleType: 'Presale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
-        SOCIAL_HANDLES: {
-            WEBSITE: 'https://www.instaraise.io/',
-            WHITEPAPER: 'https://docs.instaraise.io',
-            TWITTER: 'https://twitter.com/instaraise',
-            MEDIUM: 'https://instaraise.medium.com',
-            TELEGRAM: 'https://t.co/ktI6vO3gOM?amp=1',
-        },
+
+        website: 'https://www.instaraise.io/',
+        whitepaper: 'https://docs.instaraise.io',
+        twitter: 'https://twitter.com/instaraise',
+        medium: 'https://instaraise.medium.com',
+        telegram: 'https://t.co/ktI6vO3gOM?amp=1',
+
         tokenPrice: {
             DEX: 0.02043,
         },
@@ -318,6 +322,7 @@ export const IDO_CONFIG = [
         MAX_ALLOCATION: 5000,
         totalRaise: 20000,
         token: {
+            address: 'KT19y6R8x53uDKiM46ahgguS6Tjqhdj2rSzZ',
             decimals: 1,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',

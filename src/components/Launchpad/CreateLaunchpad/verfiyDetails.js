@@ -57,17 +57,17 @@ const VerfiyDetails = ({
                     method: 'POST',
                     body: JSON.stringify({
                         email: project.email,
-                        userAdminAddress: project.userAdminAddress,
-                        PROJECT_NAME: project.projectName,
-                        TOKEN_NAME: project.tokenName,
+                        adminAddress: project.userAdminAddress,
+                        projectName: project.projectName,
+                        tokenName: project.tokenName,
                         description: project.description,
-                        ICON: project.logoURL,
+                        icon: project.logoURL,
                         website: project.website,
                         telegram: project.telegram,
                         medium: project.medium,
                         twitter: project.twitter,
                         github: project.github,
-                        tokenAddress: project.tokenAddress,
+                        tokenPoolAddress: resp.payload.tokenPoolAddress,
                         saleType:
                             project.saleType === false ? 'Public' : 'Private',
                         totalRaise: project.totalRaise,
@@ -75,7 +75,7 @@ const VerfiyDetails = ({
                 });
                 setTimeout(() => {
                     navigate('/launchpad/all-launchpads');
-                }, 7000);
+                }, 5000);
                 return;
             } else {
                 if (resp.payload.error.name === 'UnknownBeaconError') {

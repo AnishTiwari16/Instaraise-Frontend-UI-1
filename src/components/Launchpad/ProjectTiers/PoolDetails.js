@@ -6,7 +6,6 @@ import AdminDetails from './AdminDetails';
 import Claim from './Claim';
 import { DATA } from './TierData';
 import MainModal from '../../Modals';
-import OwnerInfo from './OwnerInfo';
 
 const PoolDetails = (props) => {
     const {
@@ -56,7 +55,12 @@ const PoolDetails = (props) => {
 
     let participateInFCFS = false;
     if (
-        new Date() >= new Date(projectData.FCFS_OPEN_TIME) &&
+        new Date() >=
+            new Date(
+                projectData.FCFS_OPEN_TIME
+                    ? projectData.FCFS_OPEN_TIME
+                    : projectData.time.public.start
+            ) &&
         new Date() <= new Date(projectData.time.public.end)
     ) {
         participateInFCFS = true;
@@ -75,7 +79,7 @@ const PoolDetails = (props) => {
     const XTZRate = TOKEN_PRICE;
 
     const SWAP_RATE = `1 XTZ = ${(1 / XTZRate).PrecisionMaker(2)} ${
-        projectData.TOKEN_NAME
+        projectData.tokenName
     }`;
     return (
         <div className='pool-detail-teir  fw-500'>
@@ -127,21 +131,6 @@ const PoolDetails = (props) => {
                     </div>
                 </div>
                 <div className='d-flex'>
-                    <div className='p-1 cursor-pointer'>
-                        <span
-                            className={
-                                tab === 'Info'
-                                    ? 'text-toggle-selected'
-                                    : 'text-toggle'
-                            }
-                            onClick={() => {
-                                setTab('Info');
-                            }}
-                        >
-                            Info
-                        </span>
-                    </div>
-                    <div className='text-border'></div>
                     <div className='p-1 cursor-pointer'>
                         <span
                             className={
@@ -251,6 +240,7 @@ const PoolDetails = (props) => {
                                 )}
                             </div>
                         ))}
+                        {/* this is only for FCFS rounds */}
                         {isKyced && (
                             <div>
                                 <div className='container-fluid tier card shadow-sm my-4 my-lg-2 border-10'>
@@ -354,10 +344,8 @@ const PoolDetails = (props) => {
                     projectData={projectData}
                     ClaimNow={ClaimNow}
                 />
-            ) : tab === 'ownerZone' ? (
-                <OwnerInfo />
             ) : (
-                <AdminDetails />
+                <AdminDetails projectData={props.projectData} />
             )}
         </div>
     );

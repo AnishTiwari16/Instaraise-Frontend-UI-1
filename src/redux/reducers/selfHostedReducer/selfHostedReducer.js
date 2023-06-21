@@ -1,7 +1,6 @@
 import {
     ADD_WHITELISTED_LOADER,
     CREATE_PROJECT_LOADER,
-    FETCH_PROJECT_DATA,
     IDO_DETAILS,
     NEW_PROJECT,
     TOKEN_ADDRESS,
@@ -40,16 +39,12 @@ const initialProject = {
     stakingContract: '',
     timeBlock: 0,
     isPublicSaleWhitelisted: false,
-    saleType: 'Public',
+    saleType: false,
     projectName: '',
     tokenName: '',
     description: '',
-    telegram: '',
-    twitter: '',
     logoURL: '',
     website: '',
-    medium: '',
-    github: '',
 };
 export const project = (initialState = initialProject, action) => {
     switch (action.type) {
@@ -67,14 +62,7 @@ export const createSaleLoader = (initialState = false, action) => {
             return initialState;
     }
 };
-export const AdminProjectData = (initialState = {}, action) => {
-    switch (action.type) {
-        case FETCH_PROJECT_DATA:
-            return action.payload;
-        default:
-            return initialState;
-    }
-};
+
 export const whitelistUsersLoader = (initialState = false, action) => {
     switch (action.type) {
         case ADD_WHITELISTED_LOADER:

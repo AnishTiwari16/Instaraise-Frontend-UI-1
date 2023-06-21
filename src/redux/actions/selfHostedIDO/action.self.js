@@ -4,13 +4,11 @@ import {
     ADD_WHITELISTED_USERS,
     CREATE_PROJECT_LOADER,
     CREATE_SALE,
-    FETCH_PROJECT_DATA,
     IDO_DETAILS,
     NEW_PROJECT,
     VERIFY_API,
 } from '../index.action';
 import {
-    FetchProjectDataAPI,
     addWhitelistedUsersAPI,
     createSaleAPI,
     fetchIdoDetails,
@@ -60,22 +58,6 @@ export const IdoProjectDetails = () => {
             type: IDO_DETAILS,
             payload: API_RESPONSE,
         });
-    };
-};
-export const FetchProjectData = (args) => {
-    return async (dispatch) => {
-        const API_RESPONSE = await FetchProjectDataAPI(args);
-        if (API_RESPONSE.success) {
-            return dispatch({
-                type: FETCH_PROJECT_DATA,
-                payload: API_RESPONSE,
-            });
-        } else {
-            return dispatch({
-                type: FETCH_PROJECT_DATA,
-                payload: API_RESPONSE,
-            });
-        }
     };
 };
 export const addWhitelistedUsers = (args) => {

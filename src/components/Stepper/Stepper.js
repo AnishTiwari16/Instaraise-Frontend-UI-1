@@ -16,8 +16,8 @@ const Stepper = (props) => {
     const { isWhitelisted, hasStaked, isEnrolled } = props.kycStatus;
     const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
     const [currentStep, setCurrentStep] = React.useState(1);
-    const ALIAS = props.projectdata.PROJECT_NAME
-        ? props.projectdata.PROJECT_NAME.split(' ').join('').toLowerCase()
+    const ALIAS = props.projectdata.projectName
+        ? props.projectdata.projectName.split(' ').join('').toLowerCase()
         : '';
     const fetchkyc = async () => {
         if (props.wallet) {

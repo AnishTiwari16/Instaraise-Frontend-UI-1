@@ -37,14 +37,14 @@ const TempCards = (props) => {
     if (todayDATE > START_TIME && todayDATE > END_TIME) {
         SALE_STATUS = 'Finished sale';
 
-        if (props.PROJECT_NAME === 'Instaraise') {
+        if (props.projectName === 'Instaraise') {
             DISABLE_SALE = true;
         } else {
             DISABLE_SALE = false;
         }
     }
-    const ALIAS = props.PROJECT_NAME
-        ? props.PROJECT_NAME.split(' ').join('').toLowerCase()
+    const ALIAS = props.projectName
+        ? props.projectName.split(' ').join('').toLowerCase()
         : '';
     const PROJECT_LINK = DISABLE_SALE ? '#' : `/launchpad/IDO/${ALIAS}`;
     return (
@@ -53,7 +53,7 @@ const TempCards = (props) => {
                 <div className='card' data-label={SALE_STATUS}>
                     <div className='card__container pb-0'>
                         <img
-                            src={props.ICON}
+                            src={props.icon}
                             width={45}
                             height={45}
                             style={{
@@ -64,7 +64,7 @@ const TempCards = (props) => {
                             alt='Project'
                         />
                         <h2 className='card__header form-header'>
-                            {props.PROJECT_NAME}
+                            {props.projectName}
                         </h2>
                         <div className='card__body font-insta-regular'>
                             <div className='text-dark-to-light'>
@@ -100,7 +100,7 @@ const TempCards = (props) => {
                                         <div>
                                             1 ꜩ ={' '}
                                             {(1 / XTZRate).PrecisionMaker(2)}
-                                            &nbsp;{props.TOKEN_NAME}
+                                            &nbsp;{props.tokenName}
                                         </div>
                                     </div>
                                 ) : (

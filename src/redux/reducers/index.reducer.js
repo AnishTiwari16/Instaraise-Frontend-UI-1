@@ -38,7 +38,6 @@ import { fetchAllTrendingNews } from './news.reducer';
 import { tokenInfo } from './stats.reducer';
 import { walletAddress } from './wallet/wallet.reducer';
 import {
-    AdminProjectData,
     createSaleLoader,
     project,
     selfIdoProjects,
@@ -81,7 +80,6 @@ const rootReducer = combineReducers({
     project: project,
     createSaleLoader: createSaleLoader,
     whitelistUsersLoader: whitelistUsersLoader,
-    AdminProjectData: AdminProjectData,
     userVerifyData: userVerifyData,
     selfIdoProjects: selfIdoProjects,
 });

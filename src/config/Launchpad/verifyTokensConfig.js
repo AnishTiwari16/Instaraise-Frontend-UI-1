@@ -21,7 +21,7 @@ const VerifyTokensConfig = ({ project }) => {
         },
         {
             name: 'Total raise',
-            value: project.totalRaise,
+            value: project.totalRaise + ' ' + 'USD',
         },
         {
             name: 'Private Start Time',
@@ -133,9 +133,9 @@ const VerifyTokensConfig = ({ project }) => {
     ];
     return (
         <div className='row'>
-            {DATA.map((elem) => {
+            {DATA.map((elem, index) => {
                 return (
-                    <>
+                    <React.Fragment key={index}>
                         {(elem.name === 'Github' ||
                             elem.name === 'Telegram' ||
                             elem.name === 'Twitter' ||
@@ -159,7 +159,7 @@ const VerifyTokensConfig = ({ project }) => {
                                 </div>
                             </>
                         )}
-                    </>
+                    </React.Fragment>
                 );
             })}
         </div>

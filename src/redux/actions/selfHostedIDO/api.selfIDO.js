@@ -74,34 +74,21 @@ export const createSaleAPI = async ({
         const operationHash = await operation
             .confirmation()
             .then(() => operation.opHash);
+        const url = `https://api.ghostnet.tzkt.io/v1/bigmaps/${FACTORY_CONTRACT_STRORAGE_KEY}/keys`;
+        const response = await axios.get(url);
+        const { data } = response;
+        const TOKEN_POOL_ADDRESS = data.map((res) => {
+            return res.value.TokenPoolAddress;
+        });
         return {
             success: true,
             hash: operationHash,
+            tokenPoolAddress: TOKEN_POOL_ADDRESS[TOKEN_POOL_ADDRESS.length - 1], //this will be the latest contract address
         };
     } catch (err) {
         return {
             success: false,
             error: err,
-        };
-    }
-};
-export const FetchProjectDataAPI = async () => {
-    try {
-        const URL = `https://api.tzkt.io/v1/contracts/KT1JLUXnNWjj92KA7KgPXMEzgPCgfSUnL9DX/storage`;
-        const FETCH_STORAGE_RESP = await axios.get(URL);
-        const { data } = FETCH_STORAGE_RESP;
-        return {
-            success: true,
-            tokenAddress: data.token.address,
-            decimals: data.token.decimals,
-            tokenId: data.token.ID,
-            presaleStartTime: data.time.private.start,
-            presaleEndTime: data.time.private.end,
-        };
-    } catch (error) {
-        return {
-            success: false,
-            error: error,
         };
     }
 };
@@ -164,25 +151,22 @@ export const fetchIdoDetails = async () => {
         const TOKEN_POOL_ADDRESS = data.map((res) => {
             return res.value.TokenPoolAddress;
         });
-        const RESP = TOKEN_POOL_ADDRESS.map(async (tokenPoolAddress) => {
-            const url = `https://api.ghostnet.tzkt.io/v1/contracts/${tokenPoolAddress}/storage`;
-            const resp = await axios.get(url);
-            return resp.data;
-        });
-        const SALE_FETCH = await Promise.all(RESP);
         const project_details = await axios.get(ALL_PROJECT_DETAILS_API_URL);
-        const combinedData = SALE_FETCH.map((api1Item) => {
+        const RESP = TOKEN_POOL_ADDRESS.map(async (api1Item) => {
             const matchingItem = project_details.data.data.find(
-                (api2Item) => api2Item.tokenAddress === api1Item.token.address
+                (api2Item) => api2Item.tokenPoolAddress === api1Item
             );
             if (matchingItem) {
-                return { ...api1Item, ...matchingItem };
+                const url = `https://api.ghostnet.tzkt.io/v1/contracts/${api1Item}/storage`;
+                const resp = await axios.get(url);
+                return { ...resp.data, ...matchingItem }; //combining both the data's
             }
-            return api1Item;
         });
+        const SALE_FETCH = await Promise.all(RESP);
+        const filteredArray = SALE_FETCH.filter((value) => value !== undefined);
         return {
             success: true,
-            data: combinedData,
+            data: filteredArray,
         };
     } catch (err) {
         return {
