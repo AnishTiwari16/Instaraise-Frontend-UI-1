@@ -20,19 +20,11 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
             value: projectData.token.ID,
         },
         {
-            name: 'Presale Start Time',
-            value: projectData.time.private.start,
-        },
-        {
-            name: 'Presale End Time',
-            value: projectData.time.private.end,
-        },
-        {
-            name: 'Public Start Time',
+            name: 'Sale Start Time',
             value: projectData.time.public.start,
         },
         {
-            name: 'Public End Time',
+            name: 'Sale End Time',
             value: projectData.time.public.end,
         },
         {

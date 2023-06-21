@@ -638,34 +638,6 @@ const TokenDetails = ({
                                             </Select>
                                         </FormControl>
                                     </div>
-                                    <div className='pt-4'>
-                                        <FormControl fullWidth size='small'>
-                                            <InputLabel id='demo-select-small-label'>
-                                                Sale type
-                                            </InputLabel>
-
-                                            <Select
-                                                labelId='demo-select-small-label'
-                                                id='demo-select-small'
-                                                value={project.saleType}
-                                                label='Sale type'
-                                                onChange={(e) =>
-                                                    createNewProject({
-                                                        ...project,
-                                                        saleType:
-                                                            e.target.value,
-                                                    })
-                                                }
-                                            >
-                                                <MenuItem value={true}>
-                                                    Private
-                                                </MenuItem>
-                                                <MenuItem value={false}>
-                                                    Public
-                                                </MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -56,7 +56,6 @@ export const IDO_CONFIG = [
                 end: '2023-05-09T09:00:00Z',
             },
         },
-        saleType: 'Public Sale',
 
         website: 'https://lyzi.fr/',
         whitepaper:
@@ -123,8 +122,6 @@ export const IDO_CONFIG = [
             },
         },
 
-        saleType: 'Public Sale',
-
         website: 'https://shuttleone.network/2021/#/home',
         whitepaper:
             'https://github.com/shuttle-one/flyshuttleone/blob/aa142fd38305a15fbcc405dda638ebba25b0a173/ShuttleOne%20Litepaper%20August%202020.pdf',
@@ -189,7 +186,6 @@ export const IDO_CONFIG = [
                 end: '2021-10-21T12:00:00Z',
             },
         },
-        saleType: 'Public Sale',
 
         website: 'https://aqarchain.io/',
         whitepaper: 'https://smartchain.medium.com/',
@@ -257,7 +253,6 @@ export const IDO_CONFIG = [
             },
         },
 
-        saleType: 'Public Sale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         tokenPrice: {
             DEX: 0.022,
@@ -305,7 +300,6 @@ export const IDO_CONFIG = [
                 end: '2021-08-22T14:00:00Z',
             },
         },
-        saleType: 'Presale',
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
 
         website: 'https://www.instaraise.io/',

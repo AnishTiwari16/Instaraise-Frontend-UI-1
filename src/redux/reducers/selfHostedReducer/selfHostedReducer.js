@@ -39,7 +39,6 @@ const initialProject = {
     stakingContract: '',
     timeBlock: 0,
     isPublicSaleWhitelisted: false,
-    saleType: false,
     projectName: '',
     tokenName: '',
     description: '',

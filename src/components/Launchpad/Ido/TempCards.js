@@ -90,7 +90,11 @@ const TempCards = (props) => {
                                 </div>
                                 <div className='navbar navbar-light bg-transparent sale-def p-0'>
                                     <div className=''>Sale type</div>
-                                    <div className=''>{props.saleType}</div>
+                                    <div className=''>
+                                        {props.ALIAS === 'instaraise-private'
+                                            ? 'Presale'
+                                            : 'Public Sale'}
+                                    </div>
                                 </div>
 
                                 {!props.MULTI_SWAP_RATE ? (

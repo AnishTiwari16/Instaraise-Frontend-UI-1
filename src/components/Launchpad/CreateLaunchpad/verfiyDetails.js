@@ -68,8 +68,6 @@ const VerfiyDetails = ({
                         twitter: project.twitter,
                         github: project.github,
                         tokenPoolAddress: resp.payload.tokenPoolAddress,
-                        saleType:
-                            project.saleType === false ? 'Public' : 'Private',
                         totalRaise: project.totalRaise,
                     }),
                 });
