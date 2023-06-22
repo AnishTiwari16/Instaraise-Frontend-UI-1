@@ -608,6 +608,60 @@ const TokenDetails = ({
                                         />
                                         <div className='invalid-feedback'></div>
                                     </div>
+                                    <label
+                                        htmlFor='validationServerUsername'
+                                        className='form-label text-dark-to-light'
+                                        style={{ zIndex: '5' }}
+                                    >
+                                        Min allocation
+                                    </label>
+                                    <div className='input-group has-validation'>
+                                        <input
+                                            type='number'
+                                            className='text-dark-to-light text-14 token-information input-bar form-control rounded'
+                                            name='timeBlock'
+                                            value={project.minAllocation}
+                                            onChange={(e) =>
+                                                createNewProject({
+                                                    ...project,
+                                                    minAllocation:
+                                                        e.target.value,
+                                                })
+                                            }
+                                            placeholder='some placeholder'
+                                            id='validationServerUsername'
+                                            aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
+                                            required
+                                        />
+                                        <div className='invalid-feedback'></div>
+                                    </div>
+                                    <label
+                                        htmlFor='validationServerUsername'
+                                        className='form-label text-dark-to-light'
+                                        style={{ zIndex: '5' }}
+                                    >
+                                        Max allocation
+                                    </label>
+                                    <div className='input-group has-validation'>
+                                        <input
+                                            type='number'
+                                            className='text-dark-to-light text-14 token-information input-bar form-control rounded'
+                                            name='timeBlock'
+                                            value={project.maxAllocation}
+                                            onChange={(e) =>
+                                                createNewProject({
+                                                    ...project,
+                                                    maxAllocation:
+                                                        e.target.value,
+                                                })
+                                            }
+                                            placeholder='some placeholder'
+                                            id='validationServerUsername'
+                                            aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
+                                            required
+                                        />
+                                        <div className='invalid-feedback'></div>
+                                    </div>
                                     <div className='pt-4'>
                                         <FormControl fullWidth size='small'>
                                             <InputLabel id='demo-select-small-label'>
@@ -665,7 +719,9 @@ const TokenDetails = ({
                             !project.tokenDexPrice ||
                             !project.stakingContract ||
                             !project.timeBlock ||
-                            !project.totalRaise
+                            !project.totalRaise ||
+                            !project.minAllocation ||
+                            !project.maxAllocation
                         }
                         className='sale-button btn px-5 shadow-sm button-primary'
                         onClick={handleComplete}

@@ -85,6 +85,14 @@ const VerifyTokensConfig = ({ project }) => {
             value: project.timeBlock,
         },
         {
+            name: 'Min allocation',
+            value: project.minAllocation,
+        },
+        {
+            name: 'Max allocation',
+            value: project.maxAllocation,
+        },
+        {
             name: 'Public Sale Whitelisted',
             value: project.isPublicSaleWhitelisted ? 'true' : 'false',
         },

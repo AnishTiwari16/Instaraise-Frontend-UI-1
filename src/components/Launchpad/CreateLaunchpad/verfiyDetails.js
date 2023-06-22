@@ -69,6 +69,8 @@ const VerfiyDetails = ({
                         github: project.github,
                         tokenPoolAddress: resp.payload.tokenPoolAddress,
                         totalRaise: project.totalRaise,
+                        minAllocation: project.minAllocation,
+                        maxAllocation: project.maxAllocation,
                     }),
                 });
                 setTimeout(() => {

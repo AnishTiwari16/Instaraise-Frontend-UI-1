@@ -1,5 +1,6 @@
 import {
     ADD_WHITELISTED_LOADER,
+    ADD_WHITELISTED_USERS,
     CREATE_PROJECT_LOADER,
     IDO_DETAILS,
     NEW_PROJECT,
@@ -38,6 +39,8 @@ const initialProject = {
     tokenDexPrice: '',
     stakingContract: '',
     timeBlock: 0,
+    minAllocation: '',
+    maxAllocation: '',
     isPublicSaleWhitelisted: false,
     projectName: '',
     tokenName: '',
@@ -81,6 +84,14 @@ export const userVerifyData = (initialState = '', action) => {
 export const selfIdoProjects = (initialState = [], action) => {
     switch (action.type) {
         case IDO_DETAILS:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const whitelistedUsers = (initialState = [], action) => {
+    switch (action.type) {
+        case ADD_WHITELISTED_USERS:
             return action.payload;
         default:
             return initialState;

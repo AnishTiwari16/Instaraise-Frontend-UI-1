@@ -121,11 +121,11 @@ const ProjectDetails = ({
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
-                                value={project.tokenName}
+                                value={project.tokenName.toUpperCase()}
                                 onChange={(e) =>
                                     createNewProject({
                                         ...project,
-                                        tokenName: e.target.value,
+                                        tokenName: e.target.value.toUpperCase(),
                                     })
                                 }
                                 required

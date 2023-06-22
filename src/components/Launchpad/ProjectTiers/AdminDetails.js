@@ -12,20 +12,16 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
             value: projectData.token.address,
         },
         {
-            name: 'Token decimals',
-            value: projectData.token.decimals,
-        },
-        {
             name: 'Token Id',
             value: projectData.token.ID,
         },
         {
             name: 'Sale Start Time',
-            value: projectData.time.public.start,
+            value: new Date(projectData.time.public.start).toString(),
         },
         {
             name: 'Sale End Time',
-            value: projectData.time.public.end,
+            value: new Date(projectData.time.public.end).toString(),
         },
         {
             name: 'Description',
@@ -54,10 +50,10 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
                                     <div className='col-6 text-right py-3 card-header-border-bottom'>
                                         {elem.name === 'Website' &&
                                         editWebsite ? (
-                                            <>
+                                            <div className='d-flex'>
                                                 <input
                                                     type='text'
-                                                    className='text-dark-to-light token-information text-14 rounded p-2 mr-2'
+                                                    className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
                                                     placeholder={
                                                         project.website
                                                             ? project.website
@@ -71,14 +67,16 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
                                                         })
                                                     }
                                                 />
-                                                <AiOutlineCheck
-                                                    onClick={() =>
-                                                        setEditWebsite(
-                                                            !editWebsite
-                                                        )
-                                                    }
-                                                />
-                                            </>
+                                                <div className='my-auto'>
+                                                    <AiOutlineCheck
+                                                        onClick={() =>
+                                                            setEditWebsite(
+                                                                !editWebsite
+                                                            )
+                                                        }
+                                                    />
+                                                </div>
+                                            </div>
                                         ) : elem.name === 'Website' &&
                                           !editWebsite ? (
                                             <>

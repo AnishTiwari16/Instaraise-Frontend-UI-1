@@ -19,7 +19,7 @@ export const option = {
 const TempCards = (props) => {
     const START_TIME = new Date(props.time.public.start);
     const END_TIME = new Date(props.time.public.end);
-    var countDownDate = new Date(props.time.public.end).getTime();
+    var countDownDate = new Date(START_TIME).getTime();
     var SALE_STATUS = '';
     var BUTTON_NAME = 'View info';
     var DISABLE_SALE = false;

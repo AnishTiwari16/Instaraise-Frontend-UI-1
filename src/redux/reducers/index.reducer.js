@@ -43,6 +43,7 @@ import {
     selfIdoProjects,
     userVerifyData,
     whitelistUsersLoader,
+    whitelistedUsers,
 } from './selfHostedReducer/selfHostedReducer';
 const rootReducer = combineReducers({
     allTrendingNews: fetchAllTrendingNews,
@@ -82,6 +83,7 @@ const rootReducer = combineReducers({
     whitelistUsersLoader: whitelistUsersLoader,
     userVerifyData: userVerifyData,
     selfIdoProjects: selfIdoProjects,
+    whitelistedUsers: whitelistedUsers,
 });
 
 export default rootReducer;

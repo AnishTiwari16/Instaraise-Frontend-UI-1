@@ -107,7 +107,6 @@ const LiquidityPosition = ({ item, props }) => {
             };
         } else {
             try {
-                // console.log(props.poolData.data[0]);
                 const data = props.poolData.data[0][item.dexAddress2];
                 return {
                     apr: parseFloat(data.apr),

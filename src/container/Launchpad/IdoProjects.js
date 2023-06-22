@@ -204,7 +204,10 @@ const LaunchIdoProjects = (props) => {
                                     <hr />
                                 </div>
                                 <p className='card-text text-j mt-3 mb-2 text-sm text-second'>
-                                    *{projectData.TOKEN_INFO}
+                                    *
+                                    {projectData.TOKEN_INFO
+                                        ? projectData.TOKEN_INFO
+                                        : `It should be noted that 100% of ${projectData.tokenName} will be unlocked at TGE`}
                                 </p>
                                 <div className='mb-0 text-sm fw-500 d-flex justify-content-between align-items-center form-header'>
                                     <div>

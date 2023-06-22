@@ -4,15 +4,29 @@ import { connect } from 'react-redux';
 
 import { addWhitelistedUsers } from '../../../redux/actions/selfHostedIDO/action.self';
 
-const OwnerInfo = ({ addWhitelistedUsers, whitelistUsersLoader }) => {
+const OwnerInfo = ({
+    addWhitelistedUsers,
+    whitelistUsersLoader,
+    whitelistedUsers,
+}) => {
     const [whitelistUsersAddr, setWhitelistedUsersAddr] = React.useState('');
+    const [errorMessage, setErrorMessage] = React.useState('');
+    React.useEffect(() => {
+        if (whitelistedUsers.success === false) {
+            setErrorMessage(
+                whitelistedUsers.error.message.replace(/\[0\]\s/, '')
+            );
+        }
+        // Reset the state after 5 seconds
+        const timer = setTimeout(() => {
+            setErrorMessage('');
+        }, 7000);
+        return () => clearInterval(timer);
+    }, [whitelistedUsers]); //reducer value
     return (
         <div>
-            <div className='d-flex justify-content-between py-3'>
+            <div className='d-flex justify-content-between pt-3'>
                 User whitelisted
-                <div className=''>[]</div>
-            </div>
-            <div className='d-flex justify-content-center align-items-center'>
                 <button
                     type='button'
                     className='sale-button btn px-4 mb-3 shadow-sm button-primary'
@@ -62,17 +76,26 @@ const OwnerInfo = ({ addWhitelistedUsers, whitelistUsersLoader }) => {
                                 </label>
                                 <textarea
                                     className='form-control'
+                                    style={{ height: '20vh' }}
                                     id='message-text'
+                                    placeholder='Insert address: provide address with line breaks. Ex: tz1Kjo959XDPdFPTafuXL2AcPPX76VqBBtbV tz1Ws1LdzoARvKZasDkwXPGstcgLcwkrY5Uh tz1MHkDVbHFWV3bkVUde78QZyL7ZsMYHzfbh'
                                     onChange={(e) =>
                                         setWhitelistedUsersAddr(e.target.value)
                                     }
                                 ></textarea>
+                                <label
+                                    htmlFor='message-text'
+                                    className='col-form-label error'
+                                >
+                                    {errorMessage}
+                                </label>
                             </div>
                         </div>
                         <div className='modal-footer border-top-0'>
                             <button
                                 type='button'
                                 className='sale-button btn w-30 px-4 shadow-sm button-primary'
+                                disabled={whitelistUsersAddr ? false : true}
                                 onClick={() =>
                                     addWhitelistedUsers(whitelistUsersAddr)
                                 }
@@ -97,5 +120,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 const mapStateToProps = (state) => ({
     whitelistUsersLoader: state.whitelistUsersLoader,
+    whitelistedUsers: state.whitelistedUsers,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(OwnerInfo);

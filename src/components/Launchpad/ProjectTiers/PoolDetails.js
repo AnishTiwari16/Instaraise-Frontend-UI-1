@@ -70,8 +70,12 @@ const PoolDetails = (props) => {
         setOperationId(value);
     };
 
-    const FCFS_OPEN_TIME = new Date(projectData.FCFS_OPEN_TIME).toString();
     const START_TIME = new Date(projectData.time.public.start).toString();
+    const FCFS_OPEN_TIME = new Date(
+        projectData.FCFS_OPEN_TIME
+            ? projectData.FCFS_OPEN_TIME
+            : projectData.time.public.start
+    ).toString();
 
     const TOKEN_PRICE = projectData.IsDiscountedUser
         ? projectData.DISCOUNTED_PRICE
@@ -265,21 +269,27 @@ const PoolDetails = (props) => {
                                                 Total raise
                                             </span>
                                             <br className='d-block d-md-block d-sm-block d-lg-none' />
-                                            {projectData.FCFS_TOTAL_RAISE}
+                                            {projectData.FCFS_TOTAL_RAISE
+                                                ? projectData.FCFS_TOTAL_RAISE
+                                                : projectData.totalRaise}
                                         </div>
                                         <div className=' col-lg col-md-6  py-3 d-inline-block text-12 align-bottom text-lg-center text-center text-md-left'>
                                             <span className='d-block d-md-block d-sm-block d-lg-none'>
                                                 Your min allocation
                                             </span>
                                             <br className='d-block d-sm-block d-md-block d-lg-none' />
-                                            {projectData.FCFS_MIN_ALLOCATION}
+                                            {projectData.FCFS_MIN_ALLOCATION
+                                                ? projectData.FCFS_MIN_ALLOCATION
+                                                : projectData.minAllocation}
                                         </div>
                                         <div className='col-lg col-md-6 text-center py-3 d-inline-block text-12 align-bottom text-lg-center text-md-left '>
                                             <span className='d-block d-md-block d-sm-block d-lg-none'>
                                                 Your max allocation{' '}
                                             </span>
                                             <br className='d-block d-md-block d-sm-block d-lg-none' />
-                                            {projectData.FCFS_MAX_ALLOCATION}
+                                            {projectData.FCFS_MAX_ALLOCATION
+                                                ? projectData.FCFS_MAX_ALLOCATION
+                                                : projectData.maxAllocation}
                                         </div>
                                         <div className='col-lg col-md-6 text-center py-3 d-inline-block text-12 align-bottom text-lg-center text-md-left '>
                                             <span className='d-block d-md-block d-sm-block d-lg-none'>

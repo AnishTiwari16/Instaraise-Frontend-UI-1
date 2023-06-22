@@ -34,8 +34,8 @@ export default function JoinPoolModal(props) {
         px: 2,
         outline: 'none',
     };
-    const MAX_AMOUNT = 30000;
-    const MIN_AMOUNT = 100;
+    const MAX_AMOUNT = props.projectData.maxAllocation;
+    const MIN_AMOUNT = props.projectData.minAllocation;
 
     const [balance, setBalance] = React.useState(0);
     const [btnFlag, setBtnFlag] = React.useState(false);

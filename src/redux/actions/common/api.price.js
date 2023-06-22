@@ -10,11 +10,9 @@ export const kycProcessAPI = async (args) => {
         };
         const wallet = new BeaconWallet(options);
         let account = await wallet.client.getActiveAccount();
-
         const response = await axios.get(
             `${PROJECT_DETAILS_API_URL}?userAddress=${account.address}&projectName=${projectName}`
         );
-
         if (response.data.success) {
             let isWhitelisted = response.data.IS_KYC_DONE;
             let hasStaked = response.data.INSTA_STAKE.status;
