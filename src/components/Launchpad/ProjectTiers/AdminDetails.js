@@ -1,11 +1,24 @@
+// eslint-disable-next-line
 import React from 'react';
 import { AiOutlineCheck, AiOutlineEdit } from 'react-icons/ai';
 import { connect } from 'react-redux';
 
 import OwnerInfo from './OwnerInfo';
-import { createNewProject } from '../../../redux/actions/selfHostedIDO/action.self';
-const AdminDetails = ({ createNewProject, projectData, project }) => {
+import { PROJECT_DETAILS_API_URL } from '../../../config/config';
+import {
+    IdoProjectDetails,
+    createNewProject,
+} from '../../../redux/actions/selfHostedIDO/action.self';
+
+const AdminDetails = ({
+    createNewProject,
+    IdoProjectDetails,
+    project,
+    projectData,
+}) => {
+    const [editDescription, setEditDescription] = React.useState(false);
     const [editWebsite, setEditWebsite] = React.useState(false);
+    const [editLogo, setEditLogo] = React.useState(false);
     const DATA = [
         {
             name: 'Token address',
@@ -36,6 +49,39 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
             value: projectData.icon,
         },
     ];
+    const handleUpdate = async () => {
+        //updating the data in the DB
+        try {
+            await fetch(PROJECT_DETAILS_API_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    website: project.website
+                        ? project.website
+                        : projectData.website,
+                    icon: project.logoURL ? project.logoURL : projectData.icon,
+                    projectName: projectData.projectName,
+                    tokenPoolAddress: projectData.tokenPoolAddress,
+                    minAllocation: projectData.minAllocation,
+                    email: projectData.email,
+                    telegram: projectData.telegram,
+                    state: projectData.state,
+                    twitter: projectData.twitter,
+                    totalRaise: projectData.totalRaise,
+                    adminAddress: projectData.adminAddress,
+                    tokenName: projectData.tokenName,
+                    maxAllocation: projectData.maxAllocation,
+                    description: project.description
+                        ? project.description
+                        : projectData.description,
+                    id: projectData.id,
+                }),
+            }).then(async () => {
+                await IdoProjectDetails();
+            });
+        } catch (error) {
+            console.log(`Failed to update data : ${error}`);
+        }
+    };
     return (
         <div className='col-md-12 col-lg mw-100 h-100 py-4 py-md-0 mt-md-4 p-0'>
             <div className='card shadow-sm h-100 border-10'>
@@ -69,11 +115,12 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
                                                 />
                                                 <div className='my-auto'>
                                                     <AiOutlineCheck
-                                                        onClick={() =>
+                                                        onClick={() => {
                                                             setEditWebsite(
                                                                 !editWebsite
-                                                            )
-                                                        }
+                                                            );
+                                                            handleUpdate();
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -89,6 +136,96 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
                                                     onClick={() =>
                                                         setEditWebsite(
                                                             !editWebsite
+                                                        )
+                                                    }
+                                                />
+                                            </>
+                                        ) : elem.name === 'Logo URL' &&
+                                          editLogo ? (
+                                            <div className='d-flex'>
+                                                <input
+                                                    type='text'
+                                                    className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
+                                                    placeholder={
+                                                        project.logoURL
+                                                            ? project.logoURL
+                                                            : elem.value
+                                                    }
+                                                    onChange={(e) =>
+                                                        createNewProject({
+                                                            ...project,
+                                                            logoURL:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                />
+                                                <div className='my-auto'>
+                                                    <AiOutlineCheck
+                                                        onClick={() => {
+                                                            setEditLogo(
+                                                                !editLogo
+                                                            );
+                                                            handleUpdate();
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : elem.name === 'Logo URL' &&
+                                          !editLogo ? (
+                                            <>
+                                                <span className='pr-2'>
+                                                    {project.logoURL
+                                                        ? project.logoURL
+                                                        : elem.value}
+                                                </span>
+                                                <AiOutlineEdit
+                                                    onClick={() =>
+                                                        setEditLogo(!editLogo)
+                                                    }
+                                                />
+                                            </>
+                                        ) : elem.name === 'Description' &&
+                                          editDescription ? (
+                                            <div className='d-flex'>
+                                                <input
+                                                    type='text'
+                                                    className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
+                                                    placeholder={
+                                                        project.description
+                                                            ? project.description
+                                                            : elem.value
+                                                    }
+                                                    onChange={(e) =>
+                                                        createNewProject({
+                                                            ...project,
+                                                            description:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                />
+                                                <div className='my-auto'>
+                                                    <AiOutlineCheck
+                                                        onClick={() => {
+                                                            setEditDescription(
+                                                                !editDescription
+                                                            );
+                                                            handleUpdate();
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : elem.name === 'Description' &&
+                                          !editDescription ? (
+                                            <>
+                                                <span className='pr-2'>
+                                                    {project.description
+                                                        ? project.description
+                                                        : elem.value}
+                                                </span>
+                                                <AiOutlineEdit
+                                                    onClick={() =>
+                                                        setEditDescription(
+                                                            !editDescription
                                                         )
                                                     }
                                                 />
@@ -111,6 +248,7 @@ const AdminDetails = ({ createNewProject, projectData, project }) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     createNewProject: (payload) => dispatch(createNewProject(payload)),
+    IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
 });
 const mapStateToProps = (state) => ({
     project: state.project,

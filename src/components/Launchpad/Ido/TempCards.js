@@ -1,6 +1,7 @@
 import React from 'react';
 import Countdown from 'react-countdown';
 import NumericLabel from 'react-pretty-numbers';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 export const option = {
     justification: 'C',
@@ -17,6 +18,7 @@ export const option = {
     cssClass: ['card-raise-value'],
 };
 const TempCards = (props) => {
+    const { wallet } = props;
     const START_TIME = new Date(props.time.public.start);
     const END_TIME = new Date(props.time.public.end);
     var countDownDate = new Date(START_TIME).getTime();
@@ -42,6 +44,9 @@ const TempCards = (props) => {
         } else {
             DISABLE_SALE = false;
         }
+    }
+    if (wallet === props.admin) {
+        DISABLE_SALE = false;
     }
     const ALIAS = props.projectName
         ? props.projectName.split(' ').join('').toLowerCase()
@@ -144,5 +149,8 @@ const TempCards = (props) => {
         </span>
     );
 };
-
-export default TempCards;
+const mapDispatchToProps = () => ({});
+const mapStateToProps = (state) => ({
+    wallet: state.wallet,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(TempCards);
