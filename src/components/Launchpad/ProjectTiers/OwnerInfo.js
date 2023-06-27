@@ -25,16 +25,18 @@ const OwnerInfo = ({
     }, [whitelistedUsers]); //reducer value
     return (
         <div>
-            <div className='d-flex justify-content-between pt-3'>
-                User whitelisted
-                <button
-                    type='button'
-                    className='sale-button btn px-4 mb-3 shadow-sm button-primary'
-                    data-toggle='modal'
-                    data-target='#exampleModalCenter'
-                >
-                    Add users to whitelist
-                </button>
+            <div className='row'>
+                <div className='col-6'>User whitelisted</div>
+                <div className='col-6 text-right'>
+                    <button
+                        type='button'
+                        className='sale-button btn px-4 mb-3 shadow-sm button-primary'
+                        data-toggle='modal'
+                        data-target='#exampleModalCenter'
+                    >
+                        Add users to&nbsp;whitelist
+                    </button>
+                </div>
             </div>
 
             <div

@@ -175,3 +175,29 @@ export const fetchIdoDetails = async () => {
         };
     }
 };
+export const finaliseSaleAPI = async (args) => {
+    try {
+        const connectedNetwork = 'testnet';
+        const options = {
+            name: NAME,
+        };
+        const wallet = new BeaconWallet(options);
+        const Tezos = new TezosToolkit(RPC_NODES[connectedNetwork]);
+        Tezos.setRpcProvider(RPC_NODES[connectedNetwork]);
+        Tezos.setWalletProvider(wallet);
+        const contract = await Tezos.wallet.at(args.tokenPoolAddress);
+        const operation = await contract.methods.depositTokens().send();
+        const operationHash = await operation
+            .confirmation()
+            .then(() => operation.opHash);
+        console.log(operationHash);
+        return {
+            success: true,
+        };
+    } catch (err) {
+        return {
+            success: false,
+            error: err,
+        };
+    }
+};

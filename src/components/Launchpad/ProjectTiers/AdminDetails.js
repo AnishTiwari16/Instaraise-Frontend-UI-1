@@ -8,17 +8,25 @@ import { PROJECT_DETAILS_API_URL } from '../../../config/config';
 import {
     IdoProjectDetails,
     createNewProject,
+    finaliseSale,
 } from '../../../redux/actions/selfHostedIDO/action.self';
+import MainModal from '../../Modals';
+import { ToastContainer } from 'react-toastify';
+import { ThemeContext } from '../../../routes/root';
 
 const AdminDetails = ({
     createNewProject,
     IdoProjectDetails,
     project,
     projectData,
+    finaliseSale,
+    finialiseLoader,
 }) => {
+    const { theme } = React.useContext(ThemeContext);
     const [editDescription, setEditDescription] = React.useState(false);
     const [editWebsite, setEditWebsite] = React.useState(false);
     const [editLogo, setEditLogo] = React.useState(false);
+    const [modalType, setModalType] = React.useState(null);
     const DATA = [
         {
             name: 'Token address',
@@ -82,175 +90,289 @@ const AdminDetails = ({
             console.log(`Failed to update data : ${error}`);
         }
     };
+    const handleFinalseSale = async () => {
+        try {
+            const resp = await finaliseSale({
+                tokenPoolAddress: projectData.tokenPoolAddress,
+            });
+            if (!resp.payload.success) {
+                setModalType('error');
+            }
+        } catch (error) {
+            setModalType('error');
+        }
+    };
     return (
-        <div className='col-md-12 col-lg mw-100 h-100 py-4 py-md-0 mt-md-4 p-0'>
-            <div className='card shadow-sm h-100 border-10'>
-                <div className='card-body'>
-                    <div className='row'>
-                        {DATA.map((elem, index) => {
-                            return (
-                                <React.Fragment key={index}>
-                                    <div className='col-6 py-3 card-header-border-bottom'>
-                                        {elem.name}
-                                    </div>
-                                    <div className='col-6 text-right py-3 card-header-border-bottom'>
-                                        {elem.name === 'Website' &&
-                                        editWebsite ? (
-                                            <div className='d-flex'>
-                                                <input
-                                                    type='text'
-                                                    className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
-                                                    placeholder={
-                                                        project.website
+        <>
+            <MainModal
+                setModalType={setModalType}
+                modalType={modalType}
+                type='error'
+            />
+            <ToastContainer
+                position='bottom-right'
+                autoClose={6000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                theme={!theme ? 'dark' : 'light'}
+                progressStyle={{
+                    backgroundColor: '#5a1eab',
+                }}
+                pauseOnHover
+            />
+            <div className='col-md-12 col-lg mw-100 h-100 py-4 py-md-0 mt-md-4 p-0'>
+                <div className='card shadow-sm h-100 border-10'>
+                    <div className='card-body'>
+                        <div className='row'>
+                            {DATA.map((elem, index) => {
+                                return (
+                                    <React.Fragment key={index}>
+                                        <div className='col-6 py-3 card-header-border-bottom'>
+                                            {elem.name}
+                                        </div>
+                                        <div className='col-6 text-right py-3 card-header-border-bottom'>
+                                            {elem.name === 'Website' &&
+                                            editWebsite ? (
+                                                <div className='d-flex'>
+                                                    <input
+                                                        type='text'
+                                                        className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
+                                                        placeholder={
+                                                            project.website
+                                                                ? project.website
+                                                                : elem.value
+                                                        }
+                                                        onChange={(e) =>
+                                                            createNewProject({
+                                                                ...project,
+                                                                website:
+                                                                    e.target
+                                                                        .value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <div className='my-auto'>
+                                                        <AiOutlineCheck
+                                                            onClick={() => {
+                                                                setEditWebsite(
+                                                                    !editWebsite
+                                                                );
+                                                                handleUpdate();
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ) : elem.name === 'Website' &&
+                                              !editWebsite ? (
+                                                <>
+                                                    <span className='pr-2'>
+                                                        {project.website
                                                             ? project.website
-                                                            : elem.value
-                                                    }
-                                                    onChange={(e) =>
-                                                        createNewProject({
-                                                            ...project,
-                                                            website:
-                                                                e.target.value,
-                                                        })
-                                                    }
-                                                />
-                                                <div className='my-auto'>
-                                                    <AiOutlineCheck
-                                                        onClick={() => {
+                                                            : elem.value}
+                                                    </span>
+                                                    <AiOutlineEdit
+                                                        onClick={() =>
                                                             setEditWebsite(
                                                                 !editWebsite
-                                                            );
-                                                            handleUpdate();
-                                                        }}
+                                                            )
+                                                        }
                                                     />
+                                                </>
+                                            ) : elem.name === 'Logo URL' &&
+                                              editLogo ? (
+                                                <div className='d-flex'>
+                                                    <input
+                                                        type='text'
+                                                        className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
+                                                        placeholder={
+                                                            project.logoURL
+                                                                ? project.logoURL
+                                                                : elem.value
+                                                        }
+                                                        onChange={(e) =>
+                                                            createNewProject({
+                                                                ...project,
+                                                                logoURL:
+                                                                    e.target
+                                                                        .value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <div className='my-auto'>
+                                                        <AiOutlineCheck
+                                                            onClick={() => {
+                                                                setEditLogo(
+                                                                    !editLogo
+                                                                );
+                                                                handleUpdate();
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ) : elem.name === 'Website' &&
-                                          !editWebsite ? (
-                                            <>
-                                                <span className='pr-2'>
-                                                    {project.website
-                                                        ? project.website
-                                                        : elem.value}
-                                                </span>
-                                                <AiOutlineEdit
-                                                    onClick={() =>
-                                                        setEditWebsite(
-                                                            !editWebsite
-                                                        )
-                                                    }
-                                                />
-                                            </>
-                                        ) : elem.name === 'Logo URL' &&
-                                          editLogo ? (
-                                            <div className='d-flex'>
-                                                <input
-                                                    type='text'
-                                                    className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
-                                                    placeholder={
-                                                        project.logoURL
+                                            ) : elem.name === 'Logo URL' &&
+                                              !editLogo ? (
+                                                <>
+                                                    <span className='pr-2'>
+                                                        {project.logoURL
                                                             ? project.logoURL
-                                                            : elem.value
-                                                    }
-                                                    onChange={(e) =>
-                                                        createNewProject({
-                                                            ...project,
-                                                            logoURL:
-                                                                e.target.value,
-                                                        })
-                                                    }
-                                                />
-                                                <div className='my-auto'>
-                                                    <AiOutlineCheck
-                                                        onClick={() => {
+                                                            : elem.value}
+                                                    </span>
+                                                    <AiOutlineEdit
+                                                        onClick={() =>
                                                             setEditLogo(
                                                                 !editLogo
-                                                            );
-                                                            handleUpdate();
-                                                        }}
+                                                            )
+                                                        }
                                                     />
+                                                </>
+                                            ) : elem.name === 'Description' &&
+                                              editDescription ? (
+                                                <div className='d-flex'>
+                                                    <input
+                                                        type='text'
+                                                        className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
+                                                        placeholder={
+                                                            project.description
+                                                                ? project.description
+                                                                : elem.value
+                                                        }
+                                                        onChange={(e) =>
+                                                            createNewProject({
+                                                                ...project,
+                                                                description:
+                                                                    e.target
+                                                                        .value,
+                                                            })
+                                                        }
+                                                    />
+                                                    <div className='my-auto'>
+                                                        <AiOutlineCheck
+                                                            onClick={() => {
+                                                                setEditDescription(
+                                                                    !editDescription
+                                                                );
+                                                                handleUpdate();
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ) : elem.name === 'Logo URL' &&
-                                          !editLogo ? (
-                                            <>
-                                                <span className='pr-2'>
-                                                    {project.logoURL
-                                                        ? project.logoURL
-                                                        : elem.value}
-                                                </span>
-                                                <AiOutlineEdit
-                                                    onClick={() =>
-                                                        setEditLogo(!editLogo)
-                                                    }
-                                                />
-                                            </>
-                                        ) : elem.name === 'Description' &&
-                                          editDescription ? (
-                                            <div className='d-flex'>
-                                                <input
-                                                    type='text'
-                                                    className='w-100 text-dark-to-light token-information text-14 rounded p-2 mr-2'
-                                                    placeholder={
-                                                        project.description
+                                            ) : elem.name === 'Description' &&
+                                              !editDescription ? (
+                                                <>
+                                                    <span className='pr-2'>
+                                                        {project.description
                                                             ? project.description
-                                                            : elem.value
-                                                    }
-                                                    onChange={(e) =>
-                                                        createNewProject({
-                                                            ...project,
-                                                            description:
-                                                                e.target.value,
-                                                        })
-                                                    }
-                                                />
-                                                <div className='my-auto'>
-                                                    <AiOutlineCheck
-                                                        onClick={() => {
+                                                            : elem.value}
+                                                    </span>
+                                                    <AiOutlineEdit
+                                                        onClick={() =>
                                                             setEditDescription(
                                                                 !editDescription
-                                                            );
-                                                            handleUpdate();
-                                                        }}
+                                                            )
+                                                        }
                                                     />
-                                                </div>
+                                                </>
+                                            ) : (
+                                                elem.value
+                                            )}
+                                        </div>
+                                    </React.Fragment>
+                                );
+                            })}
+                        </div>
+                        <div className='pt-3 card-header-border-bottom'>
+                            <OwnerInfo />
+                        </div>
+                        <div className='row'>
+                            <div className='col-6 pt-4'>Finalise sale</div>
+                            <div className='col-6 text-right pt-4'>
+                                <button
+                                    type='button'
+                                    className='sale-button btn w-30 px-4 shadow-sm button-primary'
+                                    data-toggle='modal'
+                                    data-target='#exampleModalCenter2'
+                                >
+                                    Finalise pool
+                                </button>
+
+                                <div
+                                    className='modal fade'
+                                    id='exampleModalCenter2'
+                                    tabIndex='-1'
+                                    role='dialog'
+                                    aria-labelledby='exampleModalCenterTitle'
+                                    aria-hidden='true'
+                                >
+                                    <div
+                                        className='modal-dialog modal-dialog-centered'
+                                        role='document'
+                                    >
+                                        <div className='modal-content'>
+                                            <div className='modal-header'>
+                                                <button
+                                                    type='button'
+                                                    className='close'
+                                                    data-dismiss='modal'
+                                                    aria-label='Close'
+                                                >
+                                                    <span aria-hidden='true'>
+                                                        &times;
+                                                    </span>
+                                                </button>
                                             </div>
-                                        ) : elem.name === 'Description' &&
-                                          !editDescription ? (
-                                            <>
-                                                <span className='pr-2'>
-                                                    {project.description
-                                                        ? project.description
-                                                        : elem.value}
-                                                </span>
-                                                <AiOutlineEdit
-                                                    onClick={() =>
-                                                        setEditDescription(
-                                                            !editDescription
-                                                        )
-                                                    }
-                                                />
-                                            </>
-                                        ) : (
-                                            elem.value
-                                        )}
+
+                                            <div className='modal-body text-start alert alert-warning p-1 m-0 text-mini'>
+                                                *It should be noted that once
+                                                you finialse sale, tokens will
+                                                be deposited and the sale will
+                                                start immediately once the
+                                                transaction is approved.
+                                            </div>
+                                            <div className='modal-footer'>
+                                                <button
+                                                    type='button'
+                                                    className='btn btn-secondary shadow-sm'
+                                                    data-dismiss='modal'
+                                                >
+                                                    Close
+                                                </button>
+                                                <button
+                                                    type='button'
+                                                    className='sale-button btn shadow-sm button-primary w-25'
+                                                    onClick={handleFinalseSale}
+                                                >
+                                                    {finialiseLoader ? (
+                                                        <span
+                                                            className='spinner-border spinner-border-sm'
+                                                            role='status'
+                                                            aria-hidden='true'
+                                                        ></span>
+                                                    ) : (
+                                                        'Agree'
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </React.Fragment>
-                            );
-                        })}
-                    </div>
-                    <div className='card-header-border-bottom'>
-                        <OwnerInfo />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 const mapDispatchToProps = (dispatch) => ({
     createNewProject: (payload) => dispatch(createNewProject(payload)),
     IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
+    finaliseSale: (payload) => dispatch(finaliseSale(payload)),
 });
 const mapStateToProps = (state) => ({
     project: state.project,
+    finialiseLoader: state.finialiseLoader,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDetails);

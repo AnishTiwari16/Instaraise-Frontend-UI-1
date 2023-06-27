@@ -2,6 +2,7 @@ import {
     ADD_WHITELISTED_LOADER,
     ADD_WHITELISTED_USERS,
     CREATE_PROJECT_LOADER,
+    FINALISE_SALE_LOADER,
     IDO_DETAILS,
     NEW_PROJECT,
     TOKEN_ADDRESS,
@@ -92,6 +93,14 @@ export const selfIdoProjects = (initialState = [], action) => {
 export const whitelistedUsers = (initialState = [], action) => {
     switch (action.type) {
         case ADD_WHITELISTED_USERS:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const finialiseLoader = (initialState = false, action) => {
+    switch (action.type) {
+        case FINALISE_SALE_LOADER:
             return action.payload;
         default:
             return initialState;

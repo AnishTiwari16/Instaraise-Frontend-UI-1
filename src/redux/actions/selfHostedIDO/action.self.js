@@ -4,6 +4,8 @@ import {
     ADD_WHITELISTED_USERS,
     CREATE_PROJECT_LOADER,
     CREATE_SALE,
+    FINALISE_SALE,
+    FINALISE_SALE_LOADER,
     IDO_DETAILS,
     NEW_PROJECT,
     VERIFY_API,
@@ -12,6 +14,7 @@ import {
     addWhitelistedUsersAPI,
     createSaleAPI,
     fetchIdoDetails,
+    finaliseSaleAPI,
     verifyAPI,
 } from './api.selfIDO';
 
@@ -58,6 +61,34 @@ export const IdoProjectDetails = () => {
             type: IDO_DETAILS,
             payload: API_RESPONSE,
         });
+    };
+};
+export const finaliseSale = (args) => {
+    return async (dispatch) => {
+        dispatch({
+            type: FINALISE_SALE_LOADER,
+            payload: true,
+        });
+        const API_RESPONSE = await finaliseSaleAPI(args);
+        if (API_RESPONSE.success) {
+            dispatch({
+                type: FINALISE_SALE_LOADER,
+                payload: false,
+            });
+            return dispatch({
+                type: FINALISE_SALE,
+                payload: API_RESPONSE,
+            });
+        } else {
+            dispatch({
+                type: FINALISE_SALE_LOADER,
+                payload: false,
+            });
+            return dispatch({
+                type: FINALISE_SALE,
+                payload: API_RESPONSE,
+            });
+        }
     };
 };
 export const addWhitelistedUsers = (args) => {

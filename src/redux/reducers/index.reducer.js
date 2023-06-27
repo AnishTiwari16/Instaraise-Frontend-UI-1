@@ -39,6 +39,7 @@ import { tokenInfo } from './stats.reducer';
 import { walletAddress } from './wallet/wallet.reducer';
 import {
     createSaleLoader,
+    finialiseLoader,
     project,
     selfIdoProjects,
     userVerifyData,
@@ -84,6 +85,7 @@ const rootReducer = combineReducers({
     userVerifyData: userVerifyData,
     selfIdoProjects: selfIdoProjects,
     whitelistedUsers: whitelistedUsers,
+    finialiseLoader: finialiseLoader,
 });
 
 export default rootReducer;
