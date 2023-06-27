@@ -8,11 +8,11 @@ import WithdrawModal from './Staking/WithdrawModal';
 import ErrorModal from './Transaction/ErrorModal';
 import SuccessModal from './Transaction/SuccessModal';
 import TransferModal from './Transaction/TransferModal';
-import { NETWORK, RPC_NODES } from '../../config/config';
+import { RPC_NODES } from '../../config/config';
 
 export const FetchBalance = async (wallet) => {
     try {
-        const URL = `${RPC_NODES[NETWORK]}/chains/main/blocks/head/context/contracts/${wallet}/balance`;
+        const URL = `${RPC_NODES['testnet']}/chains/main/blocks/head/context/contracts/${wallet}/balance`;
         const API_RESPONSE = await axios(URL);
         if (API_RESPONSE.status === 200) {
             const balance = (

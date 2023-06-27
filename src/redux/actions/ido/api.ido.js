@@ -194,7 +194,7 @@ export const FetchSaleDataAPI = async (args) => {
  */
 export const ParticipateInSaleDataAPI = async (args) => {
     try {
-        const connectedNetwork = NETWORK;
+        const connectedNetwork = 'testnet';
         const options = {
             name: NAME,
         };

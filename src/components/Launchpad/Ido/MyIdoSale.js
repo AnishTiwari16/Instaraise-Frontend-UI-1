@@ -7,6 +7,7 @@ import Pagination from '../../../hooks/pagination';
 import TempCards from './TempCards';
 import { connectWallet } from '../../../redux/actions/wallet/action.wallet';
 import { FaWallet } from 'react-icons/fa';
+import { IoIosCreate } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
 const MyIdoSale = (props) => {
@@ -34,6 +35,7 @@ const MyIdoSale = (props) => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+    console.log(MY_PROJECT);
     return (
         <div>
             <div className='row row-cols-1 text-dark-to-light mt-3  project-layout g-4  mx-0 mx-lg-3 mx-md-3 '>
@@ -67,6 +69,21 @@ const MyIdoSale = (props) => {
                             }
                         >
                             Connect now{' '}
+                        </Link>
+                    </h6>
+                </div>
+            ) : MY_PROJECT.length === 0 ? (
+                <div className='mt-10 form-header text-dark-to-light'>
+                    <div className='text-center mb-2'>
+                        <IoIosCreate size={65} />
+                    </div>
+                    <h6 className='text-center'>
+                        No sale created yet! Good time to&nbsp;
+                        <Link
+                            to='/launchpad/create-launchpad'
+                            className='router-l router-l-u'
+                        >
+                            Create one{' '}
                         </Link>
                     </h6>
                 </div>
