@@ -102,11 +102,9 @@ export const addWhitelistedUsersAPI = async (args) => {
         const Tezos = new TezosToolkit(RPC_NODES[connectedNetwork]);
         Tezos.setRpcProvider(RPC_NODES[connectedNetwork]);
         Tezos.setWalletProvider(wallet);
-        const contract = await Tezos.wallet.at(
-            'KT1Wk19CzTHskj9zpErA95VotxAyD51xSFgA'
-        );
+        const contract = await Tezos.wallet.at(args.tokenPoolAddress);
         const operation = await contract.methods
-            .whitelistForPublicSale([args])
+            .whitelistForPublicSale([args.whitelistUsersAddr])
             .send();
         const operationHash = await operation
             .confirmation()

@@ -3,11 +3,12 @@ import { BiLoaderAlt } from 'react-icons/bi';
 import { connect } from 'react-redux';
 
 import { addWhitelistedUsers } from '../../../redux/actions/selfHostedIDO/action.self';
-
 const OwnerInfo = ({
     addWhitelistedUsers,
     whitelistUsersLoader,
     whitelistedUsers,
+    tokenPoolAddress,
+    whitelistUsers,
 }) => {
     const [whitelistUsersAddr, setWhitelistedUsersAddr] = React.useState('');
     const [errorMessage, setErrorMessage] = React.useState('');
@@ -23,21 +24,56 @@ const OwnerInfo = ({
         }, 7000);
         return () => clearInterval(timer);
     }, [whitelistedUsers]); //reducer value
+
+    const maxLength = 30;
+    const truncatedArray = whitelistUsers.map((str) => {
+        if (str.length > maxLength) {
+            const charactersToShow = maxLength - 3; // Adjust the value -3 if you want to include truncation indicator like "..."
+            const startIndex = Math.floor((str.length - charactersToShow) / 2);
+            return (
+                str.substring(0, startIndex) +
+                '...' +
+                str.substring(startIndex + charactersToShow)
+            );
+        }
+        return str;
+    });
+    const result = truncatedArray.join(', ');
+    console.log(result);
     return (
         <div>
             <div className='row'>
-                <div className='col-6'>User whitelisted</div>
+                <div className='col-6'>User whitelisted </div>
+
                 <div className='col-6 text-right'>
-                    <button
-                        type='button'
-                        className='sale-button btn px-4 mb-3 shadow-sm button-primary'
-                        data-toggle='modal'
-                        data-target='#exampleModalCenter'
-                    >
-                        Add users to&nbsp;whitelist
-                    </button>
+                    {!result ? (
+                        <button
+                            type='button'
+                            className='sale-button btn px-4 mb-3 shadow-sm button-primary'
+                            data-toggle='modal'
+                            data-target='#exampleModalCenter'
+                        >
+                            Add users to&nbsp;whitelist
+                        </button>
+                    ) : (
+                        `[${result}]`
+                    )}
                 </div>
             </div>
+            {result && (
+                <div className='row pt-3'>
+                    <div className='col-12 text-center text-md-right'>
+                        <button
+                            type='button'
+                            className='sale-button btn px-4 mb-3 shadow-sm button-primary'
+                            data-toggle='modal'
+                            data-target='#exampleModalCenter'
+                        >
+                            Add users to&nbsp;whitelist
+                        </button>
+                    </div>
+                </div>
+            )}
 
             <div
                 className='modal fade'
@@ -80,7 +116,7 @@ const OwnerInfo = ({
                                     className='form-control'
                                     style={{ height: '20vh' }}
                                     id='message-text'
-                                    placeholder='Insert address: provide address with line breaks. Ex: tz1Kjo959XDPdFPTafuXL2AcPPX76VqBBtbV tz1Ws1LdzoARvKZasDkwXPGstcgLcwkrY5Uh tz1MHkDVbHFWV3bkVUde78QZyL7ZsMYHzfbh'
+                                    placeholder={whitelistUsers.join(', ')}
                                     onChange={(e) =>
                                         setWhitelistedUsersAddr(e.target.value)
                                     }
@@ -99,7 +135,10 @@ const OwnerInfo = ({
                                 className='sale-button btn w-30 px-4 shadow-sm button-primary'
                                 disabled={whitelistUsersAddr ? false : true}
                                 onClick={() =>
-                                    addWhitelistedUsers(whitelistUsersAddr)
+                                    addWhitelistedUsers({
+                                        whitelistUsersAddr: whitelistUsersAddr,
+                                        tokenPoolAddress: tokenPoolAddress,
+                                    })
                                 }
                             >
                                 {whitelistUsersLoader ? (

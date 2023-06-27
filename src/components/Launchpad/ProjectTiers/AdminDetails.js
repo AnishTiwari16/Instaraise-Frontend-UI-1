@@ -284,7 +284,10 @@ const AdminDetails = ({
                             })}
                         </div>
                         <div className='pt-3 card-header-border-bottom'>
-                            <OwnerInfo />
+                            <OwnerInfo
+                                tokenPoolAddress={projectData.tokenPoolAddress}
+                                whitelistUsers={projectData.whitelist.public}
+                            />
                         </div>
                         <div className='row'>
                             <div className='col-6 pt-4'>Finalise sale</div>
@@ -294,6 +297,10 @@ const AdminDetails = ({
                                     className='sale-button btn w-30 px-4 shadow-sm button-primary'
                                     data-toggle='modal'
                                     data-target='#exampleModalCenter2'
+                                    disabled={
+                                        projectData.whitelist.public.length ===
+                                        0
+                                    }
                                 >
                                     Finalise pool
                                 </button>
