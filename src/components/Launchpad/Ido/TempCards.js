@@ -25,7 +25,7 @@ const TempCards = (props) => {
     var SALE_STATUS = '';
     var BUTTON_NAME = 'View info';
     var DISABLE_SALE = false;
-    const XTZRate = props.tokenPrice.public;
+    const XTZRate = props.tokenPrice.public / Math.pow(10, 6);
     const todayDATE = new Date();
     if (todayDATE < START_TIME && todayDATE < END_TIME) {
         SALE_STATUS = 'Upcoming sale';

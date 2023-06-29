@@ -71,7 +71,7 @@ export const IDO_CONFIG = [
         FCFS_OPEN_TIME: '2023-05-05T09:00:00Z',
         FCFS_SWAP_RATE: '',
         tokenPrice: {
-            public: 0.133,
+            public: 133300,
         },
         DISCOUNTED_PRICE: 0.133,
         MIN_ALLOCATION: 'TBA',
@@ -79,7 +79,7 @@ export const IDO_CONFIG = [
         totalRaise: 33250,
         token: {
             address: 'KT1UMx7aZQWNKY9nC4LRYNsueEiGMfpcQhhD',
-            decimals: 6,
+            decimals: 6000000,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
@@ -144,7 +144,7 @@ export const IDO_CONFIG = [
         totalRaise: 120000,
         token: {
             address: 'KT1WzRVUnrJ4mNu59m9hPQZDY8Nq9JWtUbRf',
-            decimals: 6,
+            decimals: 6000000,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:
@@ -199,7 +199,7 @@ export const IDO_CONFIG = [
         FCFS_MAX_ALLOCATION: '500 xtz',
         FCFS_OPEN_TIME: '2021-10-21T00:00:00Z',
         tokenPrice: {
-            public: 0.05,
+            public: 50000,
         },
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
@@ -207,7 +207,7 @@ export const IDO_CONFIG = [
         totalRaise: 50000,
         token: {
             address: 'KT19wuExNXayErfuCkcy6Z56cd1FWzF96xXk',
-            decimals: 14,
+            decimals: 14000000,
         },
         WHITELIST_LINK: 'https://bit.ly/3k7KOAa',
         TOKEN_INFO:

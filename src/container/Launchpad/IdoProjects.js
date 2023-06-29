@@ -185,7 +185,8 @@ const LaunchIdoProjects = (props) => {
                                             Decimal
                                         </div>
                                         <div className='text-dark-to-light'>
-                                            {projectData.token.decimals}
+                                            {projectData.token.decimals /
+                                                Math.pow(10, 6)}
                                         </div>
                                     </div>
                                     <div className='mt-3 px-0 text-center text-lg-start text-md-center text-sm-center col-6 col-md-6 col-lg'>
@@ -195,7 +196,8 @@ const LaunchIdoProjects = (props) => {
                                         <div className='text-dark-to-light'>
                                             {projectData.ALIAS === 'shuttleone'
                                                 ? projectData.LISTING_PRICE
-                                                : projectData.tokenPrice.public}
+                                                : projectData.tokenPrice
+                                                      .public / Math.pow(10, 6)}
                                             &nbsp;xtz
                                         </div>
                                     </div>

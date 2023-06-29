@@ -136,7 +136,8 @@ const PoolDetails = (props) => {
                 </div>
                 {props.projectData.projectName === 'Lyzi' ||
                 props.projectData.projectData === 'ShuttleOne' ||
-                props.projectData.projectData === 'Aqarchain' ? null : (
+                props.projectData.projectData === 'Aqarchain' ||
+                props.projectData.admin !== wallet ? null : (
                     <div className='d-flex'>
                         <div className='p-1 cursor-pointer'>
                             <span
