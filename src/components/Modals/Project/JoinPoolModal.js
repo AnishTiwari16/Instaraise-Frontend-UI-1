@@ -113,7 +113,7 @@ export default function JoinPoolModal(props) {
             ? 0
             : (
                   (stakeAmount * 1) /
-                  props.projectData.tokenPrice.DEX
+                  props.projectData.tokenPrice.public
               ).PrecisionMaker(3);
     }
     return (

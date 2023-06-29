@@ -8,95 +8,6 @@ const VerifyTokensConfig = ({ project }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const DATA = [
         {
-            name: 'Token address',
-            value: project.tokenAddress,
-        },
-        {
-            name: 'Decimals',
-            value: project.decimals,
-        },
-        {
-            name: 'Token Id',
-            value: project.tokenId,
-        },
-        {
-            name: 'Total raise',
-            value: project.totalRaise + ' ' + 'USD',
-        },
-        {
-            name: 'Private Start Time',
-            value: project.presaleStartTime.toString(),
-        },
-        {
-            name: 'Private End Time',
-            value: project.presaleEndTime.toString(),
-        },
-        {
-            name: 'Private Sale Price',
-            value: project.privateSalePrice,
-        },
-        {
-            name: 'Public Start Time',
-            value: project.publicStartTime.toString(),
-        },
-        {
-            name: 'Public End Time',
-            value: project.publicEndTime.toString(),
-        },
-        {
-            name: 'Public max participation',
-            value: project.publicMaxParticipation,
-        },
-        {
-            name: 'Public Sale Price',
-            value: project.publicSalePrice,
-        },
-        {
-            name: 'Amount to sell',
-            value: project.amountToSell,
-        },
-        {
-            name: 'Max Tokens To LP',
-            value: project.maxTokensToLp,
-        },
-        {
-            name: 'Token Unlock Time',
-            value: project.tokenUnlockTime.toString(),
-        },
-        {
-            name: 'Percentage Revenue To LP',
-            value: project.percentageRevenueToLP,
-        },
-        {
-            name: 'lp Lockup Time',
-            value: project.lpLockupTime.toString(),
-        },
-
-        {
-            name: 'Token DEX Price',
-            value: project.tokenDexPrice,
-        },
-        {
-            name: 'Staking contract',
-            value: project.stakingContract,
-        },
-        {
-            name: 'timeBlock',
-            value: project.timeBlock,
-        },
-        {
-            name: 'Min allocation',
-            value: project.minAllocation,
-        },
-        {
-            name: 'Max allocation',
-            value: project.maxAllocation,
-        },
-        {
-            name: 'Public Sale Whitelisted',
-            value: project.isPublicSaleWhitelisted ? 'true' : 'false',
-        },
-        {
             name: 'Project name',
             value: project.projectName,
         },
@@ -133,6 +44,83 @@ const VerifyTokensConfig = ({ project }) => {
         {
             name: 'Medium',
             value: project.medium,
+        },
+        {
+            name: 'Token address',
+            value: project.tokenAddress,
+        },
+        {
+            name: 'Decimals',
+            value: project.decimals,
+        },
+        {
+            name: 'Token Id',
+            value: project.tokenId,
+        },
+        {
+            name: 'Total raise',
+            value: project.totalRaise + ' ' + 'USD',
+        },
+        {
+            name: 'Start time',
+            value: project.publicStartTime.toString(),
+        },
+        {
+            name: 'End time',
+            value: project.publicEndTime.toString(),
+        },
+        {
+            name: 'Max participation',
+            value: project.publicMaxParticipation,
+        },
+        {
+            name: 'Sale price',
+            value: project.publicSalePrice,
+        },
+        {
+            name: 'Amount to sell',
+            value: project.amountToSell,
+        },
+        {
+            name: 'Max Tokens To LP',
+            value: project.maxTokensToLp,
+        },
+        {
+            name: 'Token Unlock Time',
+            value: project.tokenUnlockTime.toString(),
+        },
+        {
+            name: 'Percentage Revenue To LP',
+            value: project.percentageRevenueToLP,
+        },
+        {
+            name: 'lp Lockup Time',
+            value: project.lpLockupTime.toString(),
+        },
+
+        {
+            name: 'Token DEX Price',
+            value: project.tokenDexPrice,
+        },
+        {
+            name: 'Staking contract',
+            value: project.stakingContract,
+        },
+        {
+            name: 'Time block',
+            value: project.timeBlock,
+        },
+        {
+            name: 'Min allocation',
+            value: project.minAllocation,
+        },
+        {
+            name: 'Max allocation',
+            value: project.maxAllocation,
+        },
+        {
+            name: 'Sale Whitelisted',
+            value: project.isPublicSaleWhitelisted ? 'true' : 'false',
         },
     ];
     return (

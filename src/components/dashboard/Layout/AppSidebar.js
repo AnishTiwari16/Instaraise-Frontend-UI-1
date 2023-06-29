@@ -135,7 +135,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                             >
                                                 <div className=''>
                                                     <div className='transition-class'>
-                                                        Create launchpad
+                                                        Create sale
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -146,7 +146,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                             >
                                                 <div className=''>
                                                     <div className='transition-class'>
-                                                        All launchpads
+                                                        All sale
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -157,7 +157,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                             >
                                                 <div className=''>
                                                     <div className='transition-class'>
-                                                        My launchpad
+                                                        My sale
                                                     </div>
                                                 </div>
                                             </NavLink>

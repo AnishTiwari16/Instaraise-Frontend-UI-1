@@ -71,7 +71,7 @@ export const IDO_CONFIG = [
         FCFS_OPEN_TIME: '2023-05-05T09:00:00Z',
         FCFS_SWAP_RATE: '',
         tokenPrice: {
-            DEX: 0.133,
+            public: 0.133,
         },
         DISCOUNTED_PRICE: 0.133,
         MIN_ALLOCATION: 'TBA',
@@ -136,7 +136,7 @@ export const IDO_CONFIG = [
         FCFS_OPEN_TIME: '2021-12-13T00:00:00Z',
         FCFS_SWAP_RATE: '',
         tokenPrice: {
-            DEX: 0.05,
+            public: 0.05,
         },
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
@@ -199,7 +199,7 @@ export const IDO_CONFIG = [
         FCFS_MAX_ALLOCATION: '500 xtz',
         FCFS_OPEN_TIME: '2021-10-21T00:00:00Z',
         tokenPrice: {
-            DEX: 0.05,
+            public: 0.05,
         },
         DISCOUNTED_PRICE: 0.05,
         MIN_ALLOCATION: 'TBA',
@@ -255,7 +255,7 @@ export const IDO_CONFIG = [
 
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
         tokenPrice: {
-            DEX: 0.022,
+            public: 0.022,
         },
         DISCOUNTED_PRICE: 0.022,
         MIN_ALLOCATION: 50,
@@ -309,7 +309,7 @@ export const IDO_CONFIG = [
         telegram: 'https://t.co/ktI6vO3gOM?amp=1',
 
         tokenPrice: {
-            DEX: 0.02043,
+            public: 0.02043,
         },
         DISCOUNTED_PRICE: 0.0184,
         MIN_ALLOCATION: 50,

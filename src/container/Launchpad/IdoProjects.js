@@ -54,7 +54,7 @@ const LaunchIdoProjects = (props) => {
             await fetchSaleData({
                 contractAddress: projectContractAddress,
                 ENROLLMENT_KEY: projectData.enrolledParticipants,
-                pricePerToken: projectData.tokenPrice.DEX,
+                pricePerToken: projectData.tokenPrice.public,
                 DECIMALS: projectData.token.decimals,
                 SALE_MAP_KEY: projectData.details.sale,
             });
@@ -195,7 +195,7 @@ const LaunchIdoProjects = (props) => {
                                         <div className='text-dark-to-light'>
                                             {projectData.ALIAS === 'shuttleone'
                                                 ? projectData.LISTING_PRICE
-                                                : projectData.tokenPrice.DEX}
+                                                : projectData.tokenPrice.public}
                                             &nbsp;xtz
                                         </div>
                                     </div>

@@ -79,7 +79,7 @@ const PoolDetails = (props) => {
 
     const TOKEN_PRICE = projectData.IsDiscountedUser
         ? projectData.DISCOUNTED_PRICE
-        : projectData.tokenPrice.DEX;
+        : projectData.tokenPrice.public;
     const XTZRate = TOKEN_PRICE;
 
     const SWAP_RATE = `1 XTZ = ${(1 / XTZRate).PrecisionMaker(2)} ${
@@ -134,22 +134,26 @@ const PoolDetails = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className='d-flex'>
-                    <div className='p-1 cursor-pointer'>
-                        <span
-                            className={
-                                tab === 'ownerZone'
-                                    ? 'text-toggle-selected'
-                                    : 'text-toggle'
-                            }
-                            onClick={() => {
-                                setTab('ownerZone');
-                            }}
-                        >
-                            Owner Zone
-                        </span>
+                {props.projectData.projectName === 'Lyzi' ||
+                props.projectData.projectData === 'ShuttleOne' ||
+                props.projectData.projectData === 'Aqarchain' ? null : (
+                    <div className='d-flex'>
+                        <div className='p-1 cursor-pointer'>
+                            <span
+                                className={
+                                    tab === 'ownerZone'
+                                        ? 'text-toggle-selected'
+                                        : 'text-toggle'
+                                }
+                                onClick={() => {
+                                    setTab('ownerZone');
+                                }}
+                            >
+                                Owner Zone
+                            </span>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             {tab === 'invest' ? (

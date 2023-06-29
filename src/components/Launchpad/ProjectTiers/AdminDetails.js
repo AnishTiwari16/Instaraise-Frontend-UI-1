@@ -13,6 +13,7 @@ import {
 import MainModal from '../../Modals';
 import { ToastContainer } from 'react-toastify';
 import { ThemeContext } from '../../../routes/root';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 const AdminDetails = ({
     createNewProject,
@@ -43,6 +44,10 @@ const AdminDetails = ({
         {
             name: 'Sale End Time',
             value: new Date(projectData.time.public.end).toString(),
+        },
+        {
+            name: 'Token unlock time',
+            value: new Date(projectData.time.tokenUnlock).toString(),
         },
         {
             name: 'Description',
@@ -94,6 +99,8 @@ const AdminDetails = ({
         try {
             const resp = await finaliseSale({
                 tokenPoolAddress: projectData.tokenPoolAddress,
+                tokenAddress: projectData.token.address,
+                tokenId: projectData.token.ID,
             });
             if (!resp.payload.success) {
                 setModalType('error');
@@ -289,83 +296,28 @@ const AdminDetails = ({
                                 whitelistUsers={projectData.whitelist.public}
                             />
                         </div>
-                        <div className='row'>
-                            <div className='col-6 pt-4'>Finalise sale</div>
-                            <div className='col-6 text-right pt-4'>
-                                <button
-                                    type='button'
-                                    className='sale-button btn w-30 px-4 shadow-sm button-primary'
-                                    data-toggle='modal'
-                                    data-target='#exampleModalCenter2'
-                                    disabled={
-                                        projectData.whitelist.public.length ===
-                                        0
-                                    }
-                                >
-                                    Finalise pool
-                                </button>
-
-                                <div
-                                    className='modal fade'
-                                    id='exampleModalCenter2'
-                                    tabIndex='-1'
-                                    role='dialog'
-                                    aria-labelledby='exampleModalCenterTitle'
-                                    aria-hidden='true'
-                                >
-                                    <div
-                                        className='modal-dialog modal-dialog-centered'
-                                        role='document'
-                                    >
-                                        <div className='modal-content'>
-                                            <div className='modal-header'>
-                                                <button
-                                                    type='button'
-                                                    className='close'
-                                                    data-dismiss='modal'
-                                                    aria-label='Close'
-                                                >
-                                                    <span aria-hidden='true'>
-                                                        &times;
-                                                    </span>
-                                                </button>
-                                            </div>
-
-                                            <div className='modal-body text-start alert alert-warning p-1 m-0 text-mini'>
-                                                *It should be noted that once
-                                                you finialse sale, tokens will
-                                                be deposited and the sale will
-                                                start immediately once the
-                                                transaction is approved.
-                                            </div>
-                                            <div className='modal-footer'>
-                                                <button
-                                                    type='button'
-                                                    className='btn btn-secondary shadow-sm'
-                                                    data-dismiss='modal'
-                                                >
-                                                    Close
-                                                </button>
-                                                <button
-                                                    type='button'
-                                                    className='sale-button btn shadow-sm button-primary w-25'
-                                                    onClick={handleFinalseSale}
-                                                >
-                                                    {finialiseLoader ? (
-                                                        <span
-                                                            className='spinner-border spinner-border-sm'
-                                                            role='status'
-                                                            aria-hidden='true'
-                                                        ></span>
-                                                    ) : (
-                                                        'Agree'
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
+                        <div className='text-start alert alert-warning p-1 m-0 text-mini mt-4'>
+                            *It should be noted that once you finialse sale,
+                            tokens will be deposited and the sale will start
+                            immediately once the transaction is approved.
+                        </div>
+                        <div className='pt-2'>
+                            <button
+                                type='button'
+                                className='sale-button btn w-100 px-4 shadow-sm button-primary'
+                                onClick={handleFinalseSale}
+                                disabled={
+                                    projectData.whitelist.public.length === 0
+                                }
+                            >
+                                {finialiseLoader ? (
+                                    <div className='rotate-2'>
+                                        <BiLoaderAlt size={20} />
                                     </div>
-                                </div>
-                            </div>
+                                ) : (
+                                    'Finalise pool'
+                                )}
+                            </button>
                         </div>
                     </div>
                 </div>

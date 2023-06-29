@@ -1,8 +1,10 @@
 import React from 'react';
 import { BiLinkExternal } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+
+import { INSTA_STAKE_AMOUNT } from '../../../config/config';
 const Staking = (props) => {
-    if (props.hasStaked) {
+    if (props.hasStaked || props.stakedamount >= INSTA_STAKE_AMOUNT) {
         return (
             <div>
                 <div className='text-center mb-2'>

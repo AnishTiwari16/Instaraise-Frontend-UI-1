@@ -39,7 +39,6 @@ const OwnerInfo = ({
         return str;
     });
     const result = truncatedArray.join(', ');
-    console.log(result);
     return (
         <div>
             <div className='row'>
@@ -62,14 +61,14 @@ const OwnerInfo = ({
             </div>
             {result && (
                 <div className='row pt-3'>
-                    <div className='col-12 text-center text-md-right'>
+                    <div className='col-12 text-right'>
                         <button
                             type='button'
                             className='sale-button btn px-4 mb-3 shadow-sm button-primary'
                             data-toggle='modal'
                             data-target='#exampleModalCenter'
                         >
-                            Add users to&nbsp;whitelist
+                            Add users
                         </button>
                     </div>
                 </div>

@@ -154,127 +154,6 @@ const TokenDetails = ({
                             </div>
                         </div>
                     </div>
-
-                    <div className='card'>
-                        <div
-                            className='card-header card-header-border-bottom bg-white'
-                            id='headingThree'
-                        >
-                            <h5 className='mb-0'>
-                                <button
-                                    className='accordion-button btn-link px-0 bg-white'
-                                    data-toggle='collapse'
-                                    data-target='#collapseThree3'
-                                    aria-expanded='false'
-                                    aria-controls='collapseThree3'
-                                >
-                                    <span className='text-dark-to-light'>
-                                        Private sale details
-                                    </span>
-                                </button>
-                            </h5>
-                        </div>
-                        <div
-                            id='collapseThree3'
-                            className='collapse'
-                            aria-labelledby='headingThree'
-                            data-parent='#accordion'
-                        >
-                            <div className='card-body'>
-                                <div className='form-group-2 text-start'>
-                                    <label
-                                        htmlFor='validationServerUsername'
-                                        className='form-label text-dark-to-light'
-                                        style={{ zIndex: '5' }}
-                                    >
-                                        Private Start Time
-                                    </label>
-                                    <Datetime
-                                        value={project.presaleStartTime}
-                                        onChange={(e) =>
-                                            createNewProject({
-                                                ...project,
-                                                presaleStartTime: e._d,
-                                            })
-                                        }
-                                    />
-
-                                    <label
-                                        htmlFor='validationServerUsername'
-                                        className='form-label text-dark-to-light'
-                                        style={{ zIndex: '5' }}
-                                    >
-                                        private End Time
-                                    </label>
-                                    <Datetime
-                                        value={project.presaleEndTime}
-                                        onChange={(e) =>
-                                            createNewProject({
-                                                ...project,
-                                                presaleEndTime: e._d,
-                                            })
-                                        }
-                                    />
-                                    <label
-                                        htmlFor='validationServerUsername'
-                                        className='form-label text-dark-to-light'
-                                        style={{ zIndex: '5' }}
-                                    >
-                                        private Sale Allocation
-                                    </label>
-                                    <div className='input-group has-validation'>
-                                        <input
-                                            type='number'
-                                            className='text-dark-to-light text-14 token-information input-bar form-control rounded'
-                                            name='privateSaleAllocation'
-                                            value={
-                                                project.privateSaleAllocation
-                                            }
-                                            onChange={(e) =>
-                                                createNewProject({
-                                                    ...project,
-                                                    privateSaleAllocation:
-                                                        e.target.value,
-                                                })
-                                            }
-                                            placeholder='some placeholder'
-                                            id='validationServerUsername'
-                                            aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
-                                            required
-                                        />
-                                        <div className='invalid-feedback'></div>
-                                    </div>
-                                    <label
-                                        htmlFor='validationServerUsername'
-                                        className='form-label text-dark-to-light'
-                                        style={{ zIndex: '5' }}
-                                    >
-                                        private Sale Price
-                                    </label>
-                                    <div className='input-group has-validation'>
-                                        <input
-                                            type='number'
-                                            className='text-dark-to-light text-14 token-information input-bar form-control rounded'
-                                            name='privateSalePrice'
-                                            value={project.privateSalePrice}
-                                            onChange={(e) =>
-                                                createNewProject({
-                                                    ...project,
-                                                    privateSalePrice:
-                                                        e.target.value,
-                                                })
-                                            }
-                                            placeholder='some placeholder'
-                                            id='validationServerUsername'
-                                            aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
-                                            required
-                                        />
-                                        <div className='invalid-feedback'></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div className='card'>
                         <div
                             className='card-header card-header-border-bottom bg-white'
@@ -289,7 +168,7 @@ const TokenDetails = ({
                                     aria-controls='collapseFour4'
                                 >
                                     <span className='text-dark-to-light'>
-                                        Public sale details
+                                        Sale details
                                     </span>
                                 </button>
                             </h5>
@@ -307,7 +186,7 @@ const TokenDetails = ({
                                         className='form-label text-dark-to-light'
                                         style={{ zIndex: '5' }}
                                     >
-                                        public Start Time
+                                        Start time
                                     </label>
                                     <Datetime
                                         value={project.publicStartTime}
@@ -323,7 +202,7 @@ const TokenDetails = ({
                                         className='form-label text-dark-to-light'
                                         style={{ zIndex: '5' }}
                                     >
-                                        public End Time
+                                        End time
                                     </label>
                                     <Datetime
                                         value={project.publicEndTime}
@@ -339,7 +218,7 @@ const TokenDetails = ({
                                         className='form-label text-dark-to-light'
                                         style={{ zIndex: '5' }}
                                     >
-                                        Public max participation
+                                        Max participation
                                     </label>
                                     <div className='input-group has-validation'>
                                         <input
@@ -361,14 +240,13 @@ const TokenDetails = ({
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
                                         />
-                                        <div className='invalid-feedback'></div>
                                     </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
                                         style={{ zIndex: '5' }}
                                     >
-                                        Public Sale Price
+                                        Price
                                     </label>
                                     <div className='input-group has-validation'>
                                         <input
@@ -709,8 +587,6 @@ const TokenDetails = ({
                     <button
                         disabled={
                             !project.tokenAddress ||
-                            !project.privateSaleAllocation ||
-                            !project.privateSalePrice ||
                             !project.publicMaxParticipation ||
                             !project.publicSalePrice ||
                             !project.amountToSell ||

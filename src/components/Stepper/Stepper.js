@@ -12,7 +12,7 @@ import { kycProcess } from '../../redux/actions/common/action.token';
 import { connectWallet } from '../../redux/actions/wallet/action.wallet';
 
 const Stepper = (props) => {
-    const { stepDetails } = props;
+    const { stepDetails, stakedamount } = props;
     const { isWhitelisted, hasStaked, isEnrolled } = props.kycStatus;
     const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
     const [currentStep, setCurrentStep] = React.useState(1);
@@ -160,6 +160,7 @@ const Stepper = (props) => {
                                             fetchkyc={fetchkyc}
                                             wallet={props.wallet}
                                             ALIAS={ALIAS}
+                                            stakedamount={stakedamount}
                                         />
                                     )}
                                 </div>

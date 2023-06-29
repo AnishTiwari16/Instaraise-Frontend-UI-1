@@ -7,14 +7,19 @@ import { IdoProjectDetails } from '../../../redux/actions/selfHostedIDO/action.s
 import Pagination from '../../../hooks/pagination';
 import Stepper from '../../Stepper/Stepper';
 import TempCards from './TempCards';
+import { fetchInstaStorage } from '../../../redux/actions/staking/action.staking';
 
 const IdoSale = (props) => {
     const { selfIdoProjects } = props;
+    const { stakedamount } = props.stakingDetails;
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 7;
-
+    const args = {
+        poolStake: 'ACTIVE',
+    };
     const fetchData = async () => {
         await props.IdoProjectDetails();
+        await props.fetchInstaStorage(args);
     };
 
     React.useEffect(() => {
@@ -79,7 +84,10 @@ const IdoSale = (props) => {
                                         <TempCards {...item} />
                                     </div>
                                     <div className='col-12 my-3 my-lg-0 col-lg-8 m-auto'>
-                                        <Stepper projectdata={item} />
+                                        <Stepper
+                                            projectdata={item}
+                                            stakedamount={stakedamount}
+                                        />
                                     </div>
                                 </div>
                             );
@@ -112,8 +120,10 @@ const IdoSale = (props) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
+    fetchInstaStorage: (payload) => dispatch(fetchInstaStorage(payload)),
 });
 const mapStateToProps = (state) => ({
     selfIdoProjects: state.selfIdoProjects,
+    stakingDetails: state.stakingDetails,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(IdoSale);

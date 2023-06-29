@@ -48,25 +48,25 @@ export const createSaleAPI = async ({
         const operation = await contract.methods
             .originatePoolLockupPair(
                 admin,
-                tokensToSell,
-                decimals,
+                tokensToSell * Math.pow(10, 6),
+                decimals * Math.pow(10, 6),
                 INSTA_ADMIN_ADDRESS,
                 isPublicSaleWhitelisted,
                 lpLockupTime,
-                maxTokensToLp,
+                maxTokensToLp * Math.pow(10, 6),
                 percentageRevenueToLP,
                 presaleEndTime,
                 privateSaleAllocation,
                 privateSalePrice,
                 presaleStartTime,
                 publicEndTime,
-                publicMaxParticipation,
-                publicSalePrice,
+                publicMaxParticipation * Math.pow(10, 6),
+                publicSalePrice * Math.pow(10, 6),
                 publicStartTime,
                 stakingContract,
                 timeBlock,
                 tokenAddress,
-                tokenDexPrice,
+                tokenDexPrice * Math.pow(10, 6),
                 tokenId,
                 tokenUnlockTime
             )
@@ -180,15 +180,42 @@ export const finaliseSaleAPI = async (args) => {
             name: NAME,
         };
         const wallet = new BeaconWallet(options);
+        let account = await wallet.client.getActiveAccount();
         const Tezos = new TezosToolkit(RPC_NODES[connectedNetwork]);
         Tezos.setRpcProvider(RPC_NODES[connectedNetwork]);
         Tezos.setWalletProvider(wallet);
-        const contract = await Tezos.wallet.at(args.tokenPoolAddress);
-        const operation = await contract.methods.depositTokens().send();
-        const operationHash = await operation
-            .confirmation()
-            .then(() => operation.opHash);
-        console.log(operationHash);
+
+        const poolContract = await Tezos.wallet.at(args.tokenPoolAddress);
+        const tokenContract = await Tezos.wallet.at(args.tokenAddress);
+        let batch = null;
+        batch = Tezos.wallet
+            .batch()
+            .withContractCall(
+                tokenContract.methods.update_operators([
+                    {
+                        add_operator: {
+                            owner: account.address,
+                            operator: args.tokenPoolAddress,
+                            token_id: args.tokenId,
+                        },
+                    },
+                ])
+            )
+            .withContractCall(poolContract.methods.depositTokens())
+            .withContractCall(
+                tokenContract.methods.update_operators([
+                    {
+                        remove_operator: {
+                            owner: account.address,
+                            operator: args.tokenPoolAddress,
+                            token_id: args.tokenId,
+                        },
+                    },
+                ])
+            );
+        const batchOperation = await batch.send();
+        await batchOperation.confirmation().then(() => batchOperation.opHash);
+
         return {
             success: true,
         };
