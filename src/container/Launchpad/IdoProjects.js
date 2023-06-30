@@ -55,8 +55,9 @@ const LaunchIdoProjects = (props) => {
                 contractAddress: projectContractAddress,
                 ENROLLMENT_KEY: projectData.enrolledParticipants,
                 pricePerToken: projectData.tokenPrice.public,
-                DECIMALS: projectData.token.decimals,
+                DECIMALS: projectData.token.decimals / Math.pow(10, 6),
                 SALE_MAP_KEY: projectData.details.sale,
+                projectName: projectData.projectName,
             });
             let info = {
                 wallet: wallet,
@@ -69,7 +70,7 @@ const LaunchIdoProjects = (props) => {
         }
     };
 
-    const DECIMALS = projectData.token.decimals;
+    const DECIMALS = projectData.token.decimals / Math.pow(10, 6);
     let progressPercentage = (
         (SaleData.data.totalTokensSold /
             (SaleData.data.totalTokensToSell / Math.pow(10, DECIMALS))) *

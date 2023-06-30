@@ -55,6 +55,7 @@ export const IDO_CONFIG = [
                 start: '2023-05-05T09:00:00Z',
                 end: '2023-05-09T09:00:00Z',
             },
+            tokenUnlock: '2023-05-09T10:00:00Z',
         },
 
         website: 'https://lyzi.fr/',
@@ -91,7 +92,6 @@ export const IDO_CONFIG = [
         SUB_CURRENCY: '',
         TEZ: 'xtz',
         XTZ_PRICE: 21560,
-        TOKEN_UNLOCK_TIME: '2023-05-09T10:00:00Z',
         LISTING_PRICE: '0.133',
     },
     {
@@ -120,6 +120,7 @@ export const IDO_CONFIG = [
                 start: '2021-12-12T12:00:00Z',
                 end: '2021-12-13T12:00:00Z',
             },
+            tokenUnlock: '2021-12-13T13:00:00Z',
         },
 
         website: 'https://shuttleone.network/2021/#/home',
@@ -157,7 +158,6 @@ export const IDO_CONFIG = [
         SUB_CURRENCY: '',
         TEZ: 'xtz',
         XTZ_PRICE: 21560,
-        TOKEN_UNLOCK_TIME: '2021-12-13T13:00:00Z',
         LISTING_PRICE: '0.034',
     },
     {
@@ -185,6 +185,7 @@ export const IDO_CONFIG = [
                 start: '2021-10-20T12:00:00Z',
                 end: '2021-10-21T12:00:00Z',
             },
+            tokenUnlock: '2021-10-21T14:00:00Z',
         },
 
         website: 'https://aqarchain.io/',
@@ -221,7 +222,6 @@ export const IDO_CONFIG = [
         TEZ: 'xtz',
         XTZ_PRICE: 21560,
         LISTING_PRICE: '0.05',
-        TOKEN_UNLOCK_TIME: '2021-10-21T14:00:00Z',
     },
     {
         DISABLED: true,
@@ -251,6 +251,7 @@ export const IDO_CONFIG = [
                 start: '2021-09-09T14:00:00Z',
                 end: '2021-09-11T14:00:00Z',
             },
+            tokenUnlock: '2021-09-15T14:00:00Z',
         },
 
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
@@ -276,7 +277,6 @@ export const IDO_CONFIG = [
         SWAP_RATE_FCFS: '',
         XTZ_PRICE: 21560,
         TEZ: 'xtz',
-        TOKEN_UNLOCK_TIME: '2021-09-15T14:00:00Z',
     },
     {
         DISABLED: true,
@@ -299,6 +299,7 @@ export const IDO_CONFIG = [
                 start: '2021-08-20T14:00:00Z',
                 end: '2021-08-22T14:00:00Z',
             },
+            tokenUnlock: '2021-09-15T14:00:00Z',
         },
         AMOUNT_OF_TOKENS_TO_SELL: 1000000,
 
@@ -330,6 +331,5 @@ export const IDO_CONFIG = [
         SWAP_RATE_FCFS: '',
         XTZ_PRICE: 21560,
         TEZ: 'xtz',
-        TOKEN_UNLOCK_TIME: '2021-09-15T14:00:00Z',
     },
 ];

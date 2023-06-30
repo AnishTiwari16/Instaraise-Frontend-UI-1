@@ -34,7 +34,8 @@ const PoolDetails = (props) => {
         }
         setModalType('transfer');
         const API_RESPONSE = await claimTokens({
-            contractAddress: projectData.tokenAddress,
+            contractAddress: projectData.tokenPoolAddress,
+            projectName: projectData.projectName,
         });
         if (API_RESPONSE.payload.success) {
             fetchSaleData();

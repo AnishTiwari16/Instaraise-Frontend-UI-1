@@ -36,9 +36,19 @@ export const FetchSaleDataAPI = async (args) => {
         // eslint-disable-next-line
         pricePerToken,
         DECIMALS,
+        projectName,
     } = args;
     try {
-        const connectedNetwork = NETWORK;
+        let connectedNetwork;
+        if (
+            projectName === 'Lyzi' ||
+            projectName === 'ShuttleOne' ||
+            projectName === 'Aqarchain'
+        ) {
+            connectedNetwork = NETWORK;
+        } else {
+            connectedNetwork = 'testnet';
+        }
         const options = {
             name: NAME,
         };
@@ -65,17 +75,38 @@ export const FetchSaleDataAPI = async (args) => {
         );
         const poolData = RPC_RESPONSE.data;
         const totalPoolWeight = poolData.args[4].int;
-        const totalTokensToSell = poolData.args[0].args[2].args[1].int;
-        const totalTokensSold =
-            poolData.args[0].args[4].int / Math.pow(10, args.DECIMALS);
-        const totalXTZRaised = poolData.args[0].args[5].int / Math.pow(10, 6);
+        let totalTokensToSell, totalTokensSold, totalXTZRaised;
+        if (
+            projectName === 'Lyzi' ||
+            projectName === 'ShuttleOne' ||
+            projectName === 'Aqarchain'
+        ) {
+            totalTokensToSell = poolData.args[0].args[2].args[1].int;
+            totalTokensSold =
+                poolData.args[0].args[4].int / Math.pow(10, DECIMALS);
+            totalXTZRaised = poolData.args[0].args[5].int / Math.pow(10, 6);
+        } else {
+            totalTokensToSell = poolData.args[7].args[1].int;
+            totalTokensSold =
+                poolData.args[8].args[1].int / Math.pow(10, DECIMALS);
+            totalXTZRaised = poolData.args[8].args[2].int / Math.pow(10, 6);
+        }
         let allocation = 0;
         let currentier;
         let yourAllocation = 0;
         let IsWhitelistedUser = false;
 
         if (account && account.address) {
-            const USER_LIST = poolData.args[6].map((elem) => elem.string);
+            let USER_LIST;
+            if (
+                projectName === 'Lyzi' ||
+                projectName === 'ShuttleOne' ||
+                projectName === 'Aqarchain'
+            ) {
+                USER_LIST = poolData.args[6].map((elem) => elem.string);
+            } else {
+                USER_LIST = poolData.args[18].map((elem) => elem.string);
+            }
             IsWhitelistedUser = USER_LIST.filter(
                 (item) => item === account.address
             )[0]
@@ -94,32 +125,59 @@ export const FetchSaleDataAPI = async (args) => {
                 packedKey
             );
             var yourInvestments = [];
-
             if (allocationResponse.success) {
-                allocationResponse.response.data.args[0].args[0].forEach(
-                    (item) => {
+                if (
+                    projectName === 'Lyzi' ||
+                    projectName === 'ShuttleOne' ||
+                    projectName === 'Aqarchain'
+                ) {
+                    allocationResponse.response.data.args[0].args[0].forEach(
+                        (item) => {
+                            let investment = {
+                                time: new Date(
+                                    item.args[1].args[2].string
+                                ).toISOString(),
+                                xtzInvested:
+                                    item.args[1].args[0].args[1].int /
+                                    Math.pow(10, 6),
+                                tokensReceived:
+                                    item.args[1].args[0].args[0].int /
+                                    Math.pow(10, DECIMALS),
+                            };
+                            yourInvestments.push(investment);
+                        }
+                    );
+                    yourAllocation =
+                        allocationResponse.response.data.args[0].args[0]
+                            .map((item) => {
+                                return parseInt(
+                                    item.args[1].args[0].args[0].int
+                                );
+                            })
+                            .reduce((a, b) => a + b, 0) /
+                        Math.pow(10, DECIMALS);
+                } else {
+                    allocationResponse.response.data.args[0].forEach((item) => {
                         let investment = {
                             time: new Date(
-                                item.args[1].args[2].string
+                                item.args[1].args[3].string
                             ).toISOString(),
                             xtzInvested:
-                                item.args[1].args[0].args[1].int /
-                                Math.pow(10, 6),
+                                item.args[1].args[0].int / Math.pow(10, 6),
                             tokensReceived:
-                                item.args[1].args[0].args[0].int /
-                                Math.pow(10, args.DECIMALS),
+                                item.args[1].args[0].int /
+                                Math.pow(10, DECIMALS),
                         };
                         yourInvestments.push(investment);
-                    }
-                );
-
-                yourAllocation =
-                    allocationResponse.response.data.args[0].args[0]
-                        .map((item) => {
-                            return parseInt(item.args[1].args[0].args[0].int);
-                        })
-                        .reduce((a, b) => a + b, 0) /
-                    Math.pow(10, args.DECIMALS);
+                    });
+                    yourAllocation =
+                        allocationResponse.response.data.args[0]
+                            .map((item) => {
+                                return parseInt(item.args[1].args[0].int);
+                            })
+                            .reduce((a, b) => a + b, 0) /
+                        Math.pow(10, DECIMALS);
+                }
             }
             if (response.success) {
                 const poolWeight = response.response.data.int;
@@ -306,7 +364,16 @@ const fetchYourAllocation = async (
 
 export const claimSaleAPI = async (args) => {
     try {
-        const connectedNetwork = NETWORK;
+        let connectedNetwork;
+        if (
+            args.projectName === 'Lyzi' ||
+            args.projectName === 'ShuttleOne' ||
+            args.projectName === 'Aqarchain'
+        ) {
+            connectedNetwork = NETWORK;
+        } else {
+            connectedNetwork = 'testnet';
+        }
         const options = {
             name: NAME,
         };

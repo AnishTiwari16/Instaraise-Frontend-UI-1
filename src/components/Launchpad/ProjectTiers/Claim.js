@@ -2,11 +2,11 @@ import React from 'react';
 
 const Claim = (props) => {
     const { ClaimNow } = props;
-    const { TOKEN_UNLOCK_TIME, TEZ, TOKEN_NAME } = props.projectData;
+    const { tokenName } = props.projectData;
     const { yourInvestments, yourAllocation } = props.SaleData.data;
+    const TOKEN_UNLOCK_TIME = props.projectData.time.tokenUnlock;
     const IS_CLAIMABLE =
         new Date() >= new Date(TOKEN_UNLOCK_TIME) ? true : false;
-
     return (
         <>
             {yourInvestments && yourInvestments.length > 0 ? (
@@ -66,12 +66,10 @@ const Claim = (props) => {
                                         <td>
                                             {new Date(item.time).toUTCString()}
                                         </td>
-                                        <td>
-                                            {item.xtzInvested}&nbsp;{TEZ}
-                                        </td>
+                                        <td>{item.xtzInvested}&nbsp;xtz</td>
                                         <td>
                                             {item.tokensReceived}&nbsp;
-                                            {TOKEN_NAME}
+                                            {tokenName}
                                         </td>
                                     </tr>
                                 ))}
