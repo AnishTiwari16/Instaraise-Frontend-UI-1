@@ -1,30 +1,32 @@
+// eslint-disable-next-line
 import React from 'react';
 import { BiLoaderAlt } from 'react-icons/bi';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { addWhitelistedUsers } from '../../../redux/actions/selfHostedIDO/action.self';
+import { ThemeContext } from '../../../routes/root';
 const OwnerInfo = ({
     addWhitelistedUsers,
     whitelistUsersLoader,
-    whitelistedUsers,
     tokenPoolAddress,
     whitelistUsers,
 }) => {
+    const { theme } = React.useContext(ThemeContext);
     const [whitelistUsersAddr, setWhitelistedUsersAddr] = React.useState('');
     const [errorMessage, setErrorMessage] = React.useState('');
-    React.useEffect(() => {
-        if (whitelistedUsers.success === false) {
-            setErrorMessage(
-                whitelistedUsers.error.message.replace(/\[0\]\s/, '')
-            );
+    const handleWhitelistUsers = async () => {
+        const data = await addWhitelistedUsers({
+            whitelistUsersAddr: whitelistUsersAddr,
+            tokenPoolAddress: tokenPoolAddress,
+        });
+        if (data.payload.success) {
+            toast('Address whitelisted successfully 🎉');
+        } else {
+            setErrorMessage(data.payload.error.message.replace(/\[0\]\s/, ''));
         }
-        // Reset the state after 5 seconds
-        const timer = setTimeout(() => {
-            setErrorMessage('');
-        }, 7000);
-        return () => clearInterval(timer);
-    }, [whitelistedUsers]); //reducer value
-
+    };
     const maxLength = 30;
     const truncatedArray = whitelistUsers.map((str) => {
         if (str.length > maxLength) {
@@ -41,6 +43,21 @@ const OwnerInfo = ({
     const result = truncatedArray.join(', ');
     return (
         <div>
+            <ToastContainer
+                position='bottom-right'
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                theme={!theme ? 'dark' : 'light'}
+                progressStyle={{
+                    backgroundColor: '#5a1eab',
+                }}
+                pauseOnHover
+            />
+
             <div className='row'>
                 <div className='col-6'>User whitelisted </div>
 
@@ -122,7 +139,7 @@ const OwnerInfo = ({
                                 ></textarea>
                                 <label
                                     htmlFor='message-text'
-                                    className='col-form-label error'
+                                    className='col-form-label error w-100'
                                 >
                                     {errorMessage}
                                 </label>
@@ -133,12 +150,7 @@ const OwnerInfo = ({
                                 type='button'
                                 className='sale-button btn w-30 px-4 shadow-sm button-primary'
                                 disabled={whitelistUsersAddr ? false : true}
-                                onClick={() =>
-                                    addWhitelistedUsers({
-                                        whitelistUsersAddr: whitelistUsersAddr,
-                                        tokenPoolAddress: tokenPoolAddress,
-                                    })
-                                }
+                                onClick={handleWhitelistUsers}
                             >
                                 {whitelistUsersLoader ? (
                                     <div className='rotate-2'>

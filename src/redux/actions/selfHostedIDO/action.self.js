@@ -103,7 +103,7 @@ export const addWhitelistedUsers = (args) => {
                 type: ADD_WHITELISTED_LOADER,
                 payload: false,
             });
-            dispatch({
+            return dispatch({
                 type: ADD_WHITELISTED_USERS,
                 payload: API_RESPONSE,
             });
@@ -112,7 +112,7 @@ export const addWhitelistedUsers = (args) => {
                 type: ADD_WHITELISTED_LOADER,
                 payload: false,
             });
-            dispatch({
+            return dispatch({
                 type: ADD_WHITELISTED_USERS,
                 payload: API_RESPONSE,
             });

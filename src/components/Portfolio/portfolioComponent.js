@@ -1,6 +1,4 @@
 import React from 'react';
-import { AiFillMinusCircle } from 'react-icons/ai';
-import { MdOutlineAddCircle } from 'react-icons/md';
 import { RiShieldFlashFill, RiShieldFlashLine } from 'react-icons/ri';
 
 const PortfolioComponent = () => {
@@ -46,10 +44,23 @@ const PortfolioComponent = () => {
                                         </div>
                                         <div className='ms-2 text-dark-to-light'>
                                             asdf
-                                            <div className='text-mini '>
+                                            <div className='text-mini'>
                                                 asdf
                                             </div>
                                         </div>
+                                    </div>
+                                </td>
+                                <td
+                                    style={{
+                                        minWidth: '180px',
+                                        fontSize: '12px',
+                                    }}
+                                    colSpan={2}
+                                >
+                                    <div className='my-2 text-center justify-content-center d-flex align-items-center div-block text-dark-to-light'>
+                                        asdf
+                                        <br />
+                                        asdf
                                     </div>
                                 </td>
                                 <td
@@ -87,25 +98,10 @@ const PortfolioComponent = () => {
                                     }}
                                     colSpan={2}
                                 >
-                                    <div className='my-2 d-flex align-items-center justify-content-center div-block'>
-                                        <div>
-                                            <div className='my-2 d-flex align-items-center justify-content-center'>
-                                                <button className='shadow-sm text-12 px-1 m-auto py-1 btn rounded btn-sm trade-button'>
-                                                    <MdOutlineAddCircle
-                                                        size={20}
-                                                    />
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className='ms-2'>
-                                            <div className='my-2 d-flex align-items-center justify-content-center'>
-                                                <button className='shadow-sm ms-2 text-12 px-1 m-auto py-1 btn rounded btn-sm trade-button'>
-                                                    <AiFillMinusCircle
-                                                        size={20}
-                                                    />
-                                                </button>
-                                            </div>
-                                        </div>
+                                    <div className='my-2 div-block d-flex justify-content-center align-items-center'>
+                                        <button className='shadow-sm text-12 p-2 m-auto btn rounded btn-sm trade-button'>
+                                            Claim
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -154,7 +150,7 @@ const TableHeader = () => {
                     colSpan={2}
                 >
                     <div className=' fw-500 text-center my-2 '>
-                        Your Allocations
+                        XTZ Invested
                     </div>
                 </th>
                 <th
@@ -163,7 +159,19 @@ const TableHeader = () => {
                     }}
                     colSpan={2}
                 >
-                    <div className='my-2  text-center fw-500'>idk</div>
+                    <div className='my-2  text-center fw-500'>
+                        Tokens received
+                    </div>
+                </th>
+                <th
+                    style={{
+                        minWidth: '180px',
+                    }}
+                    colSpan={2}
+                >
+                    <div className='my-2  text-center fw-500'>
+                        Your allocation
+                    </div>
                 </th>
                 <th
                     className='col-sm-2 name-col-r'

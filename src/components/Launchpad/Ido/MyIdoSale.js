@@ -35,7 +35,6 @@ const MyIdoSale = (props) => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
-    console.log(MY_PROJECT);
     return (
         <div>
             <div className='row row-cols-1 text-dark-to-light mt-3  project-layout g-4  mx-0 mx-lg-3 mx-md-3 '>
