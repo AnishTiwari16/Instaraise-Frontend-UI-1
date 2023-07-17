@@ -69,7 +69,7 @@ const OwnerInfo = ({
                             data-toggle='modal'
                             data-target='#exampleModalCenter'
                         >
-                            Add users to&nbsp;whitelist
+                            Add users
                         </button>
                     ) : (
                         `[${result}]`

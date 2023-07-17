@@ -302,22 +302,29 @@ const AdminDetails = ({
                             immediately once the transaction is approved.
                         </div>
                         <div className='pt-2'>
-                            <button
-                                type='button'
-                                className='sale-button btn w-100 px-4 shadow-sm button-primary'
-                                onClick={handleFinalseSale}
-                                disabled={
-                                    projectData.whitelist.public.length === 0
-                                }
+                            <span
+                                data-toggle='tooltip'
+                                data-placement='top'
+                                title='Add users to whitelist before finalizing'
                             >
-                                {finialiseLoader ? (
-                                    <div className='rotate-2'>
-                                        <BiLoaderAlt size={20} />
-                                    </div>
-                                ) : (
-                                    'Finalise pool'
-                                )}
-                            </button>
+                                <button
+                                    type='button'
+                                    className='sale-button btn w-100 px-4 shadow-sm button-primary'
+                                    onClick={handleFinalseSale}
+                                    disabled={
+                                        projectData.whitelist.public.length ===
+                                        0
+                                    }
+                                >
+                                    {finialiseLoader ? (
+                                        <div className='rotate-2'>
+                                            <BiLoaderAlt size={20} />
+                                        </div>
+                                    ) : (
+                                        'Finalise pool'
+                                    )}
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>
