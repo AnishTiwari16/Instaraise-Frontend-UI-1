@@ -105,12 +105,27 @@ const TempCards = (props) => {
                                 {!props.MULTI_SWAP_RATE ? (
                                     <div className='navbar navbar-light bg-transparent sale-def p-0'>
                                         <div className=''>Swap rate</div>
-
-                                        <div>
-                                            1 ꜩ ={' '}
-                                            {(1 / XTZRate).PrecisionMaker(2)}
-                                            &nbsp;{props.tokenName}
-                                        </div>
+                                        {props.ALIAS ===
+                                        'instaraise-private' ? (
+                                            <div>
+                                                1 ꜩ = {48.94}
+                                                &nbsp;{props.tokenName}
+                                            </div>
+                                        ) : props.ALIAS ===
+                                          'instaraise-public' ? (
+                                            <div>
+                                                1 ꜩ = {45.45}
+                                                &nbsp;{props.tokenName}
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                1 ꜩ ={' '}
+                                                {(1 / XTZRate).PrecisionMaker(
+                                                    2
+                                                )}
+                                                &nbsp;{props.tokenName}
+                                            </div>
+                                        )}
                                     </div>
                                 ) : (
                                     <>

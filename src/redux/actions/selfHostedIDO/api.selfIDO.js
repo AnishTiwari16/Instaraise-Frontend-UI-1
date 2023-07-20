@@ -11,6 +11,7 @@ import {
     RPC_NODES,
 } from '../../../config/config';
 import axios from 'axios';
+import { FetchSaleDataAPI } from '../ido/api.ido';
 
 export const createSaleAPI = async ({
     admin,
@@ -218,6 +219,40 @@ export const finaliseSaleAPI = async (args) => {
 
         return {
             success: true,
+        };
+    } catch (err) {
+        return {
+            success: false,
+            error: err,
+        };
+    }
+};
+export const userPortfolioAPI = async () => {
+    try {
+        const allSale = await fetchIdoDetails();
+        var DATA = allSale.data.map(async (elem) => {
+            const resp = await FetchSaleDataAPI({
+                contractAddress: elem.tokenPoolAddress,
+                ENROLLMENT_KEY: elem.enrolledParticipants,
+                pricePerToken: elem.tokenPrice.public,
+                DECIMALS: elem.token.decimals / Math.pow(10, 6),
+                SALE_MAP_KEY: elem.details.sale,
+                projectName: elem.projectName,
+            });
+            if (
+                resp.data.contractAddress === elem.tokenPoolAddress &&
+                resp.data.yourInvestments.length > 0
+            ) {
+                return (DATA = Object.assign({}, resp.data, elem));
+            }
+        });
+        const VALUE = await Promise.all(DATA);
+        var filteredArray = VALUE.filter((value) => {
+            return value !== undefined;
+        });
+        return {
+            success: true,
+            data: filteredArray,
         };
     } catch (err) {
         return {

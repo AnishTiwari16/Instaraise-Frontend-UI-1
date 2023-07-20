@@ -5,6 +5,7 @@ import {
     IDO_DETAILS,
     NEW_PROJECT,
     TOKEN_ADDRESS,
+    USER_PORTFOLIO,
     VERIFY_API,
 } from '../../actions/index.action';
 
@@ -89,6 +90,14 @@ export const selfIdoProjects = (initialState = [], action) => {
 export const finialiseLoader = (initialState = false, action) => {
     switch (action.type) {
         case FINALISE_SALE_LOADER:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const userPortfolioData = (initialState = [], action) => {
+    switch (action.type) {
+        case USER_PORTFOLIO:
             return action.payload;
         default:
             return initialState;

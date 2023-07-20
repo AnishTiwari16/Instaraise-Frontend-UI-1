@@ -42,6 +42,7 @@ import {
     finialiseLoader,
     project,
     selfIdoProjects,
+    userPortfolioData,
     userVerifyData,
     whitelistUsersLoader,
 } from './selfHostedReducer/selfHostedReducer';
@@ -83,6 +84,7 @@ const rootReducer = combineReducers({
     whitelistUsersLoader: whitelistUsersLoader,
     userVerifyData: userVerifyData,
     selfIdoProjects: selfIdoProjects,
+    userPortfolioData: userPortfolioData,
 
     finialiseLoader: finialiseLoader,
 });

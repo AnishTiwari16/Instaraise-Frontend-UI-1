@@ -8,6 +8,7 @@ import {
     FINALISE_SALE_LOADER,
     IDO_DETAILS,
     NEW_PROJECT,
+    USER_PORTFOLIO,
     VERIFY_API,
 } from '../index.action';
 import {
@@ -15,6 +16,7 @@ import {
     createSaleAPI,
     fetchIdoDetails,
     finaliseSaleAPI,
+    userPortfolioAPI,
     verifyAPI,
 } from './api.selfIDO';
 
@@ -130,6 +132,22 @@ export const userVerification = (args) => {
         } else {
             return dispatch({
                 type: VERIFY_API,
+                payload: API_RESPONSE,
+            });
+        }
+    };
+};
+export const userPortfolio = (args) => {
+    return async (dispatch) => {
+        const API_RESPONSE = await userPortfolioAPI(args);
+        if (API_RESPONSE.success) {
+            return dispatch({
+                type: USER_PORTFOLIO,
+                payload: API_RESPONSE,
+            });
+        } else {
+            return dispatch({
+                type: USER_PORTFOLIO,
                 payload: API_RESPONSE,
             });
         }
