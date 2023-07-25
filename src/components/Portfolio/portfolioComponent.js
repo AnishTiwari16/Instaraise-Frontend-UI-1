@@ -4,8 +4,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RiShieldFlashFill, RiShieldFlashLine } from 'react-icons/ri';
 import { userPortfolio } from '../../redux/actions/selfHostedIDO/action.self';
+import { connectWallet } from '../../redux/actions/wallet/action.wallet';
 
-const PortfolioComponent = ({ userPortfolio, userPortfolioData }) => {
+const PortfolioComponent = ({
+    userPortfolio,
+    userPortfolioData,
+    wallet,
+    connectWallet,
+}) => {
     React.useEffect(() => {
         userPortfolio();
     }, []);
@@ -188,23 +194,58 @@ const PortfolioComponent = ({ userPortfolio, userPortfolioData }) => {
                             })}
                     </table>
                 </div>
-                {userPortfolioData.success &&
-                    !userPortfolioData.data.length > 0 && (
-                        <div className='project-detail card-body  d-flex align-items-center '>
+                {!wallet && (
+                    <div className='project-detail card-body align-items-center'>
+                        <h5 className='card-title text-16 m-auto pt-3 pb-2'>
+                            Connect your wallet
+                        </h5>
+                        <p className='card-title text-16 mx-auto font-insta-regular'>
+                            Please connect you wallet to view your Investments
+                        </p>
+                        <div className=' mx-auto w-10'>
+                            <hr />
+                        </div>
+                        <button
+                            type='button'
+                            onClick={(e) => {
+                                e.preventDefault();
+                                connectWallet({
+                                    NETWORK: 'testnet',
+                                });
+                            }}
+                            className='text-center border-10 button-primary btn-faucet p-2 margin-auto my-2'
+                        >
+                            + Connect wallet
+                        </button>
+                    </div>
+                )}
+                <div className='project-detail card-body d-flex align-items-center'>
+                    {userPortfolioData.success &&
+                        wallet &&
+                        !userPortfolioData.data.length > 0 && (
                             <h5 className='card-title text-16 m-auto'>
                                 No Investments on this address
                             </h5>
+                        )}
+                    {!userPortfolioData.success && (
+                        <div className='card-title m-auto'>
+                            <div className='spinner-grow' role='status'>
+                                <span className='sr-only'>Fetching...</span>
+                            </div>
                         </div>
                     )}
+                </div>
             </div>
         </div>
     );
 };
 const mapDispatchToProps = (dispatch) => ({
     userPortfolio: (payload) => dispatch(userPortfolio(payload)),
+    connectWallet: (payload) => dispatch(connectWallet(payload)),
 });
 const mapStateToProps = (state) => ({
     userPortfolioData: state.userPortfolioData,
+    wallet: state.wallet,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PortfolioComponent);
 const TableHeader = () => {

@@ -11,9 +11,11 @@ import { ThemeContext } from '../../../routes/root';
 import { PROJECT_DETAILS_API_URL } from '../../../config/config';
 import VerifyTokensConfig from '../../../config/Launchpad/verifyTokensConfig';
 import { useMediaQuery, useTheme } from '@mui/material';
+import { connectWallet } from '../../../redux/actions/wallet/action.wallet';
 
 const VerfiyDetails = ({
     createSaleAction,
+    connectWallet,
     handleBack,
     project,
     createSaleLoader,
@@ -121,21 +123,37 @@ const VerfiyDetails = ({
                         >
                             Back
                         </button>
-
-                        <button
-                            className={`sale-button btn px-4 shadow-sm button-primary ${
-                                !isMobile ? 'w-15' : ''
-                            }`}
-                            onClick={handleOnSubmit}
-                        >
-                            {createSaleLoader ? (
-                                <div className='rotate-2'>
-                                    <BiLoaderAlt size={20} />
-                                </div>
-                            ) : (
-                                'Create sale'
-                            )}
-                        </button>
+                        {wallet ? (
+                            <button
+                                className={`sale-button btn px-4 shadow-sm button-primary ${
+                                    !isMobile ? 'w-15' : ''
+                                }`}
+                                onClick={handleOnSubmit}
+                            >
+                                {createSaleLoader ? (
+                                    <div className='rotate-2'>
+                                        <BiLoaderAlt size={20} />
+                                    </div>
+                                ) : (
+                                    'Create sale'
+                                )}
+                            </button>
+                        ) : (
+                            <button
+                                type='button'
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    connectWallet({
+                                        NETWORK: 'testnet',
+                                    });
+                                }}
+                                className={`sale-button btn shadow-sm button-primary ${
+                                    !isMobile ? 'w-15' : ''
+                                }`}
+                            >
+                                + Connect wallet
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
@@ -144,6 +162,7 @@ const VerfiyDetails = ({
 };
 const mapDispatchToProps = (dispatch) => ({
     createSaleAction: (payload) => dispatch(createSaleAction(payload)),
+    connectWallet: (payload) => dispatch(connectWallet(payload)),
 });
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
