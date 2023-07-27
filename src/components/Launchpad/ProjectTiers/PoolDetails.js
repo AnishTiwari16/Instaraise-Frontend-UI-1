@@ -81,7 +81,7 @@ const PoolDetails = (props) => {
     const TOKEN_PRICE = projectData.IsDiscountedUser
         ? projectData.DISCOUNTED_PRICE
         : projectData.tokenPrice.public;
-    const XTZRate = TOKEN_PRICE;
+    const XTZRate = TOKEN_PRICE / Math.pow(10, 6);
 
     const SWAP_RATE = `1 XTZ = ${(1 / XTZRate).PrecisionMaker(2)} ${
         projectData.tokenName

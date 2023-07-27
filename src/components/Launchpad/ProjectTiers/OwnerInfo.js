@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { addWhitelistedUsers } from '../../../redux/actions/selfHostedIDO/action.self';
+import {
+    IdoProjectDetails,
+    addWhitelistedUsers,
+} from '../../../redux/actions/selfHostedIDO/action.self';
 import { ThemeContext } from '../../../routes/root';
 const OwnerInfo = ({
     addWhitelistedUsers,
+    IdoProjectDetails,
     whitelistUsersLoader,
     tokenPoolAddress,
     whitelistUsers,
@@ -23,6 +27,7 @@ const OwnerInfo = ({
         });
         if (data.payload.success) {
             toast('Address whitelisted successfully 🎉');
+            await IdoProjectDetails();
         } else {
             setErrorMessage(data.payload.error.message.replace(/\[0\]\s/, ''));
         }
@@ -169,6 +174,7 @@ const OwnerInfo = ({
 };
 const mapDispatchToProps = (dispatch) => ({
     addWhitelistedUsers: (payload) => dispatch(addWhitelistedUsers(payload)),
+    IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
 });
 const mapStateToProps = (state) => ({
     whitelistUsersLoader: state.whitelistUsersLoader,
