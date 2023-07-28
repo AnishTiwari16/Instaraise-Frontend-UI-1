@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import {
+    ADD_LOCKUP_LOADER,
     ADD_WHITELISTED_LOADER,
     ADD_WHITELISTED_USERS,
     CREATE_PROJECT_LOADER,
@@ -7,6 +8,7 @@ import {
     FINALISE_SALE,
     FINALISE_SALE_LOADER,
     IDO_DETAILS,
+    LOCKUP_LIQUIDITY,
     NEW_PROJECT,
     USER_PORTFOLIO,
     VERIFY_API,
@@ -16,6 +18,7 @@ import {
     createSaleAPI,
     fetchIdoDetails,
     finaliseSaleAPI,
+    lockupLiquidityApi,
     userPortfolioAPI,
     verifyAPI,
 } from './api.selfIDO';
@@ -116,6 +119,34 @@ export const addWhitelistedUsers = (args) => {
             });
             return dispatch({
                 type: ADD_WHITELISTED_USERS,
+                payload: API_RESPONSE,
+            });
+        }
+    };
+};
+export const lockupLiquidity = (args) => {
+    return async (dispatch) => {
+        dispatch({
+            type: ADD_LOCKUP_LOADER,
+            payload: true,
+        });
+        const API_RESPONSE = await lockupLiquidityApi(args);
+        if (API_RESPONSE.success) {
+            dispatch({
+                type: ADD_LOCKUP_LOADER,
+                payload: false,
+            });
+            return dispatch({
+                type: LOCKUP_LIQUIDITY,
+                payload: API_RESPONSE,
+            });
+        } else {
+            dispatch({
+                type: ADD_LOCKUP_LOADER,
+                payload: false,
+            });
+            return dispatch({
+                type: LOCKUP_LIQUIDITY,
                 payload: API_RESPONSE,
             });
         }

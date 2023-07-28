@@ -26,7 +26,9 @@ const VerifyTokensConfig = ({ project }) => {
 
         {
             name: 'Website',
-            value: project.website,
+            value: project.website.startsWith('https://')
+                ? project.website
+                : 'https://' + project.website,
         },
         {
             name: 'Telegram',

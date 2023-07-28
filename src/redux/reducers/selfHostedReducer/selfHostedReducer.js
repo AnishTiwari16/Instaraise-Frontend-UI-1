@@ -1,4 +1,5 @@
 import {
+    ADD_LOCKUP_LOADER,
     ADD_WHITELISTED_LOADER,
     CREATE_PROJECT_LOADER,
     FINALISE_SALE_LOADER,
@@ -65,6 +66,14 @@ export const createSaleLoader = (initialState = false, action) => {
 export const whitelistUsersLoader = (initialState = false, action) => {
     switch (action.type) {
         case ADD_WHITELISTED_LOADER:
+            return action.payload;
+        default:
+            return initialState;
+    }
+};
+export const lockUpLiquidityLoader = (initialState = false, action) => {
+    switch (action.type) {
+        case ADD_LOCKUP_LOADER:
             return action.payload;
         default:
             return initialState;

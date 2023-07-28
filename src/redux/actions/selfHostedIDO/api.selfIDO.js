@@ -174,6 +174,39 @@ export const fetchIdoDetails = async () => {
         };
     }
 };
+export const lockupLiquidityApi = async (args) => {
+    try {
+        const connectedNetwork = 'testnet';
+        const options = {
+            name: NAME,
+        };
+        const wallet = new BeaconWallet(options);
+        const Tezos = new TezosToolkit(RPC_NODES[connectedNetwork]);
+        Tezos.setRpcProvider(RPC_NODES[connectedNetwork]);
+        Tezos.setWalletProvider(wallet);
+        const contract = await Tezos.wallet.at(args.tokenPoolAddress);
+        const operation = await contract.methods
+            .lockupLiquidity(
+                'KT1PvEyN1xCFCgorN92QCfYjw3axS6jawCiJ',
+                false,
+                0,
+                0
+            )
+            .send();
+        const operationHash = await operation
+            .confirmation()
+            .then(() => operation);
+        return {
+            success: true,
+            hash: operationHash,
+        };
+    } catch (err) {
+        return {
+            success: false,
+            error: err,
+        };
+    }
+};
 export const finaliseSaleAPI = async (args) => {
     try {
         const connectedNetwork = 'testnet';

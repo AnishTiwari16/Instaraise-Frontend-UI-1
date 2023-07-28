@@ -1,6 +1,5 @@
 // eslint-disable-next-line
 import React from 'react';
-import { BiLoaderAlt } from 'react-icons/bi';
 import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -158,8 +157,13 @@ const OwnerInfo = ({
                                 onClick={handleWhitelistUsers}
                             >
                                 {whitelistUsersLoader ? (
-                                    <div className='rotate-2'>
-                                        <BiLoaderAlt size={20} />
+                                    <div
+                                        className='spinner-border spinner-border-sm'
+                                        role='status'
+                                    >
+                                        <span className='sr-only'>
+                                            Loading...
+                                        </span>
                                     </div>
                                 ) : (
                                     'Add users'

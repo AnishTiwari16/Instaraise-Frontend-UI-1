@@ -64,7 +64,9 @@ const VerfiyDetails = ({
                         tokenName: project.tokenName,
                         description: project.description,
                         icon: project.logoURL,
-                        website: project.website,
+                        website: project.website.startsWith('https://')
+                            ? project.website
+                            : 'https://' + project.website,
                         telegram: project.telegram,
                         medium: project.medium,
                         twitter: project.twitter,

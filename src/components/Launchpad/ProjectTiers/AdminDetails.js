@@ -9,19 +9,21 @@ import {
     IdoProjectDetails,
     createNewProject,
     finaliseSale,
+    lockupLiquidity,
 } from '../../../redux/actions/selfHostedIDO/action.self';
 import MainModal from '../../Modals';
 import { ToastContainer } from 'react-toastify';
 import { ThemeContext } from '../../../routes/root';
-import { BiLoaderAlt } from 'react-icons/bi';
 
 const AdminDetails = ({
     createNewProject,
     IdoProjectDetails,
+    lockupLiquidity,
     project,
     projectData,
     finaliseSale,
     finialiseLoader,
+    lockUpLiquidityLoader,
 }) => {
     const { theme } = React.useContext(ThemeContext);
     const [editDescription, setEditDescription] = React.useState(false);
@@ -95,17 +97,25 @@ const AdminDetails = ({
             console.log(`Failed to update data : ${error}`);
         }
     };
-    const handleFinalseSale = async () => {
+    const handleLockUpLiquidity = async () => {
         try {
-            const resp = await finaliseSale({
+            const resp = await lockupLiquidity({
                 tokenPoolAddress: projectData.tokenPoolAddress,
-                tokenAddress: projectData.token.address,
-                tokenId: projectData.token.ID,
             });
             if (!resp.payload.success) {
                 setModalType('error');
             }
         } catch (error) {
+            setModalType('error');
+        }
+    };
+    const handleFinalseSale = async () => {
+        const resp = await finaliseSale({
+            tokenPoolAddress: projectData.tokenPoolAddress,
+            tokenAddress: projectData.token.address,
+            tokenId: projectData.token.ID,
+        });
+        if (!resp.payload.success) {
             setModalType('error');
         }
     };
@@ -296,6 +306,39 @@ const AdminDetails = ({
                                 whitelistUsers={projectData.whitelist.public}
                             />
                         </div>
+                        <div className='py-3 card-header-border-bottom'>
+                            <div className='row'>
+                                <div className='col-6 pt-2'>
+                                    Lockup liquidity
+                                </div>
+                                <div className='col-6 text-right pt-1'>
+                                    <button
+                                        type='button'
+                                        className='sale-button btn px-4 shadow-sm button-primary'
+                                        disabled={
+                                            new Date() <=
+                                            new Date(
+                                                projectData.time.tokenUnlock
+                                            )
+                                        }
+                                        onClick={handleLockUpLiquidity}
+                                    >
+                                        {lockUpLiquidityLoader ? (
+                                            <div
+                                                className='spinner-border spinner-border-sm'
+                                                role='status'
+                                            >
+                                                <span className='sr-only'>
+                                                    Loading...
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            'Lockup'
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div className='text-start alert alert-warning p-1 m-0 text-mini mt-4'>
                             *It should be noted that once you finialse sale,
                             tokens will be deposited and the sale will start
@@ -313,12 +356,21 @@ const AdminDetails = ({
                                     onClick={handleFinalseSale}
                                     disabled={
                                         projectData.whitelist.public.length ===
-                                        0
+                                            0 ||
+                                        new Date() >=
+                                            new Date(
+                                                projectData.time.public.end
+                                            )
                                     }
                                 >
                                     {finialiseLoader ? (
-                                        <div className='rotate-2'>
-                                            <BiLoaderAlt size={20} />
+                                        <div
+                                            className='spinner-border spinner-border-sm'
+                                            role='status'
+                                        >
+                                            <span className='sr-only'>
+                                                Loading...
+                                            </span>
                                         </div>
                                     ) : (
                                         'Finalise pool'
@@ -336,9 +388,11 @@ const mapDispatchToProps = (dispatch) => ({
     createNewProject: (payload) => dispatch(createNewProject(payload)),
     IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
     finaliseSale: (payload) => dispatch(finaliseSale(payload)),
+    lockupLiquidity: (payload) => dispatch(lockupLiquidity(payload)),
 });
 const mapStateToProps = (state) => ({
     project: state.project,
     finialiseLoader: state.finialiseLoader,
+    lockUpLiquidityLoader: state.lockUpLiquidityLoader,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDetails);

@@ -40,6 +40,7 @@ import { walletAddress } from './wallet/wallet.reducer';
 import {
     createSaleLoader,
     finialiseLoader,
+    lockUpLiquidityLoader,
     project,
     selfIdoProjects,
     userPortfolioData,
@@ -82,6 +83,7 @@ const rootReducer = combineReducers({
     project: project,
     createSaleLoader: createSaleLoader,
     whitelistUsersLoader: whitelistUsersLoader,
+    lockUpLiquidityLoader: lockUpLiquidityLoader,
     userVerifyData: userVerifyData,
     selfIdoProjects: selfIdoProjects,
     userPortfolioData: userPortfolioData,

@@ -60,11 +60,11 @@ const AppHeader = (props) => {
     React.useEffect(() => {
         if (!location.pathname.includes('dashboard')) {
             getWallet({
-                NETWORK: isTestnet ? 'testnet' : 'mainnet',
+                NETWORK: isTestnet ? 'testnet' : 'testnet',
             });
         } else {
             getWallet({
-                NETWORK: 'mainnet',
+                NETWORK: 'testnet',
             });
         }
         // eslint-disable-next-line
