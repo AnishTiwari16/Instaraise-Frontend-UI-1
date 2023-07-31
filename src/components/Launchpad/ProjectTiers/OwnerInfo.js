@@ -85,7 +85,7 @@ const OwnerInfo = ({
                     <div className='col-12 text-right'>
                         <button
                             type='button'
-                            className='sale-button btn px-4 mb-3 shadow-sm button-primary'
+                            className='connect-wallet-button btn px-3 mb-3 shadow-sm'
                             data-toggle='modal'
                             data-target='#exampleModalCenter'
                         >
@@ -152,7 +152,7 @@ const OwnerInfo = ({
                         <div className='modal-footer border-top-0'>
                             <button
                                 type='button'
-                                className='sale-button btn w-30 px-4 shadow-sm button-primary'
+                                className='sale-button btn w-30 px-3 shadow-sm button-primary'
                                 disabled={whitelistUsersAddr ? false : true}
                                 onClick={handleWhitelistUsers}
                             >

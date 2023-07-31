@@ -14,6 +14,7 @@ import {
 import MainModal from '../../Modals';
 import { ToastContainer } from 'react-toastify';
 import { ThemeContext } from '../../../routes/root';
+import Countdown from 'react-countdown';
 
 const AdminDetails = ({
     createNewProject,
@@ -119,6 +120,8 @@ const AdminDetails = ({
             setModalType('error');
         }
     };
+    let UNLOCK_TOKEN_DATE =
+        new Date() <= new Date(projectData.time.tokenUnlock);
     return (
         <>
             <MainModal
@@ -314,14 +317,16 @@ const AdminDetails = ({
                                 <div className='col-6 text-right pt-1'>
                                     <button
                                         type='button'
-                                        className='sale-button btn px-4 shadow-sm button-primary'
-                                        disabled={
-                                            new Date() <=
-                                            new Date(
-                                                projectData.time.tokenUnlock
-                                            )
-                                        }
-                                        onClick={handleLockUpLiquidity}
+                                        className={`shadow-sm ${
+                                            UNLOCK_TOKEN_DATE
+                                                ? 'disable-b '
+                                                : 'connect-wallet-button'
+                                        } px-3 btn`}
+                                        onClick={() => {
+                                            if (!UNLOCK_TOKEN_DATE) {
+                                                handleLockUpLiquidity();
+                                            }
+                                        }}
                                     >
                                         {lockUpLiquidityLoader ? (
                                             <div
@@ -333,7 +338,16 @@ const AdminDetails = ({
                                                 </span>
                                             </div>
                                         ) : (
-                                            'Lockup'
+                                            <>
+                                                {'Lockup '}
+                                                {UNLOCK_TOKEN_DATE && (
+                                                    <Countdown
+                                                        date={new Date(
+                                                            projectData.time.tokenUnlock
+                                                        ).getTime()}
+                                                    />
+                                                )}
+                                            </>
                                         )}
                                     </button>
                                 </div>
@@ -352,16 +366,30 @@ const AdminDetails = ({
                             >
                                 <button
                                     type='button'
-                                    className='sale-button btn w-100 px-4 shadow-sm button-primary'
-                                    onClick={handleFinalseSale}
-                                    disabled={
+                                    className={`shadow-none w-100 ${
+                                        projectData.status !== 0 ||
                                         projectData.whitelist.public.length ===
                                             0 ||
                                         new Date() >=
                                             new Date(
                                                 projectData.time.public.end
                                             )
-                                    }
+                                            ? 'disable-b'
+                                            : 'connect-wallet-button'
+                                    } px-3 btn`}
+                                    onClick={() => {
+                                        if (
+                                            projectData.status === 0 ||
+                                            !projectData.whitelist.public
+                                                .length === 0 ||
+                                            new Date() <=
+                                                new Date(
+                                                    projectData.time.public.end
+                                                )
+                                        ) {
+                                            handleFinalseSale();
+                                        }
+                                    }}
                                 >
                                     {finialiseLoader ? (
                                         <div

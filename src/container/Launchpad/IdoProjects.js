@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import AppLayout from '../../components/dashboard/Layout/index';
 import PoolDetails from '../../components/Launchpad/ProjectTiers/PoolDetails';
 import { NETWORK, TZKT_NODES } from '../../config/config';
+import NOT_FOUND_IMG from '../../assets/images/no-image.png';
 import { IDO_CONFIG } from '../../config/Launchpad/Ido/IdoConfig';
 import Socials from '../../config/Launchpad/Ido/IdoProjectSocials';
 import { kycProcess } from '../../redux/actions/common/action.token';
@@ -17,6 +18,7 @@ import {
     claimNow,
 } from '../../redux/actions/ido/action.ido';
 import { IdoProjectDetails } from '../../redux/actions/selfHostedIDO/action.self';
+import { fetchInstaStorage } from '../../redux/actions/staking/action.staking';
 
 const LaunchIdoProjects = (props) => {
     const {
@@ -27,6 +29,8 @@ const LaunchIdoProjects = (props) => {
         wallet,
         claimTokens,
         projectData,
+        fetchInstaStorage,
+        stakingDetails,
     } = props;
     const params = useParams();
     const tiers = {
@@ -86,9 +90,15 @@ const LaunchIdoProjects = (props) => {
             clearInterval(interval);
         };
     }, []);
-
+    const fetchInstaStacking = async () => {
+        const args = {
+            poolStake: 'ACTIVE',
+        };
+        await fetchInstaStorage(args);
+    };
     React.useEffect(() => {
         fetchProjectDetails();
+        fetchInstaStacking();
         // eslint-disable-next-line
     }, []);
     React.useEffect(() => {
@@ -104,10 +114,13 @@ const LaunchIdoProjects = (props) => {
                             <div className='card-body form-header'>
                                 <img
                                     src={projectData.icon}
+                                    onError={(e) => {
+                                        e.target.src = NOT_FOUND_IMG;
+                                    }}
                                     height={45}
                                     width={45}
                                     className='my-3 d-inline-block align-top me-2 rounded-circle'
-                                    alt=''
+                                    alt='project'
                                 />
                                 <h5 className='card-title form-header'>
                                     {projectData.projectName}
@@ -295,6 +308,7 @@ const LaunchIdoProjects = (props) => {
                         isKyced={kycStatus.isWhitelisted}
                         projectContractAddress={projectContractAddress}
                         claimTokens={claimTokens}
+                        stakedamount={stakingDetails.stakedamount}
                     />
                 </div>
             </AppLayout>
@@ -335,6 +349,7 @@ const mapDispatchToProps = (dispatch) => ({
     claimTokens: (payload) => dispatch(claimNow(payload)),
     fetchKYCDetails: (payload) => dispatch(kycProcess(payload)),
     IdoProjectDetails: (payload) => dispatch(IdoProjectDetails(payload)),
+    fetchInstaStorage: (payload) => dispatch(fetchInstaStorage(payload)),
 });
 
 const mapStateToProps = (state) => ({
@@ -342,6 +357,7 @@ const mapStateToProps = (state) => ({
     SaleData: state.fetchSaleData,
     kycStatus: state.kycProcess,
     selfIdoProjects: state.selfIdoProjects,
+    stakingDetails: state.stakingDetails,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IdoProjects);

@@ -6,6 +6,8 @@ import AdminDetails from './AdminDetails';
 import Claim from './Claim';
 import { DATA } from './TierData';
 import MainModal from '../../Modals';
+import { Link } from 'react-router-dom';
+import { INSTA_STAKE_AMOUNT } from '../../../config/config';
 
 const PoolDetails = (props) => {
     const {
@@ -17,6 +19,7 @@ const PoolDetails = (props) => {
         participateInSale,
         projectContractAddress,
         isKyced,
+        stakedamount,
     } = props;
     const [modalType, setModalType] = useState(null);
     const [operationId, setOperationId] = useState(null);
@@ -308,25 +311,41 @@ const PoolDetails = (props) => {
                                         </div>
                                         <div className='col-lg  col-md-12 py-3 d-flex justify-content-center order-1'>
                                             {wallet ? (
-                                                <button
-                                                    onClick={() => {
-                                                        if (participateInFCFS) {
-                                                            setSaleType(
-                                                                'public'
-                                                            );
-                                                            setModalType(
-                                                                'joinpool'
-                                                            );
-                                                        }
-                                                    }}
-                                                    className={`shadow-none text-14 ${
-                                                        participateInFCFS
-                                                            ? 'connect-wallet-button'
-                                                            : 'disable-b'
-                                                    } px-3 btn btn-sm`}
-                                                >
-                                                    Join Pool
-                                                </button>
+                                                stakedamount <
+                                                INSTA_STAKE_AMOUNT ? (
+                                                    <Link
+                                                        to='/launchpad/staking'
+                                                        className='connect-wallet-button shadow-none text-12 px-3 btn btn-sm'
+                                                    >
+                                                        {`Need ${
+                                                            INSTA_STAKE_AMOUNT -
+                                                            stakedamount
+                                                        }`}{' '}
+                                                        INSTA&nbsp;more
+                                                    </Link>
+                                                ) : (
+                                                    <button
+                                                        onClick={() => {
+                                                            if (
+                                                                participateInFCFS
+                                                            ) {
+                                                                setSaleType(
+                                                                    'public'
+                                                                );
+                                                                setModalType(
+                                                                    'joinpool'
+                                                                );
+                                                            }
+                                                        }}
+                                                        className={`shadow-none text-14 ${
+                                                            participateInFCFS
+                                                                ? 'connect-wallet-button'
+                                                                : 'disable-b'
+                                                        } px-3 btn btn-sm`}
+                                                    >
+                                                        Join Pool
+                                                    </button>
+                                                )
                                             ) : (
                                                 <div className='text-sm'>
                                                     + Connect Wallet
@@ -339,7 +358,7 @@ const PoolDetails = (props) => {
                         )}
                     </div>
                     <>
-                        {!SaleData.data.IsWhitelistedUser && !isKyced ? (
+                        {!SaleData.data.IsWhitelistedUser && !isKyced && (
                             <div className='col-md-12 col-lg mw-100 h-100 py-4 py-md-0 mt-md-4 p-0'>
                                 <div className='card project-detail  shadow-sm h-100 border-10'>
                                     <div className='card-body  d-flex align-items-center '>
@@ -349,8 +368,6 @@ const PoolDetails = (props) => {
                                     </div>
                                 </div>
                             </div>
-                        ) : (
-                            ''
                         )}
                     </>
                 </>

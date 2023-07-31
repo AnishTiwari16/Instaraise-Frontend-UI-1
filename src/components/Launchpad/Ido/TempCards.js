@@ -3,6 +3,8 @@ import Countdown from 'react-countdown';
 import NumericLabel from 'react-pretty-numbers';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import NOT_FOUND_IMG from '../../../assets/images/no-image.png';
 export const option = {
     justification: 'C',
     locales: 'en-AU',
@@ -59,6 +61,9 @@ const TempCards = (props) => {
                     <div className='card__container pb-0'>
                         <img
                             src={props.icon}
+                            onError={(e) => {
+                                e.target.src = NOT_FOUND_IMG;
+                            }}
                             width={45}
                             height={45}
                             style={{

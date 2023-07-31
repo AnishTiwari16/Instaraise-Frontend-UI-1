@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSaleAction } from '../../../redux/actions/selfHostedIDO/action.self';
-import { BiLoaderAlt } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import MainModal from '../../Modals';
 import { ToastContainer, toast } from 'react-toastify';
@@ -133,8 +132,13 @@ const VerfiyDetails = ({
                                 onClick={handleOnSubmit}
                             >
                                 {createSaleLoader ? (
-                                    <div className='rotate-2'>
-                                        <BiLoaderAlt size={20} />
+                                    <div
+                                        className='spinner-border spinner-border-sm'
+                                        role='status'
+                                    >
+                                        <span className='sr-only'>
+                                            Loading...
+                                        </span>
                                     </div>
                                 ) : (
                                     'Create sale'

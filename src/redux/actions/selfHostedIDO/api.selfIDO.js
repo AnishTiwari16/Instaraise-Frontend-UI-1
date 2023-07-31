@@ -187,7 +187,7 @@ export const lockupLiquidityApi = async (args) => {
         const contract = await Tezos.wallet.at(args.tokenPoolAddress);
         const operation = await contract.methods
             .lockupLiquidity(
-                'KT1PvEyN1xCFCgorN92QCfYjw3axS6jawCiJ',
+                'KT1NQ77PLLEofaJJGiwguoMJhZBebnJruXRQ',
                 false,
                 0,
                 0
