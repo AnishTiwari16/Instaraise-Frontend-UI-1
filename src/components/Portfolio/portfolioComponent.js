@@ -2,21 +2,61 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { RiShieldFlashFill, RiShieldFlashLine } from 'react-icons/ri';
 import { userPortfolio } from '../../redux/actions/selfHostedIDO/action.self';
 import { connectWallet } from '../../redux/actions/wallet/action.wallet';
+import { FetchSaleData, claimNow } from '../../redux/actions/ido/action.ido';
+import NOT_FOUND_IMG from '../../assets/images/no-image.png';
+import MainModal from '../Modals';
+import { Link } from 'react-router-dom';
 
 const PortfolioComponent = ({
     userPortfolio,
     userPortfolioData,
     wallet,
     connectWallet,
+    claimTokens,
+    fetchSaleData,
 }) => {
+    const [modalType, setModalType] = React.useState(null);
+    const [operationId, setOperationId] = React.useState(null);
+    const ClaimNow = async (tokenPoolAddress, projectName) => {
+        if (!wallet) {
+            alert('Please connect wallet');
+            return;
+        }
+        setModalType('transfer');
+        const API_RESPONSE = await claimTokens({
+            contractAddress: tokenPoolAddress,
+            projectName: projectName,
+        });
+        if (API_RESPONSE.payload.success) {
+            fetchSaleData();
+            setOperationId(API_RESPONSE.payload.operationHash);
+            setModalType('success');
+        } else {
+            setModalType('error');
+        }
+    };
+    const handleOperationId = (value) => {
+        setOperationId(value);
+    };
+    const handleModalType = (value) => {
+        setModalType(value);
+    };
     React.useEffect(() => {
         userPortfolio();
     }, []);
+
     return (
         <div className='pb-5'>
+            <MainModal
+                setModalType={handleModalType}
+                modalType={modalType}
+                operationId={operationId}
+                handleOperationId={handleOperationId}
+                wallet={wallet}
+                fetchSaleData={fetchSaleData}
+            />
             <div className='card_i shadow-sm'>
                 <div className='p-4 d-flex text-dark-to-light justify-content-between align-item-center '>
                     <h6 className='d-flex mt-1 flex-column justify-content-start p-0 text-dark-to-light fw-600 '>
@@ -28,6 +68,16 @@ const PortfolioComponent = ({
                         <TableHeader />
                         {userPortfolioData.success &&
                             userPortfolioData.data.map((elem, index) => {
+                                const ALIAS = elem.projectName
+                                    ? elem.projectName
+                                          .split(' ')
+                                          .join('')
+                                          .toLowerCase()
+                                    : '';
+                                const PROJECT_LINK =
+                                    elem.projectName === 'Instaraise'
+                                        ? '#'
+                                        : `/launchpad/IDO/${ALIAS}`;
                                 return (
                                     <tbody
                                         className='text-14 position-relative '
@@ -36,22 +86,20 @@ const PortfolioComponent = ({
                                         <tr>
                                             <td></td>
                                         </tr>
-                                        <tr className='name-col fw-500  hover-class'>
+                                        <tr className='name-col fw-500  hover-class table-last-child'>
                                             <td
                                                 colSpan={8}
                                                 className='col-sm-2 fixed-col name-col'
                                                 scope='row'
                                             >
-                                                <div className='my-2 d-flex align-items-center justify-content-start div-block '>
-                                                    <div className='me-3 text-dark-to-light'>
-                                                        <RiShieldFlashFill
-                                                            size={25}
-                                                            className='cursor-pointer'
-                                                        />
-                                                    </div>
+                                                <div className='my-2 d-flex align-items-center justify-content-start div-block'>
                                                     <div className='d-flex justify-content-center align-items-center ms-2 p-2 image-background-color border-10'>
                                                         <img
                                                             src={elem.icon}
+                                                            onError={(e) => {
+                                                                e.target.src =
+                                                                    NOT_FOUND_IMG;
+                                                            }}
                                                             alt='token_logo'
                                                             width={30}
                                                             height={30}
@@ -62,12 +110,12 @@ const PortfolioComponent = ({
                                                             }}
                                                         />
                                                     </div>
-                                                    <div className='ms-2 text-dark-to-light'>
+                                                    <Link
+                                                        className='ms-2 text-dark-to-light'
+                                                        to={PROJECT_LINK}
+                                                    >
                                                         {elem.projectName}
-                                                        <div className='text-mini'>
-                                                            asdf
-                                                        </div>
-                                                    </div>
+                                                    </Link>
                                                 </div>
                                             </td>
                                             <td
@@ -171,7 +219,7 @@ const PortfolioComponent = ({
                                                     data-bs-toggle='tooltip'
                                                     data-bs-placement='top'
                                                     title={`Current APR`}
-                                                    className='cursor-pointer my-2 d-flex justify-content-center align-items-center div-block text-dark-to-light'
+                                                    className='font-weight-bold cursor-pointer my-2 d-flex justify-content-center align-items-center div-block text-dark-to-light'
                                                 >
                                                     {elem.yourAllocation}
                                                 </div>
@@ -183,7 +231,15 @@ const PortfolioComponent = ({
                                                 colSpan={2}
                                             >
                                                 <div className='my-2 div-block d-flex justify-content-center align-items-center'>
-                                                    <button className='px-3 shadow-sm text-12 m-auto btn rounded btn-sm trade-button'>
+                                                    <button
+                                                        className='px-3 shadow-sm text-12 m-auto btn rounded btn-sm trade-button'
+                                                        onClick={() =>
+                                                            ClaimNow(
+                                                                elem.tokenPoolAddress,
+                                                                elem.projectName
+                                                            )
+                                                        }
+                                                    >
                                                         Claim now
                                                     </button>
                                                 </div>
@@ -242,6 +298,8 @@ const PortfolioComponent = ({
 const mapDispatchToProps = (dispatch) => ({
     userPortfolio: (payload) => dispatch(userPortfolio(payload)),
     connectWallet: (payload) => dispatch(connectWallet(payload)),
+    claimTokens: (payload) => dispatch(claimNow(payload)),
+    fetchSaleData: (payload) => dispatch(FetchSaleData(payload)),
 });
 const mapStateToProps = (state) => ({
     userPortfolioData: state.userPortfolioData,
@@ -267,15 +325,7 @@ const TableHeader = () => {
                         zIndex: '1',
                     }}
                 >
-                    <div className='fw-500 d-flex align-items-end justify-content-start my-2'>
-                        <div className='me-4 text-dark-to-light'>
-                            <RiShieldFlashLine
-                                size={25}
-                                className='cursor-pointer'
-                            />
-                        </div>
-                        <div>&nbsp;Name</div>
-                    </div>
+                    <div className=' fw-500 text-center my-2 '>Name</div>
                 </th>
                 <th
                     style={{

@@ -97,25 +97,12 @@ export default function JoinPoolModal(props) {
             props.setModalType('error');
         }
     };
-    let AMT_YOU_RECIEVE = 0;
-    if (props.projectData.MULTI_SWAP_RATE) {
-        if (props.saleType === 'private') {
-            AMT_YOU_RECIEVE = error.status
-                ? 0
-                : ((stakeAmount * 1) / 0.026).PrecisionMaker(3);
-        } else {
-            AMT_YOU_RECIEVE = error.status
-                ? 0
-                : ((stakeAmount * 1) / 0.031).PrecisionMaker(3);
-        }
-    } else {
-        AMT_YOU_RECIEVE = error.status
-            ? 0
-            : (
-                  (stakeAmount * 1) /
-                  props.projectData.tokenPrice.public
-              ).PrecisionMaker(3);
-    }
+    let AMT_YOU_RECIEVE = error.status
+        ? 0
+        : (
+              (stakeAmount * 1) /
+              props.projectData.tokenPrice.public
+          ).PrecisionMaker(3);
     return (
         <Modal
             aria-labelledby='transition-modal-title'

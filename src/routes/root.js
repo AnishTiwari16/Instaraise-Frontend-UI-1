@@ -78,7 +78,10 @@ const Root = () => {
                             element={<LiquidityLayout />}
                         />
 
-                        <Route path='/portfolio' element={<Portfolio />} />
+                        <Route
+                            path='/portfolio'
+                            element={<Portfolio flag={!flag} />}
+                        />
                         <Route
                             path='/dex/liquidity/configure-liquidity/'
                             element={<AddLiquidityPage />}

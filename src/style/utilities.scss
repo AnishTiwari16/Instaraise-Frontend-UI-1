@@ -72,6 +72,9 @@
 .table > :not(:last-child) > :last-child > * {
     border: 1px solid #dee2e6;
 }
+.table-last-child:last-child > * {
+    border: 1px solid #dee2e6;
+}
 .list-style-none {
     list-style: none;
 }

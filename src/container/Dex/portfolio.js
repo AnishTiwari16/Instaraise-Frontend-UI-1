@@ -1,12 +1,11 @@
 import React from 'react';
 
 import AppLayout from '../../components/dashboard/Layout/index';
-// import LiquidityPositionTable from '../../components/Dex/ManageLiquidity/LiquidityPositionTable';
 import PortfolioComponent from '../../components/Portfolio/portfolioComponent';
-const Portfolio = () => {
+const Portfolio = (props) => {
     return (
         <div>
-            <AppLayout>
+            <AppLayout flag={props.flag}>
                 <div>
                     <PortfolioComponent />
                 </div>

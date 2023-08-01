@@ -2,6 +2,7 @@
 import React from 'react';
 import { AiOutlineCheck, AiOutlineEdit } from 'react-icons/ai';
 import { connect } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 
 import OwnerInfo from './OwnerInfo';
 import { PROJECT_DETAILS_API_URL } from '../../../config/config';
@@ -12,7 +13,7 @@ import {
     lockupLiquidity,
 } from '../../../redux/actions/selfHostedIDO/action.self';
 import MainModal from '../../Modals';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { ThemeContext } from '../../../routes/root';
 import Countdown from 'react-countdown';
 
@@ -99,15 +100,13 @@ const AdminDetails = ({
         }
     };
     const handleLockUpLiquidity = async () => {
-        try {
-            const resp = await lockupLiquidity({
-                tokenPoolAddress: projectData.tokenPoolAddress,
-            });
-            if (!resp.payload.success) {
-                setModalType('error');
-            }
-        } catch (error) {
+        const resp = await lockupLiquidity({
+            tokenPoolAddress: projectData.tokenPoolAddress,
+        });
+        if (!resp.payload.success) {
             setModalType('error');
+        } else {
+            toast('Lockup successfull 🎉');
         }
     };
     const handleFinalseSale = async () => {
@@ -118,6 +117,8 @@ const AdminDetails = ({
         });
         if (!resp.payload.success) {
             setModalType('error');
+        } else {
+            toast('Pool finalised 🎉');
         }
     };
     let UNLOCK_TOKEN_DATE =
@@ -328,26 +329,26 @@ const AdminDetails = ({
                                             }
                                         }}
                                     >
-                                        {lockUpLiquidityLoader ? (
+                                        {'Lockup'}
+                                        {UNLOCK_TOKEN_DATE && (
+                                            <>
+                                                {' in '}
+                                                <Countdown
+                                                    date={new Date(
+                                                        projectData.time.tokenUnlock
+                                                    ).getTime()}
+                                                />
+                                            </>
+                                        )}
+                                        {lockUpLiquidityLoader && (
                                             <div
-                                                className='spinner-border spinner-border-sm'
+                                                className='spinner-border spinner-border-sm ml-2'
                                                 role='status'
                                             >
                                                 <span className='sr-only'>
                                                     Loading...
                                                 </span>
                                             </div>
-                                        ) : (
-                                            <>
-                                                {'Lockup '}
-                                                {UNLOCK_TOKEN_DATE && (
-                                                    <Countdown
-                                                        date={new Date(
-                                                            projectData.time.tokenUnlock
-                                                        ).getTime()}
-                                                    />
-                                                )}
-                                            </>
                                         )}
                                     </button>
                                 </div>
@@ -368,24 +369,24 @@ const AdminDetails = ({
                                     type='button'
                                     className={`shadow-none w-100 ${
                                         projectData.status !== 0 ||
-                                        projectData.whitelist.public.length ===
-                                            0 ||
-                                        new Date() >=
-                                            new Date(
-                                                projectData.time.public.end
-                                            )
+                                        (projectData.whitelist.public.length ===
+                                            0 &&
+                                            new Date() >=
+                                                new Date(
+                                                    projectData.time.public.end
+                                                ))
                                             ? 'disable-b'
                                             : 'connect-wallet-button'
                                     } px-3 btn`}
                                     onClick={() => {
                                         if (
                                             projectData.status === 0 ||
-                                            !projectData.whitelist.public
-                                                .length === 0 ||
-                                            new Date() <=
-                                                new Date(
-                                                    projectData.time.public.end
-                                                )
+                                            (projectData.whitelist.public
+                                                .length > 0 &&
+                                                new Date() <=
+                                                    new Date(
+                                                        projectData.time.public.end
+                                                    ))
                                         ) {
                                             handleFinalseSale();
                                         }
