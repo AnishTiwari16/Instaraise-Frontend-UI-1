@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaPlaneDeparture } from 'react-icons/fa';
 
 import AdminDetails from './AdminDetails';
-import Claim from './Claim';
+// import Claim from './Claim';
 import { DATA } from './TierData';
 import MainModal from '../../Modals';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ const PoolDetails = (props) => {
         SaleData,
         projectData,
         fetchSaleData,
-        claimTokens,
+        // claimTokens,
         wallet,
         participateInSale,
         projectContractAddress,
@@ -30,24 +30,24 @@ const PoolDetails = (props) => {
         setModalType(value);
     };
 
-    const ClaimNow = async () => {
-        if (!wallet) {
-            alert('Please connect wallet');
-            return;
-        }
-        setModalType('transfer');
-        const API_RESPONSE = await claimTokens({
-            contractAddress: projectData.tokenPoolAddress,
-            projectName: projectData.projectName,
-        });
-        if (API_RESPONSE.payload.success) {
-            fetchSaleData();
-            setOperationId(API_RESPONSE.payload.operationHash);
-            setModalType('success');
-        } else {
-            setModalType('error');
-        }
-    };
+    // const ClaimNow = async () => {
+    //     if (!wallet) {
+    //         alert('Please connect wallet');
+    //         return;
+    //     }
+    //     setModalType('transfer');
+    //     const API_RESPONSE = await claimTokens({
+    //         contractAddress: projectData.tokenPoolAddress,
+    //         projectName: projectData.projectName,
+    //     });
+    //     if (API_RESPONSE.payload.success) {
+    //         fetchSaleData();
+    //         setOperationId(API_RESPONSE.payload.operationHash);
+    //         setModalType('success');
+    //     } else {
+    //         setModalType('error');
+    //     }
+    // };
 
     let participatingStatus = false;
     if (
@@ -104,8 +104,8 @@ const PoolDetails = (props) => {
                 handleOperationId={handleOperationId}
                 contractAddress={projectContractAddress}
             />
-            <div className='d-flex justify-content-between align-items-between'>
-                <div className='d-flex align-items-start'>
+            <div className='d-flex justify-content-end'>
+                {/* <div className='d-flex align-items-start'>
                     <div className='d-flex justify-content-start text-14 py-1 '>
                         <div className='p-1 cursor-pointer'>
                             <span
@@ -137,7 +137,7 @@ const PoolDetails = (props) => {
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {props.projectData.projectName === 'Lyzi' ||
                 props.projectData.projectData === 'ShuttleOne' ||
                 props.projectData.projectData === 'Aqarchain' ||
@@ -371,15 +371,16 @@ const PoolDetails = (props) => {
                         )}
                     </>
                 </>
-            ) : tab === 'claim' ? (
+            ) : (
+                <AdminDetails projectData={props.projectData} />
+            )}
+            {/* tab === 'claim' ? (
                 <Claim
                     SaleData={SaleData}
                     projectData={projectData}
                     ClaimNow={ClaimNow}
                 />
-            ) : (
-                <AdminDetails projectData={props.projectData} />
-            )}
+            ) */}
         </div>
     );
 };

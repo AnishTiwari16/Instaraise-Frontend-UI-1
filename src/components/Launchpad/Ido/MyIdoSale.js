@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 
 import { IdoProjectDetails } from '../../../redux/actions/selfHostedIDO/action.self';
 import Pagination from '../../../hooks/pagination';
-import TempCards from './TempCards';
 import { connectWallet } from '../../../redux/actions/wallet/action.wallet';
 import { FaWallet } from 'react-icons/fa';
 import { IoIosCreate } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import SaleCards from './SaleCards';
 
 const MyIdoSale = (props) => {
     const { selfIdoProjects, wallet } = props;
     const [currentPage, setCurrentPage] = React.useState(1);
-    const itemsPerPage = 7;
+    const itemsPerPage = 6;
     const fetchData = async () => {
         await props.IdoProjectDetails();
     };
@@ -35,6 +35,9 @@ const MyIdoSale = (props) => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentPageItems = MY_PROJECT.slice(startIndex, endIndex);
     return (
         <div>
             <div className='row row-cols-1 text-dark-to-light mt-3  project-layout g-4  mx-0 mx-lg-3 mx-md-3 '>
@@ -79,7 +82,7 @@ const MyIdoSale = (props) => {
                     <h6 className='text-center'>
                         No sale created yet! Good time to&nbsp;
                         <Link
-                            to='/launchpad/create-launchpad'
+                            to='/launchpad/create-sale'
                             className='router-l router-l-u'
                         >
                             Create one{' '}
@@ -95,8 +98,8 @@ const MyIdoSale = (props) => {
                     row-cols-md-1 row-cols-sm-1
                     mx-0 mx-lg-3 mx-md-3'
                     >
-                        {MY_PROJECT.map((elem, index) => {
-                            return <TempCards {...elem} key={index} />;
+                        {currentPageItems.map((elem, index) => {
+                            return <SaleCards {...elem} key={index} />;
                         })}
                     </div>
                     <Pagination

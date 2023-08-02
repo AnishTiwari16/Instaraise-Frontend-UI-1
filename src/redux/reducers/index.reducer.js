@@ -7,17 +7,6 @@ import {
     selectedTokenDex,
 } from './dex/dex.reducer';
 import {
-    convert_pay_values_pools,
-    getNetworkTokenLimit,
-    getPoolData,
-    getUserLiquidityPositions,
-    handle_pay_values_pools,
-    liquidityPositions,
-    setLiquidityPoolPair,
-    setStakedToken,
-    tokenBalance,
-} from './dex/liquidity.reducer';
-import {
     fetchSaleData,
     participateInSaleData,
 } from './projects/projects.reducer';
@@ -55,17 +44,8 @@ const rootReducer = combineReducers({
     wallet: walletAddress,
     selectedNetwork: selectNetwork,
     tokenStats: getTokenData,
-    poolData: getPoolData,
-    liquidityPair: setLiquidityPoolPair,
-    handle_staked_amount_pools: handle_pay_values_pools,
-    convert_staked_amount_pool: convert_pay_values_pools,
     kycProcess: KYC_PROCESS,
-    stakedPair: setStakedToken,
     selectedToken: selectedTokenDex,
-    tokenBalance: tokenBalance,
-    userLiquidityPositions: getUserLiquidityPositions,
-    network_token_limit: getNetworkTokenLimit,
-    liquidityPositions: liquidityPositions,
     //Stepper
     getSteps: stepperData,
     // project API

@@ -28,6 +28,18 @@
 .mt-10 {
     margin-top: 100px !important;
 }
+
+.align-div-styles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.align-sale-name {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
 .form-label:after {
     content: ' *';
     color: red;

@@ -17,7 +17,6 @@ const Pagination = ({
     const handlePageChange = (_, page) => {
         onPageChange(page);
     };
-
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', pb: 5 }}>
             <PaginationSection

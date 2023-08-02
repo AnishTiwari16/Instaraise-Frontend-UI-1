@@ -46,7 +46,6 @@ const PortfolioComponent = ({
     React.useEffect(() => {
         userPortfolio();
     }, []);
-
     return (
         <div className='pb-5'>
             <MainModal
@@ -68,6 +67,11 @@ const PortfolioComponent = ({
                         <TableHeader />
                         {userPortfolioData.success &&
                             userPortfolioData.data.map((elem, index) => {
+                                const TOKEN_UNLOCK_TIME = elem.time.tokenUnlock;
+                                const IS_CLAIMABLE =
+                                    new Date() >= new Date(TOKEN_UNLOCK_TIME)
+                                        ? true
+                                        : false;
                                 const ALIAS = elem.projectName
                                     ? elem.projectName
                                           .split(' ')
@@ -89,11 +93,11 @@ const PortfolioComponent = ({
                                         <tr className='name-col fw-500  hover-class table-last-child'>
                                             <td
                                                 colSpan={8}
-                                                className='col-sm-2 fixed-col name-col'
+                                                className='position-relative col-sm-2 fixed-col name-col'
                                                 scope='row'
                                             >
-                                                <div className='my-2 d-flex align-items-center justify-content-start div-block'>
-                                                    <div className='d-flex justify-content-center align-items-center ms-2 p-2 image-background-color border-10'>
+                                                <div className='d-flex align-items-center justify-content-start div-block align-sale-name'>
+                                                    <div className='ms-2 p-2 image-background-color border-10'>
                                                         <img
                                                             src={elem.icon}
                                                             onError={(e) => {
@@ -111,7 +115,7 @@ const PortfolioComponent = ({
                                                         />
                                                     </div>
                                                     <Link
-                                                        className='ms-2 text-dark-to-light'
+                                                        className='overflow-auto ms-2 text-dark-to-light'
                                                         to={PROJECT_LINK}
                                                     >
                                                         {elem.projectName}
@@ -119,13 +123,14 @@ const PortfolioComponent = ({
                                                 </div>
                                             </td>
                                             <td
+                                                className='position-relative'
                                                 style={{
                                                     minWidth: '180px',
                                                     fontSize: '12px',
                                                 }}
                                                 colSpan={2}
                                             >
-                                                <div className='my-2 text-dark-to-light'>
+                                                <div className='align-sale-name my-2 text-dark-to-light'>
                                                     {elem.yourInvestments.map(
                                                         (item, index) => {
                                                             {
@@ -149,13 +154,14 @@ const PortfolioComponent = ({
                                                 </div>
                                             </td>
                                             <td
+                                                className='position-relative'
                                                 style={{
                                                     minWidth: '180px',
                                                     fontSize: '12px',
                                                 }}
                                                 colSpan={2}
                                             >
-                                                <div className='my-2 text-dark-to-light'>
+                                                <div className='text-dark-to-light align-div-styles'>
                                                     {elem.yourInvestments.map(
                                                         (item, index) => {
                                                             {
@@ -164,9 +170,9 @@ const PortfolioComponent = ({
                                                                         key={
                                                                             index
                                                                         }
-                                                                        className='text-12 d-flex text-center justify-content-center align-items-center'
+                                                                        className='text-12'
                                                                     >
-                                                                        <td>
+                                                                        <td className='py-3'>
                                                                             {
                                                                                 item.xtzInvested
                                                                             }
@@ -179,13 +185,14 @@ const PortfolioComponent = ({
                                                 </div>
                                             </td>
                                             <td
+                                                className='position-relative'
                                                 style={{
                                                     minWidth: '180px',
                                                     fontSize: '12px',
                                                 }}
                                                 colSpan={2}
                                             >
-                                                <div className='my-2 text-dark-to-light'>
+                                                <div className='text-dark-to-light align-div-styles'>
                                                     {elem.yourInvestments.map(
                                                         (item, index) => {
                                                             {
@@ -194,9 +201,9 @@ const PortfolioComponent = ({
                                                                         key={
                                                                             index
                                                                         }
-                                                                        className='text-12 d-flex text-center justify-content-center align-items-center'
+                                                                        className='text-12'
                                                                     >
-                                                                        <td>
+                                                                        <td className='py-3'>
                                                                             {
                                                                                 item.tokensReceived
                                                                             }
@@ -209,6 +216,7 @@ const PortfolioComponent = ({
                                                 </div>
                                             </td>
                                             <td
+                                                className='position-relative'
                                                 style={{
                                                     minWidth: '180px',
                                                     fontSize: '12px',
@@ -219,7 +227,7 @@ const PortfolioComponent = ({
                                                     data-bs-toggle='tooltip'
                                                     data-bs-placement='top'
                                                     title={`Current APR`}
-                                                    className='font-weight-bold cursor-pointer my-2 d-flex justify-content-center align-items-center div-block text-dark-to-light'
+                                                    className='align-div-styles font-weight-bold cursor-pointer d-flex justify-content-center align-items-center div-block text-dark-to-light'
                                                 >
                                                     {elem.yourAllocation}
                                                 </div>
@@ -230,15 +238,63 @@ const PortfolioComponent = ({
                                                 }}
                                                 colSpan={2}
                                             >
+                                                <div
+                                                    className='alert alert-warning p-1 mb-0 text-mini text-center'
+                                                    role='alert'
+                                                >
+                                                    Investors can claim their
+                                                    tokens after&nbsp;
+                                                    {
+                                                        TOKEN_UNLOCK_TIME.split(
+                                                            ' '
+                                                        )[0]
+                                                    }{' '}
+                                                    {
+                                                        TOKEN_UNLOCK_TIME.split(
+                                                            ' '
+                                                        )[1]
+                                                    }{' '}
+                                                    {
+                                                        TOKEN_UNLOCK_TIME.split(
+                                                            ' '
+                                                        )[2]
+                                                    }{' '}
+                                                    {
+                                                        TOKEN_UNLOCK_TIME.split(
+                                                            ' '
+                                                        )[3]
+                                                    }{' '}
+                                                    {
+                                                        TOKEN_UNLOCK_TIME.split(
+                                                            ' '
+                                                        )[4]
+                                                    }{' '}
+                                                    {
+                                                        TOKEN_UNLOCK_TIME.split(
+                                                            ' '
+                                                        )[5]
+                                                    }
+                                                    &nbsp;as per vesting
+                                                    schedule. Even if investors
+                                                    forget to claim, our smart
+                                                    contract will auto credit
+                                                    tokens to their addresses.
+                                                </div>
                                                 <div className='my-2 div-block d-flex justify-content-center align-items-center'>
                                                     <button
-                                                        className='px-3 shadow-sm text-12 m-auto btn rounded btn-sm trade-button'
-                                                        onClick={() =>
-                                                            ClaimNow(
-                                                                elem.tokenPoolAddress,
-                                                                elem.projectName
-                                                            )
-                                                        }
+                                                        onClick={() => {
+                                                            if (IS_CLAIMABLE) {
+                                                                ClaimNow(
+                                                                    elem.tokenPoolAddress,
+                                                                    elem.projectName
+                                                                );
+                                                            }
+                                                        }}
+                                                        className={`px-3 shadow-sm text-12 m-auto btn rounded btn-sm trade-button ${
+                                                            !IS_CLAIMABLE
+                                                                ? 'disable-b'
+                                                                : 'connect-wallet-button'
+                                                        }`}
                                                     >
                                                         Claim now
                                                     </button>

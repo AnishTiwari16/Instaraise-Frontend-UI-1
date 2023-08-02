@@ -20,7 +20,7 @@ const KybVerification = ({
         await userVerification({ email, wallet });
     };
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     React.useEffect(() => {
         if (emailRegex.test(email)) {
             setEmailValidationFlag(true);

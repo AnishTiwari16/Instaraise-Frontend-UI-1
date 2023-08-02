@@ -6,8 +6,8 @@ import { IDO_CONFIG } from '../../../config/Launchpad/Ido/IdoConfig';
 import { IdoProjectDetails } from '../../../redux/actions/selfHostedIDO/action.self';
 import Pagination from '../../../hooks/pagination';
 import Stepper from '../../Stepper/Stepper';
-import TempCards from './TempCards';
 import { fetchInstaStorage } from '../../../redux/actions/staking/action.staking';
+import SaleCards from './SaleCards';
 
 const IdoSale = (props) => {
     const { selfIdoProjects } = props;
@@ -81,7 +81,7 @@ const IdoSale = (props) => {
                                     className='row mx-0 px-0 d-flex justify-content-center align-items-center'
                                 >
                                     <div className='col-sm-12 col-lg-4'>
-                                        <TempCards {...item} />
+                                        <SaleCards {...item} />
                                     </div>
                                     <div className='col-12 my-3 my-lg-0 col-lg-8 m-auto'>
                                         <Stepper
@@ -105,7 +105,7 @@ const IdoSale = (props) => {
             >
                 {currentPageItems.map((elem, index) => {
                     if ((currentPage === 1 && index !== 0) || currentPage > 1) {
-                        return <TempCards {...elem} key={index} />;
+                        return <SaleCards {...elem} key={index} />;
                     }
                 })}
             </div>

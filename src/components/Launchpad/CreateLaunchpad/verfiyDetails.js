@@ -77,7 +77,7 @@ const VerfiyDetails = ({
                     }),
                 });
                 setTimeout(() => {
-                    navigate('/launchpad/all-launchpads');
+                    navigate('/launchpad/all-sale');
                 }, 5000);
                 return;
             } else {

@@ -5,10 +5,9 @@ export const ThemeContext = React.createContext();
 // eslint-disable-next-line
 import '../style/index.scss';
 
-import AddLiquidityPage from '../components/Dex/ManageLiquidity';
 import CreateLaunchpadContainer from '../container/Launchpad/createLaunchpad';
 import Dashbaord from '../container/Dashboard';
-import LiquidityLayout from '../container/Dex/liquidity';
+
 import Portfolio from '../container/Dex/portfolio';
 import HomeContainer from '../container/home';
 import Ido from '../container/Launchpad/Ido';
@@ -56,15 +55,15 @@ const Root = () => {
                             element={<IdoProjects flag={!flag} />}
                         />
                         <Route
-                            path='/launchpad/create-launchpad'
+                            path='/launchpad/create-sale'
                             element={<CreateLaunchpadContainer flag={!flag} />}
                         />
                         <Route
-                            path='/launchpad/all-launchpads'
+                            path='/launchpad/all-sale'
                             element={<Ido flag={!flag} />}
                         />
                         <Route
-                            path='/launchpad/my-launchpad'
+                            path='/launchpad/my-sale'
                             element={<MyIdoProjects flag={!flag} />}
                         />
 
@@ -74,18 +73,10 @@ const Root = () => {
                         ></Route>
 
                         <Route
-                            path='/dex/liquidity'
-                            element={<LiquidityLayout />}
-                        />
-
-                        <Route
                             path='/portfolio'
                             element={<Portfolio flag={!flag} />}
                         />
-                        <Route
-                            path='/dex/liquidity/configure-liquidity/'
-                            element={<AddLiquidityPage />}
-                        />
+
                         <Route path='*' element={<NotFound />} />
                     </Routes>
                 </BrowserRouter>

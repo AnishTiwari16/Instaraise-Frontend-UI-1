@@ -39,7 +39,7 @@ const initialProject = {
     timeBlock: 0,
     minAllocation: '',
     maxAllocation: '',
-    isPublicSaleWhitelisted: false,
+    isPublicSaleWhitelisted: true,
     projectName: '',
     tokenName: '',
     description: '',

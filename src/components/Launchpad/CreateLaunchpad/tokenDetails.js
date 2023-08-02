@@ -10,7 +10,7 @@ import { createNewProject } from '../../../redux/actions/selfHostedIDO/action.se
 
 const TokenDetails = ({
     handleComplete,
-    handleBack,
+    // handleBack,
     createNewProject,
     project,
 }) => {
@@ -261,7 +261,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='price'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -304,7 +304,7 @@ const TokenDetails = ({
                                     </label>
                                     <input
                                         type='number'
-                                        placeholder='some placeholder'
+                                        placeholder='amount to sell'
                                         className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                         id='validationServer02'
                                         name='description'
@@ -338,7 +338,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='max tokens'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -383,7 +383,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='Percentage for revenue'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -426,7 +426,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='DEX price'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -453,7 +453,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='stacking contract address'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -506,7 +506,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='minimum allocation amount'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -533,7 +533,7 @@ const TokenDetails = ({
                                                         e.target.value,
                                                 })
                                             }
-                                            placeholder='some placeholder'
+                                            placeholder='maximum allocation amount'
                                             id='validationServerUsername'
                                             aria-describedby='inputGroupPrepend3 validationServerUsernameFeedback'
                                             required
@@ -576,13 +576,13 @@ const TokenDetails = ({
                     </div>
                 </div>
 
-                <div className='d-flex justify-content-between py-2'>
-                    <button
+                <div className='d-flex justify-content-end py-2'>
+                    {/* <button
                         className='sale-button btn px-5 shadow-sm button-primary'
                         onClick={handleBack}
                     >
                         Back
-                    </button>
+                    </button> */}
 
                     <button
                         disabled={

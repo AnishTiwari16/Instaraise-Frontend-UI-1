@@ -19,7 +19,7 @@ export const option = {
     title: true,
     cssClass: ['card-raise-value'],
 };
-const TempCards = (props) => {
+const SaleCards = (props) => {
     const { wallet } = props;
     const START_TIME = new Date(props.time.public.start);
     const END_TIME = new Date(props.time.public.end);
@@ -173,4 +173,4 @@ const mapDispatchToProps = () => ({});
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
 });
-export default connect(mapStateToProps, mapDispatchToProps)(TempCards);
+export default connect(mapStateToProps, mapDispatchToProps)(SaleCards);

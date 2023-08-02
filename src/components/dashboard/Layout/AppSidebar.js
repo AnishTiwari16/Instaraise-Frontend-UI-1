@@ -103,9 +103,9 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                 id='collapseOne'
                                 className={`accordion-collapse collapse ${
                                     [
-                                        'create-launchpad',
-                                        'all-launchpads',
-                                        'my-launchpad',
+                                        'create-sale',
+                                        'all-sale',
+                                        'my-sale',
                                         'IDO',
                                         'create-crowdsale',
                                         'staking',
@@ -129,7 +129,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                             }}
                                         >
                                             <NavLink
-                                                to='/launchpad/create-launchpad'
+                                                to='/launchpad/create-sale'
                                                 className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
                                                 aria-current='page'
                                             >
@@ -140,7 +140,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                                 </div>
                                             </NavLink>
                                             <NavLink
-                                                to='/launchpad/all-launchpads'
+                                                to='/launchpad/all-sale'
                                                 className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
                                                 aria-current='page'
                                             >
@@ -151,7 +151,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                                 </div>
                                             </NavLink>
                                             <NavLink
-                                                to='/launchpad/my-launchpad'
+                                                to='/launchpad/my-sale'
                                                 className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
                                                 aria-current='page'
                                             >
