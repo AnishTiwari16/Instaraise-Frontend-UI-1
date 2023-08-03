@@ -109,12 +109,14 @@ const IdoSale = (props) => {
                     }
                 })}
             </div>
-            <Pagination
-                currentPage={currentPage}
-                itemsPerPage={itemsPerPage}
-                totalItems={combineData.length}
-                onPageChange={handlePageChange}
-            />
+            {combineData.length > itemsPerPage && (
+                <Pagination
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    totalItems={combineData.length}
+                    onPageChange={handlePageChange}
+                />
+            )}
         </div>
     );
 };

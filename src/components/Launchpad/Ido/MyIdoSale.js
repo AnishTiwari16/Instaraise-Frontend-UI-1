@@ -102,12 +102,14 @@ const MyIdoSale = (props) => {
                             return <SaleCards {...elem} key={index} />;
                         })}
                     </div>
-                    <Pagination
-                        currentPage={currentPage}
-                        itemsPerPage={itemsPerPage}
-                        totalItems={MY_PROJECT.length}
-                        onPageChange={handlePageChange}
-                    />
+                    {MY_PROJECT.length > itemsPerPage && (
+                        <Pagination
+                            currentPage={currentPage}
+                            itemsPerPage={itemsPerPage}
+                            totalItems={MY_PROJECT.length}
+                            onPageChange={handlePageChange}
+                        />
+                    )}
                 </>
             )}
         </div>

@@ -104,8 +104,8 @@ const PoolDetails = (props) => {
                 handleOperationId={handleOperationId}
                 contractAddress={projectContractAddress}
             />
-            <div className='d-flex justify-content-end'>
-                {/* <div className='d-flex align-items-start'>
+            <div className='d-flex justify-content-between'>
+                <div className='d-flex align-items-start'>
                     <div className='d-flex justify-content-start text-14 py-1 '>
                         <div className='p-1 cursor-pointer'>
                             <span
@@ -121,7 +121,7 @@ const PoolDetails = (props) => {
                                 Invest
                             </span>
                         </div>
-                        <div className='text-border'></div>
+                        {/* <div className='text-border'></div>
                         <div className='p-1 cursor-pointer'>
                             <span
                                 className={
@@ -135,9 +135,9 @@ const PoolDetails = (props) => {
                             >
                                 Claim
                             </span>
-                        </div>
+                        </div> */}
                     </div>
-                </div> */}
+                </div>
                 {props.projectData.projectName === 'Lyzi' ||
                 props.projectData.projectData === 'ShuttleOne' ||
                 props.projectData.projectData === 'Aqarchain' ||
@@ -321,7 +321,7 @@ const PoolDetails = (props) => {
                                                             INSTA_STAKE_AMOUNT -
                                                             stakedamount
                                                         }`}{' '}
-                                                        INSTA&nbsp;more
+                                                        $INSTA&nbsp;more
                                                     </Link>
                                                 ) : (
                                                     <button

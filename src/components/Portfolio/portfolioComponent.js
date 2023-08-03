@@ -3,7 +3,6 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { userPortfolio } from '../../redux/actions/selfHostedIDO/action.self';
-import { connectWallet } from '../../redux/actions/wallet/action.wallet';
 import { FetchSaleData, claimNow } from '../../redux/actions/ido/action.ido';
 import NOT_FOUND_IMG from '../../assets/images/no-image.png';
 import MainModal from '../Modals';
@@ -13,7 +12,6 @@ const PortfolioComponent = ({
     userPortfolio,
     userPortfolioData,
     wallet,
-    connectWallet,
     claimTokens,
     fetchSaleData,
 }) => {
@@ -45,7 +43,7 @@ const PortfolioComponent = ({
     };
     React.useEffect(() => {
         userPortfolio();
-    }, []);
+    }, [wallet]);
     return (
         <div className='pb-5'>
             <MainModal
@@ -57,11 +55,12 @@ const PortfolioComponent = ({
                 fetchSaleData={fetchSaleData}
             />
             <div className='card_i shadow-sm'>
-                <div className='p-4 d-flex text-dark-to-light justify-content-between align-item-center '>
-                    <h6 className='d-flex mt-1 flex-column justify-content-start p-0 text-dark-to-light fw-600 '>
+                <div className='p-4 d-flex text-dark-to-light justify-content-between align-item-center'>
+                    <h6 className='d-flex mt-1 flex-column justify-content-start p-0 text-dark-to-light fw-600'>
                         Your Launchpad Holdings
                     </h6>
                 </div>
+
                 <div className='table-responsive dex-card '>
                     <table className='table text-12 table-hover-tokens table-borderless px-3 m-0'>
                         <TableHeader />
@@ -305,45 +304,11 @@ const PortfolioComponent = ({
                                 );
                             })}
                     </table>
-                </div>
-                {!wallet && (
-                    <div className='project-detail card-body align-items-center'>
-                        <h5 className='card-title text-16 m-auto pt-3 pb-2'>
-                            Connect your wallet
-                        </h5>
-                        <p className='card-title text-16 mx-auto font-insta-regular'>
-                            Please connect you wallet to view your Investments
-                        </p>
-                        <div className=' mx-auto w-10'>
-                            <hr />
-                        </div>
-                        <button
-                            type='button'
-                            onClick={(e) => {
-                                e.preventDefault();
-                                connectWallet({
-                                    NETWORK: 'testnet',
-                                });
-                            }}
-                            className='text-center border-10 button-primary btn-faucet p-2 margin-auto my-2'
-                        >
-                            + Connect wallet
-                        </button>
-                    </div>
-                )}
-                <div className='project-detail card-body d-flex align-items-center'>
-                    {userPortfolioData.success &&
-                        wallet &&
-                        !userPortfolioData.data.length > 0 && (
-                            <h5 className='card-title text-16 m-auto'>
+                    {!userPortfolioData.success && (
+                        <div className='project-detail card-body d-flex align-items-center'>
+                            <h5 className='card-title text-16 m-auto py-5 fw-600'>
                                 No Investments on this address
                             </h5>
-                        )}
-                    {!userPortfolioData.success && (
-                        <div className='card-title m-auto'>
-                            <div className='spinner-grow' role='status'>
-                                <span className='sr-only'>Fetching...</span>
-                            </div>
                         </div>
                     )}
                 </div>
@@ -353,7 +318,6 @@ const PortfolioComponent = ({
 };
 const mapDispatchToProps = (dispatch) => ({
     userPortfolio: (payload) => dispatch(userPortfolio(payload)),
-    connectWallet: (payload) => dispatch(connectWallet(payload)),
     claimTokens: (payload) => dispatch(claimNow(payload)),
     fetchSaleData: (payload) => dispatch(FetchSaleData(payload)),
 });

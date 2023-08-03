@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 
+import ClaimModal from './Portfolio/ClaimModal';
 import JoinPoolModal from './Project/JoinPoolModal';
 import StakeModal from './Staking/StakeModal';
 import UnStakeModal from './Staking/UnstakeModal';
@@ -43,6 +44,8 @@ export default function MainModal(props) {
         return <WithdrawModal {...props} />;
     } else if (props.modalType === 'joinpool') {
         return <JoinPoolModal {...props} />;
+    } else if (props.modalType === 'claim') {
+        return <ClaimModal {...props} />;
     } else if (props.modalType === 'removeLiquidity') {
         return <JoinPoolModal {...props} />;
     }
