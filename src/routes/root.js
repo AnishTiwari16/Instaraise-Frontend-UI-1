@@ -17,7 +17,7 @@ import Privacy from '../container/privacy';
 import Terms from '../container/terms';
 import useLocalStorage from '../hooks/useLocalStorage';
 import MyIdoProjects from '../container/Launchpad/myIdoProjects';
-import Portfolio from '../container/Dex/Portfolio';
+import Portfolio from '../container/Dex/portfolio';
 
 const Root = () => {
     const [theme, setTheme] = useLocalStorage();
