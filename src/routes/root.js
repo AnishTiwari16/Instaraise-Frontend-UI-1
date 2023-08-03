@@ -8,7 +8,6 @@ import '../style/index.scss';
 import CreateLaunchpadContainer from '../container/Launchpad/createLaunchpad';
 import Dashbaord from '../container/Dashboard';
 
-import Portfolio from '../container/Dex/Portfolio';
 import HomeContainer from '../container/home';
 import Ido from '../container/Launchpad/Ido';
 import IdoProjects from '../container/Launchpad/IdoProjects';
@@ -18,6 +17,7 @@ import Privacy from '../container/privacy';
 import Terms from '../container/terms';
 import useLocalStorage from '../hooks/useLocalStorage';
 import MyIdoProjects from '../container/Launchpad/myIdoProjects';
+import Portfolio from '../container/Dex/Portfolio';
 
 const Root = () => {
     const [theme, setTheme] = useLocalStorage();
