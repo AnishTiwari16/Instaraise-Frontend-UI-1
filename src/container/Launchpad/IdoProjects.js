@@ -100,10 +100,6 @@ const LaunchIdoProjects = (props) => {
         fetchProjectDetails();
         fetchInstaStacking();
         // eslint-disable-next-line
-    }, []);
-    React.useEffect(() => {
-        fetchProjectDetails();
-        // eslint-disable-next-line
     }, [wallet]);
     return (
         <div>
@@ -267,10 +263,6 @@ const LaunchIdoProjects = (props) => {
                                                 {SaleData.data.totalTokensSold.PrecisionMaker(
                                                     2
                                                 )}
-                                            </span>
-                                            <span className='value'>
-                                                &nbsp;{projectData.SUB_CURRENCY}
-                                                &nbsp;
                                             </span>
                                             <br />
                                             <span className='fw-normal text-second '>

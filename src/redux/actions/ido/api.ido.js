@@ -206,8 +206,11 @@ export const FetchSaleDataAPI = async (args) => {
         return {
             success: true,
             data: {
-                contractAddress:
-                    yourInvestments.length > 0 ? contractAddress : null,
+                contractAddress: yourInvestments
+                    ? yourInvestments.length > 0
+                        ? contractAddress
+                        : null
+                    : null,
                 currentier,
                 allocation,
                 totalTokensSold,

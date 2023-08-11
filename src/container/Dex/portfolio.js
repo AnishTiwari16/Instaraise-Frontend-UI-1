@@ -1,15 +1,13 @@
 import React from 'react';
 
 import AppLayout from '../../components/dashboard/Layout/index';
-import TestPortfolioComponent from '../../components/Portfolio/TestPortfolioComponent';
-// import PortfolioComponent from '../../components/Portfolio/PortfolioComponent';
+import UserPortfolioComponent from '../../components/Portfolio/UserPortfolioComponent';
 const Portfolio = (props) => {
     return (
         <div>
             <AppLayout flag={props.flag}>
                 <div>
-                    <TestPortfolioComponent />
-                    {/* <PortfolioComponent /> */}
+                    <UserPortfolioComponent />
                 </div>
             </AppLayout>
         </div>

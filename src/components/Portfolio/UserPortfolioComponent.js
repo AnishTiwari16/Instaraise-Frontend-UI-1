@@ -6,16 +6,16 @@ import { connectWallet } from '../../redux/actions/wallet/action.wallet';
 import { userPortfolio } from '../../redux/actions/selfHostedIDO/action.self';
 import NOT_FOUND_IMG from '../../assets/images/no-image.png';
 import { Link } from 'react-router-dom';
-import { FetchSaleData, claimNow } from '../../redux/actions/ido/action.ido';
+import { claimNow } from '../../redux/actions/ido/action.ido';
 import hand_Img from '../../assets/Ido/stepper/hand_Img.png';
 import hand_dark_Img from '../../assets/Ido/stepper/hand_dark_Img.png';
 import MainModal from '../Modals';
 import Pagination from '../../hooks/pagination';
 import { ThemeContext } from '../../routes/root';
-const TestPortfolioComponent = ({
+import Shimmer from '../../hooks/shimmer';
+const UserPortfolioComponent = ({
     claimTokens,
     connectWallet,
-    fetchSaleData,
     userPortfolio,
     userPortfolioData,
     wallet,
@@ -28,17 +28,13 @@ const TestPortfolioComponent = ({
     const [saleClaimDate, setSaleClaimDate] = React.useState();
     const { theme } = React.useContext(ThemeContext);
     const ClaimNow = async (tokenPoolAddress, projectName) => {
-        if (!wallet) {
-            alert('Please connect wallet');
-            return;
-        }
         setModalType('transfer');
         const API_RESPONSE = await claimTokens({
             contractAddress: tokenPoolAddress,
             projectName: projectName,
         });
         if (API_RESPONSE.payload.success) {
-            fetchSaleData();
+            userPortfolio();
 
             setModalType('success');
         } else {
@@ -61,11 +57,7 @@ const TestPortfolioComponent = ({
     }
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentPageItems = USER_INVESTMENTS.slice(
-        startIndex,
-        endIndex
-    ).reverse();
-    console.log(userPortfolioData);
+    const currentPageItems = USER_INVESTMENTS.slice(startIndex, endIndex);
     return (
         <div>
             <MainModal
@@ -85,6 +77,12 @@ const TestPortfolioComponent = ({
                     </div>
                 </div>
             </div>
+            {wallet && !userPortfolioData.success && (
+                <div className='my-2 my-lg-5 my-md-5 my-sm-5  px-0 mb-lg-0 text-dark-to-light mb-md-0  row row-cols-1 row-cols-xxl-3 row-cols-lg-2  row-cols-md-1 row-cols-sm-1 mx-0 mx-lg-3 mx-md-3'>
+                    {<Shimmer />}
+                </div>
+            )}
+
             <div
                 className='my-2 my-lg-5 my-md-5 my-sm-5 
                     px-0 mb-lg-0 text-dark-to-light mb-md-0 
@@ -186,17 +184,10 @@ const TestPortfolioComponent = ({
                         </span>
                     );
                 })}
-                {!userPortfolioData.success && (
-                    <div className='card-title m-auto text-center'>
-                        <div className='spinner-grow' role='status'>
-                            <span className='sr-only'>Fetching...</span>
-                        </div>
-                    </div>
-                )}
-                {wallet &&
+                {wallet ? (
                     userPortfolioData.success &&
                     !userPortfolioData.data.length > 0 && (
-                        <div className='card-body text-center'>
+                        <div className='card-body project-detail shadow-sm border-10'>
                             <h4 className='card-title text-16 m-auto fw-600'>
                                 No Investments on this address
                             </h4>
@@ -207,26 +198,17 @@ const TestPortfolioComponent = ({
                                 <hr />
                             </div>
                             <div>
-                                {theme ? (
-                                    <img
-                                        src={hand_Img}
-                                        width={100}
-                                        height={100}
-                                        alt='hand'
-                                    />
-                                ) : (
-                                    <img
-                                        src={hand_dark_Img}
-                                        width={100}
-                                        height={100}
-                                        alt='hand'
-                                    />
-                                )}
+                                <img
+                                    src={theme ? hand_Img : hand_dark_Img}
+                                    width={100}
+                                    height={100}
+                                    alt='hand'
+                                />
                             </div>
                         </div>
-                    )}
-                {!wallet && userPortfolioData.success && (
-                    <div className='card-body text-center'>
+                    )
+                ) : (
+                    <div className='card-body project-detail shadow-sm border-10'>
                         <h5 className='card-title text-16 m-auto pt-3 pb-2'>
                             Connect your wallet
                         </h5>
@@ -244,7 +226,7 @@ const TestPortfolioComponent = ({
                                     NETWORK: 'testnet',
                                 });
                             }}
-                            className='text-center border-10 button-primary btn-faucet p-2 margin-auto my-2'
+                            className='btn-faucet rounded px-3 py-2 my-2'
                         >
                             + Connect wallet
                         </button>
@@ -266,7 +248,6 @@ const mapDispatchToProp = (dispatch) => ({
     userPortfolio: (payload) => dispatch(userPortfolio(payload)),
     claimTokens: (payload) => dispatch(claimNow(payload)),
     connectWallet: (payload) => dispatch(connectWallet(payload)),
-    fetchSaleData: (payload) => dispatch(FetchSaleData(payload)),
 });
 const mapStateToProps = (state) => ({
     userPortfolioData: state.userPortfolioData,
@@ -275,4 +256,4 @@ const mapStateToProps = (state) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProp
-)(TestPortfolioComponent);
+)(UserPortfolioComponent);

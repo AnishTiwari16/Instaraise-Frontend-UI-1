@@ -9,16 +9,25 @@ import { FaWallet } from 'react-icons/fa';
 import { IoIosCreate } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import SaleCards from './SaleCards';
+import Shimmer from '../../../hooks/shimmer';
 
 const MyIdoSale = (props) => {
     const { selfIdoProjects, wallet } = props;
     const [currentPage, setCurrentPage] = React.useState(1);
+    const [shimmerLoading, setShimmerLoading] = React.useState(true);
     const itemsPerPage = 6;
     const fetchData = async () => {
         await props.IdoProjectDetails();
     };
     React.useEffect(() => {
         fetchData();
+        const shimmerTimeout = setTimeout(() => {
+            setShimmerLoading(false);
+        }, 3000);
+        // Clear the timeout if the component unmounts before 3 seconds
+        return () => {
+            clearTimeout(shimmerTimeout);
+        };
     }, []);
     let MY_PROJECT = [];
     if (selfIdoProjects.success) {
@@ -55,40 +64,50 @@ const MyIdoSale = (props) => {
                 </div>
             </div>
             {!wallet ? (
-                <div className='mt-10 form-header text-dark-to-light'>
-                    <div className='text-center mb-2'>
-                        <FaWallet size={65} />
+                <div className='mt-3 card-body project-detail shadow-sm border-10'>
+                    <div className='my-5 form-header text-dark-to-light'>
+                        <div className='text-center mb-2'>
+                            <FaWallet size={65} />
+                        </div>
+                        <h6 className='text-center'>
+                            Please connect your wallet to proceed&nbsp;
+                            <Link
+                                to='#'
+                                className='router-l router-l-u'
+                                onClick={() =>
+                                    props.connectWallet({
+                                        NETWORK: 'mainnet',
+                                    })
+                                }
+                            >
+                                Connect now{' '}
+                            </Link>
+                        </h6>
                     </div>
-                    <h6 className='text-center'>
-                        Please connect your wallet to proceed&nbsp;
-                        <Link
-                            to='#'
-                            className='router-l router-l-u'
-                            onClick={() =>
-                                props.connectWallet({
-                                    NETWORK: 'mainnet',
-                                })
-                            }
-                        >
-                            Connect now{' '}
-                        </Link>
-                    </h6>
                 </div>
             ) : MY_PROJECT.length === 0 ? (
-                <div className='mt-10 form-header text-dark-to-light'>
-                    <div className='text-center mb-2'>
-                        <IoIosCreate size={65} />
+                shimmerLoading ? (
+                    <div className='my-2 my-lg-5 my-md-5 my-sm-5  px-0 mb-lg-0 text-dark-to-light mb-md-0  row row-cols-1 row-cols-xxl-3 row-cols-lg-2  row-cols-md-1 row-cols-sm-1 mx-0 mx-lg-3 mx-md-3'>
+                        <Shimmer />
                     </div>
-                    <h6 className='text-center'>
-                        No sale created yet! Good time to&nbsp;
-                        <Link
-                            to='/launchpad/create-sale'
-                            className='router-l router-l-u'
-                        >
-                            Create one{' '}
-                        </Link>
-                    </h6>
-                </div>
+                ) : (
+                    <div className='mt-3 card-body project-detail shadow-sm border-10'>
+                        <div className='my-5 form-header text-dark-to-light'>
+                            <div className='text-center mb-2'>
+                                <IoIosCreate size={65} />
+                            </div>
+                            <h6 className='text-center'>
+                                No sale created yet! Good time to&nbsp;
+                                <Link
+                                    to='/launchpad/create-sale'
+                                    className='router-l router-l-u'
+                                >
+                                    Create one{' '}
+                                </Link>
+                            </h6>
+                        </div>
+                    </div>
+                )
             ) : (
                 <>
                     <div

@@ -368,25 +368,16 @@ const AdminDetails = ({
                                 <button
                                     type='button'
                                     className={`shadow-none w-100 ${
-                                        projectData.status !== 0 ||
-                                        (projectData.whitelist.public.length ===
-                                            0 &&
-                                            new Date() >=
-                                                new Date(
-                                                    projectData.time.public.end
-                                                ))
-                                            ? 'disable-b'
-                                            : 'connect-wallet-button'
+                                        projectData.status === 0 &&
+                                        projectData.whitelist.public.length > 0
+                                            ? 'connect-wallet-button'
+                                            : 'disable-b'
                                     } px-3 btn`}
                                     onClick={() => {
                                         if (
-                                            projectData.status === 0 ||
-                                            (projectData.whitelist.public
-                                                .length > 0 &&
-                                                new Date() <=
-                                                    new Date(
-                                                        projectData.time.public.end
-                                                    ))
+                                            projectData.status === 0 &&
+                                            projectData.whitelist.public
+                                                .length > 0
                                         ) {
                                             handleFinalseSale();
                                         }

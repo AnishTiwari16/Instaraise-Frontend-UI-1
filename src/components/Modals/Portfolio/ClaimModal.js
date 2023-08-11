@@ -61,7 +61,22 @@ const ClaimModal = (props) => {
                                 Investment breakdown
                             </h6>
                         </div>
-                        <div className='mt-3 d-flex justify-content-between align-items-center  rounded shadow-none'>
+                        <div
+                            className='mt-2 alert alert-warning p-2 text-mini'
+                            role='alert'
+                        >
+                            Investors can claim their tokens after&nbsp;
+                            {saleClaimDate.split(' ')[0]}{' '}
+                            {saleClaimDate.split(' ')[1]}{' '}
+                            {saleClaimDate.split(' ')[2]}{' '}
+                            {saleClaimDate.split(' ')[3]}{' '}
+                            {saleClaimDate.split(' ')[4]}{' '}
+                            {saleClaimDate.split(' ')[5]}
+                            &nbsp;as per vesting schedule. Even if investors
+                            forget to claim, our smart contract will auto credit
+                            tokens to their addresses.
+                        </div>
+                        <div className='my-3 d-flex justify-content-between align-items-center rounded shadow-none'>
                             <table className='table table-bordered'>
                                 <thead className='text-center'>
                                     <tr>
@@ -118,21 +133,6 @@ const ClaimModal = (props) => {
                                     })}
                                 </tbody>
                             </table>
-                        </div>
-                        <div
-                            className='alert alert-warning p-2 mb-3 text-mini'
-                            role='alert'
-                        >
-                            Investors can claim their tokens after&nbsp;
-                            {saleClaimDate.split(' ')[0]}{' '}
-                            {saleClaimDate.split(' ')[1]}{' '}
-                            {saleClaimDate.split(' ')[2]}{' '}
-                            {saleClaimDate.split(' ')[3]}{' '}
-                            {saleClaimDate.split(' ')[4]}{' '}
-                            {saleClaimDate.split(' ')[5]}
-                            &nbsp;as per vesting schedule. Even if investors
-                            forget to claim, our smart contract will auto credit
-                            tokens to their addresses.
                         </div>
                     </Box>
                 </Fade>
