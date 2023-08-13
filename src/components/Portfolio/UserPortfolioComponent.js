@@ -54,7 +54,20 @@ const UserPortfolioComponent = ({
     };
     let USER_INVESTMENTS = [];
     if (userPortfolioData.success) {
-        USER_INVESTMENTS = userPortfolioData.data;
+        USER_INVESTMENTS = userPortfolioData.data.sort(function (a, b) {
+            const aDate = new Date(a.time.public.start);
+            const bDate = new Date(b.time.public.start);
+            if (
+                new Date() < aDate &&
+                new Date() < new Date(a.time.public.end) &&
+                new Date() < bDate &&
+                new Date() < new Date(b.time.public.end)
+            ) {
+                return aDate - bDate;
+            } else {
+                return bDate - aDate;
+            }
+        });
     }
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
