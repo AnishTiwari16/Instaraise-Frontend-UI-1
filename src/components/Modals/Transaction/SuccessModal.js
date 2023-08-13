@@ -38,7 +38,6 @@ export default function SuccessModal(props) {
         boxShadow: 24,
         px: 2,
     };
-
     return (
         <div>
             <Modal

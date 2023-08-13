@@ -12,7 +12,7 @@ import hand_dark_Img from '../../assets/Ido/stepper/hand_dark_Img.png';
 import MainModal from '../Modals';
 import Pagination from '../../hooks/pagination';
 import { ThemeContext } from '../../routes/root';
-import Shimmer from '../../hooks/shimmer';
+import PortfolioShimmer from '../../hooks/shimmer';
 const UserPortfolioComponent = ({
     claimTokens,
     connectWallet,
@@ -23,6 +23,7 @@ const UserPortfolioComponent = ({
     const itemsPerPage = 6;
     const [currentPage, setCurrentPage] = React.useState(1);
     const [modalType, setModalType] = React.useState(null);
+    const [operationId, setOperationId] = React.useState(null);
     const [userInvestmentBreakdown, setUserInvestmentBreakdown] =
         React.useState([]);
     const [saleClaimDate, setSaleClaimDate] = React.useState();
@@ -35,7 +36,7 @@ const UserPortfolioComponent = ({
         });
         if (API_RESPONSE.payload.success) {
             userPortfolio();
-
+            setOperationId(API_RESPONSE.payload.operationHash);
             setModalType('success');
         } else {
             setModalType('error');
@@ -64,6 +65,7 @@ const UserPortfolioComponent = ({
                 setModalType={handleModalType}
                 modalType={modalType}
                 saleClaimDate={saleClaimDate}
+                operationId={operationId}
                 yourInvestments={userInvestmentBreakdown}
             />
             <div className='row row-cols-1 text-dark-to-light mt-3  project-layout g-4  mx-0 mx-lg-3 mx-md-3 '>
@@ -79,7 +81,7 @@ const UserPortfolioComponent = ({
             </div>
             {wallet && !userPortfolioData.success && (
                 <div className='my-2 my-lg-5 my-md-5 my-sm-5  px-0 mb-lg-0 text-dark-to-light mb-md-0  row row-cols-1 row-cols-xxl-3 row-cols-lg-2  row-cols-md-1 row-cols-sm-1 mx-0 mx-lg-3 mx-md-3'>
-                    {<Shimmer />}
+                    {<PortfolioShimmer />}
                 </div>
             )}
 

@@ -319,12 +319,16 @@ const AdminDetails = ({
                                     <button
                                         type='button'
                                         className={`shadow-sm ${
-                                            UNLOCK_TOKEN_DATE
-                                                ? 'disable-b '
+                                            !UNLOCK_TOKEN_DATE &&
+                                            projectData.status !== 1
+                                                ? 'disable-b'
                                                 : 'connect-wallet-button'
                                         } px-3 btn`}
                                         onClick={() => {
-                                            if (!UNLOCK_TOKEN_DATE) {
+                                            if (
+                                                !UNLOCK_TOKEN_DATE &&
+                                                projectData.status === 1
+                                            ) {
                                                 handleLockUpLiquidity();
                                             }
                                         }}

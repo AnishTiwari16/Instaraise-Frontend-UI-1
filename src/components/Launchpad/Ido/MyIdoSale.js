@@ -9,7 +9,7 @@ import { FaWallet } from 'react-icons/fa';
 import { IoIosCreate } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import SaleCards from './SaleCards';
-import Shimmer from '../../../hooks/shimmer';
+import { SaleShimmer } from '../../../hooks/shimmer';
 
 const MyIdoSale = (props) => {
     const { selfIdoProjects, wallet } = props;
@@ -88,7 +88,7 @@ const MyIdoSale = (props) => {
             ) : MY_PROJECT.length === 0 ? (
                 shimmerLoading ? (
                     <div className='my-2 my-lg-5 my-md-5 my-sm-5  px-0 mb-lg-0 text-dark-to-light mb-md-0  row row-cols-1 row-cols-xxl-3 row-cols-lg-2  row-cols-md-1 row-cols-sm-1 mx-0 mx-lg-3 mx-md-3'>
-                        <Shimmer />
+                        <SaleShimmer />
                     </div>
                 ) : (
                     <div className='mt-3 card-body project-detail shadow-sm border-10'>
