@@ -7,7 +7,7 @@ import VerfiyDetails from './verfiyDetails';
 import KybVerification from './kybVerification';
 
 const CreateLaunchpad = () => {
-    const [activeStep, setActiveStep] = React.useState(1);
+    const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState({});
 
     const handleComplete = () => {
