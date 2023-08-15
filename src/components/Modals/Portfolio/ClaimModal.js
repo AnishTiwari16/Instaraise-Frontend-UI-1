@@ -7,12 +7,16 @@ import { ThemeContext } from '../../../routes/root';
 const ClaimModal = (props) => {
     const { saleClaimDate, yourInvestments, setModalType } = props;
     const matches = useMediaQuery('(min-width:600px)');
+    const heightMathces = useMediaQuery('(min-width: 2100px)');
     const { theme } = React.useContext(ThemeContext);
     const style = {
         position: 'absolute',
         top: '20%',
         left: '50%',
         transform: 'translate(-50%, -20%)',
+        height: !heightMathces ? '70vh' : null,
+        overflowX: 'hidden',
+        overflowY: 'scroll',
         width: !matches ? '90vw' : '35vw',
         backgroundColor: theme ? 'rgb(255, 255, 255)' : 'rgb(22, 3, 53)',
         color: theme ? '#4e5d78' : '#ffffff',
@@ -46,8 +50,8 @@ const ClaimModal = (props) => {
                                     borderRadius: '50%',
                                     width: '30px',
                                     height: '30px',
-                                    marginTop: '-8px',
-                                    marginRight: '-24px',
+                                    marginTop: '10px',
+                                    marginRight: '-5px',
                                     backgroundColor: theme
                                         ? '#4e5d78'
                                         : '#080421',
@@ -76,7 +80,7 @@ const ClaimModal = (props) => {
                             forget to claim, our smart contract will auto credit
                             tokens to their addresses.
                         </div>
-                        <div className='my-3 d-flex justify-content-between align-items-center rounded shadow-none h-400 overflow-auto'>
+                        <div className='my-3 d-flex justify-content-between align-items-center rounded shadow-none'>
                             <table className='table table-bordered'>
                                 <thead className='text-center'>
                                     <tr>
