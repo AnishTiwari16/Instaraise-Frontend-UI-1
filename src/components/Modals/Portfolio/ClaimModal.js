@@ -76,7 +76,7 @@ const ClaimModal = (props) => {
                             forget to claim, our smart contract will auto credit
                             tokens to their addresses.
                         </div>
-                        <div className='my-3 d-flex justify-content-between align-items-center rounded shadow-none'>
+                        <div className='my-3 d-flex justify-content-between align-items-center rounded shadow-none h-400 overflow-auto'>
                             <table className='table table-bordered'>
                                 <thead className='text-center'>
                                     <tr>

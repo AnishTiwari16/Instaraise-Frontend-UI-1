@@ -168,7 +168,7 @@ const PoolDetails = (props) => {
                         {DATA.map((item, index) => (
                             <div key={index}>
                                 {item.tier === SaleData.data.currentier && (
-                                    <div className='container tier card shadow-sm my-4 my-lg-2 border-10'>
+                                    <div className='container-fluid tier card shadow-sm my-4 my-lg-2 border-10'>
                                         <div className='row d-flex align-items-center'>
                                             <div className='py-3 col-lg-3 col-md-12 text-20 d-flex justify-content-center justify-content-lg-start'>
                                                 <div className='plane'>

@@ -12,6 +12,7 @@ import {
 } from '../../../config/config';
 import axios from 'axios';
 import { FetchSaleDataAPI } from '../ido/api.ido';
+import { IDO_CONFIG } from '../../../config/Launchpad/Ido/IdoConfig';
 
 export const createSaleAPI = async ({
     admin,
@@ -263,7 +264,7 @@ export const finaliseSaleAPI = async (args) => {
 export const userPortfolioAPI = async () => {
     try {
         const allSale = await fetchIdoDetails();
-        var DATA = allSale.data.map(async (elem) => {
+        let DATA = allSale.data.map(async (elem) => {
             const resp = await FetchSaleDataAPI({
                 contractAddress: elem.tokenPoolAddress,
                 ENROLLMENT_KEY: elem.enrolledParticipants,
@@ -280,12 +281,39 @@ export const userPortfolioAPI = async () => {
             }
         });
         const VALUE = await Promise.all(DATA);
-        var filteredArray = VALUE.filter((value) => {
+        let filteredArray = VALUE.filter((value) => {
             return value !== undefined;
         });
+        const prevFilteredArray = IDO_CONFIG.filter((elem) => {
+            if (
+                elem.projectName === 'Lyzi' ||
+                elem.projectName === 'ShuttleOne' ||
+                elem.projectName === 'Aqarchain'
+            ) {
+                return elem;
+            }
+        });
+        let PREV_SALES_DATA = prevFilteredArray.map(async (elem) => {
+            const resp = await FetchSaleDataAPI({
+                contractAddress: elem.tokenPoolAddress,
+                ENROLLMENT_KEY: parseInt(elem.enrolledParticipants),
+                pricePerToken: elem.tokenPrice.public,
+                DECIMALS: elem.token.decimals / Math.pow(10, 6),
+                SALE_MAP_KEY: parseInt(elem.details.sale),
+                projectName: elem.projectName,
+            });
+            if (resp.data.yourInvestments.length > 0) {
+                return (PREV_SALES_DATA = Object.assign({}, resp.data, elem));
+            }
+        });
+        const PREV_VALUE = await Promise.all(PREV_SALES_DATA);
+        let filteredPrevArray = PREV_VALUE.filter((value) => {
+            return value !== undefined;
+        });
+        const combinedSaleData = [...filteredArray, ...filteredPrevArray];
         return {
             success: true,
-            data: filteredArray,
+            data: combinedSaleData,
         };
     } catch (err) {
         return {
