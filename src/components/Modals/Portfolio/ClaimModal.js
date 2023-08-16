@@ -7,7 +7,7 @@ import { ThemeContext } from '../../../routes/root';
 const ClaimModal = (props) => {
     const { saleClaimDate, yourInvestments, setModalType } = props;
     const matches = useMediaQuery('(min-width:600px)');
-    const heightMathces = useMediaQuery('(min-width: 2100px)');
+    const heightMathces = useMediaQuery('(min-width: 1200px)');
     const { theme } = React.useContext(ThemeContext);
     const style = {
         position: 'absolute',
