@@ -7,14 +7,13 @@ import { ThemeContext } from '../../../routes/root';
 const ClaimModal = (props) => {
     const { saleClaimDate, yourInvestments, setModalType } = props;
     const matches = useMediaQuery('(min-width:600px)');
-    const heightMathces = useMediaQuery('(min-width: 1200px)');
     const { theme } = React.useContext(ThemeContext);
     const style = {
         position: 'absolute',
         top: '20%',
         left: '50%',
         transform: 'translate(-50%, -20%)',
-        height: !heightMathces ? '70vh' : null,
+        height: yourInvestments.length > 3 ? '70vh' : null,
         overflowX: 'hidden',
         overflowY: 'scroll',
         width: !matches ? '90vw' : '35vw',
