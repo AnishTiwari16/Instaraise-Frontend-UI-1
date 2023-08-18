@@ -16,6 +16,7 @@ const KybVerification = ({
 }) => {
     const { email } = project;
     const [emailValidationFlag, setEmailValidationFlag] = React.useState(false);
+    const [synapsVerified, setSynapsVerified] = React.useState(false);
     const handleNext = async () => {
         await userVerification({ email, wallet });
     };
@@ -24,8 +25,6 @@ const KybVerification = ({
     React.useEffect(() => {
         if (emailRegex.test(email)) {
             setEmailValidationFlag(true);
-        } else {
-            setEmailValidationFlag(false);
         }
     }, [email]);
     return (
@@ -119,15 +118,12 @@ const KybVerification = ({
                                 </div>
                             </form>
                         </div>
-                        <div className='carousel-item '>
+                        <div className='carousel-item'>
                             <Synaps
                                 sessionId={userVerifyData.data}
                                 service={'corporate'}
                                 lang={'en'}
-                                onReady={() => console.log('component ready')}
-                                onFinish={() =>
-                                    console.log('user finish process')
-                                }
+                                onFinish={() => setSynapsVerified(true)}
                                 color={{
                                     primary: '6042ec',
                                     secondary: 'ffffff',
@@ -136,7 +132,12 @@ const KybVerification = ({
                             <div className='d-flex justify-content-end pb-5 pt-2'>
                                 <button
                                     className='sale-button btn px-5 shadow-sm button-primary'
-                                    onClick={handleComplete}
+                                    disabled={!synapsVerified}
+                                    onClick={() => {
+                                        if (synapsVerified) {
+                                            handleComplete();
+                                        }
+                                    }}
                                 >
                                     Next
                                 </button>

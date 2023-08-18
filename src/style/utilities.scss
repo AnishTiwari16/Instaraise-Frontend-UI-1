@@ -164,6 +164,9 @@
     position: fixed;
     bottom: 8%;
 }
+.react-datepicker-popper {
+    z-index: 99999 !important;
+}
 .card-header-border-bottom {
     border-bottom: 0.5px solid #bdbdbd;
 }

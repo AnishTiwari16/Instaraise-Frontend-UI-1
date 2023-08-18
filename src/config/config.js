@@ -13,7 +13,8 @@ export const ENROLL_USER_API_URL = `${BASE_URL}/v1/enroll`;
 export const COINGECKO_API_URL = `${BASE_URL}/v1/market_chart`;
 export const TOKEN_DATA_API_URL = `${BASE_URL}/v1/tokens`;
 export const TOKEN_STATS_API_URL = `${BASE_URL}/v1/homestats`;
-export const KYB_VERIFY_API_URL = `${BASE_URL}/v1/synaps`;
+export const KYB_VERIFY_API_URL =
+    'https://0nif80fm14.execute-api.us-east-2.amazonaws.com/v1/synaps';
 export const PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad`;
 export const ALL_PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad/all`;
 export const DEX_FEE = 1;

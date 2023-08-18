@@ -19,9 +19,7 @@ export default function SuccessModal(props) {
     const { setModalType, operationId } = props;
 
     const location = useLocation();
-    const isLaunchpadPage = location.pathname.includes(
-        '/launchpad/create-sale'
-    );
+    const isLaunchpadPage = location.pathname.includes('/launchpad/create');
     const styleContainer = {
         display: 'flex',
         justifyContent: 'center',

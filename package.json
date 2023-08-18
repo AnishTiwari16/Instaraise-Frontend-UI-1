@@ -21,7 +21,7 @@
         "npm": "^8.19.2",
         "react": "^18.2.0",
         "react-countdown": "^2.3.5",
-        "react-datetime": "^3.2.0",
+        "react-datepicker": "^4.16.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.6.0",
         "react-pretty-numbers": "^3.0.0",

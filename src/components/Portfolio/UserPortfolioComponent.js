@@ -7,11 +7,9 @@ import { userPortfolio } from '../../redux/actions/selfHostedIDO/action.self';
 import NOT_FOUND_IMG from '../../assets/images/no-image.png';
 import { Link } from 'react-router-dom';
 import { claimNow } from '../../redux/actions/ido/action.ido';
-import hand_Img from '../../assets/Ido/stepper/hand_Img.png';
-import hand_dark_Img from '../../assets/Ido/stepper/hand_dark_Img.png';
+import { GiTakeMyMoney } from 'react-icons/gi';
 import MainModal from '../Modals';
 import Pagination from '../../hooks/pagination';
-import { ThemeContext } from '../../routes/root';
 import PortfolioShimmer from '../../hooks/shimmer';
 const UserPortfolioComponent = ({
     claimTokens,
@@ -27,7 +25,6 @@ const UserPortfolioComponent = ({
     const [userInvestmentBreakdown, setUserInvestmentBreakdown] =
         React.useState([]);
     const [saleClaimDate, setSaleClaimDate] = React.useState();
-    const { theme } = React.useContext(ThemeContext);
     const ClaimNow = async (tokenPoolAddress, projectName) => {
         setModalType('transfer');
         const API_RESPONSE = await claimTokens({
@@ -86,7 +83,7 @@ const UserPortfolioComponent = ({
                     <div className='p-2 w-100 text-center'>
                         <div className='col w-100'>
                             <h5 className='fw-600 text-center form-header text-nowrap'>
-                                Your Sale Holdings
+                                Your IDO Holdings
                             </h5>
                         </div>
                     </div>
@@ -203,23 +200,24 @@ const UserPortfolioComponent = ({
                     userPortfolioData.success &&
                     !userPortfolioData.data.length > 0 && (
                         <div className='card-body project-detail shadow-sm border-10'>
-                            <h4 className='card-title text-16 m-auto fw-600'>
+                            <h4 className='text-16 m-auto fw-600'>
                                 No Investments on this address
                             </h4>
-                            <p className='card-title text-16 mx-auto font-insta-regular pt-3'>
-                                Start investing today
+                            <p className='text-16 mx-auto font-insta-regular pt-3'>
+                                Start{' '}
+                                <Link
+                                    to='/launchpad/all-sale'
+                                    className='router-l router-l-u'
+                                >
+                                    investing{' '}
+                                </Link>{' '}
+                                today
                             </p>
                             <div className='mx-auto w-10'>
                                 <hr />
                             </div>
-                            <div>
-                                <img
-                                    src={theme ? hand_Img : hand_dark_Img}
-                                    width={100}
-                                    height={100}
-                                    alt='hand'
-                                />
-                            </div>
+
+                            <GiTakeMyMoney size={45} />
                         </div>
                     )
                 ) : (

@@ -122,13 +122,13 @@ export const addWhitelistedUsersAPI = async (args) => {
         };
     }
 };
-export const verifyAPI = async ({ email, xtzAddress }) => {
+export const verifyAPI = async ({ email, wallet }) => {
     try {
         const req = await fetch(KYB_VERIFY_API_URL, {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
-                address: xtzAddress,
+                address: wallet,
             }),
         });
         const res = await req.json();

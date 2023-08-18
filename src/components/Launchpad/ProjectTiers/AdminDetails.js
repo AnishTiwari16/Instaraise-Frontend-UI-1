@@ -320,10 +320,10 @@ const AdminDetails = ({
                                         type='button'
                                         className={`shadow-sm ${
                                             !UNLOCK_TOKEN_DATE &&
-                                            projectData.status !== 1
-                                                ? 'disable-b'
-                                                : 'connect-wallet-button'
-                                        } px-3 btn`}
+                                            projectData.status === 1
+                                                ? 'connect-wallet-button'
+                                                : 'disable-b'
+                                        } px-4 btn`}
                                         onClick={() => {
                                             if (
                                                 !UNLOCK_TOKEN_DATE &&
@@ -333,7 +333,7 @@ const AdminDetails = ({
                                             }
                                         }}
                                     >
-                                        {'Lockup'}
+                                        {'Execute'}
                                         {UNLOCK_TOKEN_DATE && (
                                             <>
                                                 {' in '}

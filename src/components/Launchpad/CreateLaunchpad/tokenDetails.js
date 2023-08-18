@@ -1,6 +1,6 @@
 // eslint-disable-next-line
-import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import React from 'react';
 
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
@@ -188,15 +188,24 @@ const TokenDetails = ({
                                     >
                                         Start time
                                     </label>
-                                    <Datetime
-                                        value={project.publicStartTime}
-                                        onChange={(e) =>
-                                            createNewProject({
-                                                ...project,
-                                                publicStartTime: e._d,
-                                            })
-                                        }
-                                    />
+                                    <div className='text-dark-to-light text-14 token-information input-bar form-control rounded'>
+                                        <DatePicker
+                                            selected={project.publicStartTime}
+                                            onChange={(e) => {
+                                                createNewProject({
+                                                    ...project,
+                                                    publicStartTime: e,
+                                                });
+                                            }}
+                                            minDate={new Date()}
+                                            showTimeSelect
+                                            dateFormat='MMMM d, yyyy h:mm'
+                                            timeIntervals={5}
+                                            onKeyDown={(e) => {
+                                                e.preventDefault();
+                                            }}
+                                        />
+                                    </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -204,15 +213,24 @@ const TokenDetails = ({
                                     >
                                         End time
                                     </label>
-                                    <Datetime
-                                        value={project.publicEndTime}
-                                        onChange={(e) =>
-                                            createNewProject({
-                                                ...project,
-                                                publicEndTime: e._d,
-                                            })
-                                        }
-                                    />
+                                    <div className='text-dark-to-light text-14 token-information input-bar form-control rounded'>
+                                        <DatePicker
+                                            selected={project.publicEndTime}
+                                            onChange={(e) => {
+                                                createNewProject({
+                                                    ...project,
+                                                    publicEndTime: e,
+                                                });
+                                            }}
+                                            minDate={new Date()}
+                                            showTimeSelect
+                                            dateFormat='MMMM d, yyyy h:mm'
+                                            timeIntervals={5}
+                                            onKeyDown={(e) => {
+                                                e.preventDefault();
+                                            }}
+                                        />
+                                    </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -352,15 +370,24 @@ const TokenDetails = ({
                                     >
                                         token Unlock Time
                                     </label>
-                                    <Datetime
-                                        value={project.tokenUnlockTime}
-                                        onChange={(e) =>
-                                            createNewProject({
-                                                ...project,
-                                                tokenUnlockTime: e._d,
-                                            })
-                                        }
-                                    />
+                                    <div className='text-dark-to-light text-14 token-information input-bar form-control rounded'>
+                                        <DatePicker
+                                            selected={project.tokenUnlockTime}
+                                            onChange={(e) => {
+                                                createNewProject({
+                                                    ...project,
+                                                    tokenUnlockTime: e,
+                                                });
+                                            }}
+                                            minDate={new Date()}
+                                            showTimeSelect
+                                            dateFormat='MMMM d, yyyy h:mm'
+                                            timeIntervals={5}
+                                            onKeyDown={(e) => {
+                                                e.preventDefault();
+                                            }}
+                                        />
+                                    </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'
@@ -397,15 +424,24 @@ const TokenDetails = ({
                                     >
                                         lp Lockup Time
                                     </label>
-                                    <Datetime
-                                        value={project.lpLockupTime}
-                                        onChange={(e) =>
-                                            createNewProject({
-                                                ...project,
-                                                lpLockupTime: e._d,
-                                            })
-                                        }
-                                    />
+                                    <div className='text-dark-to-light text-14 token-information input-bar form-control rounded'>
+                                        <DatePicker
+                                            selected={project.lpLockupTime}
+                                            onChange={(e) => {
+                                                createNewProject({
+                                                    ...project,
+                                                    lpLockupTime: e,
+                                                });
+                                            }}
+                                            minDate={new Date()}
+                                            showTimeSelect
+                                            dateFormat='MMMM d, yyyy h:mm'
+                                            timeIntervals={5}
+                                            onKeyDown={(e) => {
+                                                e.preventDefault();
+                                            }}
+                                        />
+                                    </div>
                                     <label
                                         htmlFor='validationServerUsername'
                                         className='form-label text-dark-to-light'

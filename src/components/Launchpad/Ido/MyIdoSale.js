@@ -99,7 +99,7 @@ const MyIdoSale = (props) => {
                             <h6 className='text-center'>
                                 No sale created yet! Good time to&nbsp;
                                 <Link
-                                    to='/launchpad/create-sale'
+                                    to='/launchpad/create'
                                     className='router-l router-l-u'
                                 >
                                     Create one{' '}

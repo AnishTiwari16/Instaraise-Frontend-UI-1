@@ -46,6 +46,7 @@ const ProjectDetails = ({
                             <textarea
                                 type='text'
                                 style={{ height: '15vh' }}
+                                placeholder='Ex: Project description'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer02'
                                 name='description'
@@ -70,7 +71,7 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
-                                placeholder='https://ipfs'
+                                placeholder='Ex: https://...'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='Logo'
@@ -94,6 +95,7 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
+                                placeholder='Ex: https://...'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='name'
@@ -140,6 +142,7 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
+                                placeholder='Ex: https://t.me/...'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='Telegram'
@@ -161,6 +164,7 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
+                                placeholder='Ex: https://twitter.com/...'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='Twitter'
@@ -183,6 +187,7 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
+                                placeholder='Ex: https://medium.com/...'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='Medium'
@@ -204,6 +209,7 @@ const ProjectDetails = ({
                             </label>
                             <input
                                 type='text'
+                                placeholder='Ex: https://github.com/...'
                                 className='text-dark-to-light token-information text-14 input-bar form-control rounded'
                                 id='validationServer01'
                                 name='Github'

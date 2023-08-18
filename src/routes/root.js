@@ -55,7 +55,7 @@ const Root = () => {
                             element={<IdoProjects flag={!flag} />}
                         />
                         <Route
-                            path='/launchpad/create-sale'
+                            path='/launchpad/create'
                             element={<CreateLaunchpadContainer flag={!flag} />}
                         />
                         <Route

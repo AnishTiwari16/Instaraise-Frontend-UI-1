@@ -103,7 +103,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                 id='collapseOne'
                                 className={`accordion-collapse collapse ${
                                     [
-                                        'create-sale',
+                                        'create',
                                         'all-sale',
                                         'my-sale',
                                         'IDO',
@@ -129,7 +129,7 @@ const Sidebar = ({ isSidebarOpen, closeSidebar }) => {
                                             }}
                                         >
                                             <NavLink
-                                                to='/launchpad/create-sale'
+                                                to='/launchpad/create'
                                                 className='ms-2 mb-1 text-sm-2 nav-link sidebar-links d-flex '
                                                 aria-current='page'
                                             >

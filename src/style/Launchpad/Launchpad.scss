@@ -182,6 +182,10 @@
 .carousel-indicators li {
     background-color: #4e5d78;
 }
+.form-control:focus {
+    border-color: #ced4da !important;
+    box-shadow: none !important;
+}
 @media (max-width: 982px) {
     .connector {
         top: 0;
