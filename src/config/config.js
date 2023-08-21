@@ -19,7 +19,7 @@ export const PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad`;
 export const ALL_PROJECT_DETAILS_API_URL = `${BASE_URL}/v1/launchpad/all`;
 export const DEX_FEE = 1;
 export const DEX_DATA_REFRESH_TIME = 60000;
-export const INSTA_STAKE_AMOUNT = 1;
+export const INSTA_STAKE_AMOUNT = 4000;
 export const NETWORK = 'mainnet';
 export const RPC_NODES = {
     testnet: CONTRACT_CONFIG[testnetNetwork].RPC,
