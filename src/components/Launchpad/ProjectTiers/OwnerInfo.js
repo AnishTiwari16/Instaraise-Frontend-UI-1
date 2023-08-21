@@ -166,7 +166,7 @@ const OwnerInfo = ({
                                         </span>
                                     </div>
                                 ) : (
-                                    'Add users'
+                                    'Add'
                                 )}
                             </button>
                         </div>

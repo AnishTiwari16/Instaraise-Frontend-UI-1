@@ -17,7 +17,6 @@ import {
 } from '../../../redux/actions/staking/action.staking';
 import { connectWallet } from '../../../redux/actions/wallet/action.wallet';
 
-// import { useMediaQuery } from "react-responsive";
 export const option = {
     justification: 'L',
     locales: 'en-AU',
@@ -32,7 +31,6 @@ export const option = {
     cssClass: ['class1', 'class2'],
 };
 const ActiveStaking = (props) => {
-    // const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
     const {
         wallet,
         connectWallet,
@@ -165,12 +163,7 @@ const ActiveStaking = (props) => {
                 currentBlock={currentBlockLevel}
             />
             <div className='row  p-0 row-cols-1 row-cols-md-2 mb-4 mx-0 mx-lg-3  mx-md-3'>
-                <div
-                    className=' col-md-12  ps-lg-0  col-lg-4 my-4 my-lg-3 col-12  h-100 '
-                    // style={{
-                    //     width: isPortrait && "20rem",
-                    // }}
-                >
+                <div className=' col-md-12  ps-lg-0  col-lg-4 my-4 my-lg-3 col-12  h-100 '>
                     <div className='card pool text-center shadow-sm h-100 border-10'>
                         <div className='card-body '>
                             <div className='w-100 m-auto'>

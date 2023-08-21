@@ -10,23 +10,6 @@ export const fetchGraphData = async ({ days }) => {
             API_URL = `${COINGECKO_API_URL}?vs_currency=usd&days=${days}&interval=daily`;
         }
         const response = await axios.get(API_URL);
-        // if (days === 1) {
-        //     pricedata = response.data.body.prices.map((item) => {
-        //         const data = {
-        //             name: new Date(item[0]).getHours(),
-        //             pv: item[1],
-        //         };
-        //         return data;
-        //     });
-        // } else {
-        //     pricedata = response.data.body.prices.map((item) => {
-        //         const data = {
-        //             name: new Date(item[0]).getDate(),
-        //             pv: item[1],
-        //         };
-        //         return data;
-        //     });
-        // }
         let pricedata = response.data.body.prices.map((item) => {
             const data = {
                 name: new Date(item[0]),

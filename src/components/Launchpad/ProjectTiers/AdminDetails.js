@@ -144,7 +144,7 @@ const AdminDetails = ({
                 }}
                 pauseOnHover
             />
-            <div className='col-md-12 col-lg mw-100 h-100 py-4 py-md-0 mt-md-4 p-0'>
+            <div className='col-md-12 col-lg mw-100 h-100 py-4 px-0'>
                 <div className='card shadow-sm h-100 border-10'>
                     <div className='card-body'>
                         <div className='row'>

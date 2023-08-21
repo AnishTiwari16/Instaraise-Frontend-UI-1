@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { FaPlaneDeparture } from 'react-icons/fa';
 
 import AdminDetails from './AdminDetails';
-// import Claim from './Claim';
 import { DATA } from './TierData';
 import MainModal from '../../Modals';
 import { Link } from 'react-router-dom';
@@ -14,7 +13,6 @@ const PoolDetails = (props) => {
         SaleData,
         projectData,
         fetchSaleData,
-        // claimTokens,
         wallet,
         participateInSale,
         projectContractAddress,
@@ -29,25 +27,6 @@ const PoolDetails = (props) => {
     const handleModalType = (value) => {
         setModalType(value);
     };
-
-    // const ClaimNow = async () => {
-    //     if (!wallet) {
-    //         alert('Please connect wallet');
-    //         return;
-    //     }
-    //     setModalType('transfer');
-    //     const API_RESPONSE = await claimTokens({
-    //         contractAddress: projectData.tokenPoolAddress,
-    //         projectName: projectData.projectName,
-    //     });
-    //     if (API_RESPONSE.payload.success) {
-    //         fetchSaleData();
-    //         setOperationId(API_RESPONSE.payload.operationHash);
-    //         setModalType('success');
-    //     } else {
-    //         setModalType('error');
-    //     }
-    // };
 
     let participatingStatus = false;
     if (
@@ -121,21 +100,6 @@ const PoolDetails = (props) => {
                                 Invest
                             </span>
                         </div>
-                        {/* <div className='text-border'></div>
-                        <div className='p-1 cursor-pointer'>
-                            <span
-                                className={
-                                    tab === 'claim'
-                                        ? 'text-toggle-selected'
-                                        : 'text-toggle'
-                                }
-                                onClick={() => {
-                                    setTab('claim');
-                                }}
-                            >
-                                Claim
-                            </span>
-                        </div> */}
                     </div>
                 </div>
                 {props.projectData.projectName === 'Lyzi' ||
@@ -374,13 +338,6 @@ const PoolDetails = (props) => {
             ) : (
                 <AdminDetails projectData={props.projectData} />
             )}
-            {/* tab === 'claim' ? (
-                <Claim
-                    SaleData={SaleData}
-                    projectData={projectData}
-                    ClaimNow={ClaimNow}
-                />
-            ) */}
         </div>
     );
 };

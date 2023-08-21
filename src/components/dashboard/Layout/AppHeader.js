@@ -220,12 +220,6 @@ const AppHeader = (props) => {
                             </div>
                             <ul className='px-2'>
                                 <li className='list-style-none'>
-                                    {/* <img
-                                        src={Quipu}
-                                        width={30}
-                                        height={30}
-                                        className='gray-scale'
-                                    /> */}
                                     <Link
                                         to='#'
                                         onClick={() =>
